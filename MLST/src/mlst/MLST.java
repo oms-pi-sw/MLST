@@ -19,9 +19,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import mlst.struct.LabeledUndirectedGraph;
@@ -197,7 +201,7 @@ public class MLST {
       } else if (commandLine.hasOption(VERSION)) {
         System.out.println("MLST: v" + version() + " DEMO");
         System.out.println("\t" + Alg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
-        System.out.println("\t" + RAlg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges. [NOT SUPPORTED YET]");
+        System.out.println("\t" + RAlg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
         System.out.println("\t" + VCover.class.getSimpleName().toLowerCase() + ": Heuristic algorithm. [NOT SUPPORTED YET]");
       } else if (commandLine.hasOption(INPUT)) {
         LogManager.getLogger().info("Reading graph from file...");
@@ -260,22 +264,31 @@ public class MLST {
       }
 
       if (graph != null) {
-        Algorithm<Node, SimpleEdge<Node>> alg = new Alg1<>(graph);
+        println();
+        graph.printData();
+        println();
+
+        List<Algorithm<Node, SimpleEdge<Node>>> algs = new ArrayList<>();
+        Map<String, Date> times = new HashMap<>();
 
         if (commandLine.hasOption(ALGORITHM)) {
-          String alg_name = commandLine.getOptionValue(ALGORITHM);
-          if (alg_name.trim().toLowerCase().equalsIgnoreCase(Alg1.class.getSimpleName().toLowerCase())) {
-            alg = new Alg1<>(graph);
-          } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1.class.getSimpleName().toLowerCase())) {
-            alg = new RAlg1<>(graph);
-          } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(VCover.class.getSimpleName().toLowerCase())) {
-            alg = new VCover<>(graph);
-          } else {
-            LogManager.getLogger().warn("No algorithm found, set to default...");
+          String algs_name = commandLine.getOptionValue(ALGORITHM);
+          for (String alg_name : algs_name.split(",")) {
+            if (alg_name.trim().toLowerCase().equalsIgnoreCase(Alg1.class.getSimpleName().toLowerCase())) {
+              algs.add(new Alg1<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1.class.getSimpleName().toLowerCase())) {
+              algs.add(new RAlg1<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(VCover.class.getSimpleName().toLowerCase())) {
+              algs.add(new VCover<>(graph));
+            } else {
+              LogManager.getLogger().warn("No algorithm found with name: " + alg_name);
+            }
           }
         }
-
-        LogManager.getLogger().info("Algorithm: " + alg.getClass().getSimpleName().toLowerCase());
+        if (algs.isEmpty()) {
+          algs.add(new Alg1<>(graph));
+        }
+        println();
 
         String output = null;
         if (commandLine.hasOption(OUTPUT)) {
@@ -303,30 +316,60 @@ public class MLST {
         }
         LogManager.getLogger().info("All done.");
 
-        LogManager.getLogger().info("Starting calculating MLST with " + alg.getClass().getSimpleName().toLowerCase() + "...");
-        alg.start();
-        LogManager.getLogger().info("Done.");
+        for (Algorithm alg : algs) {
+          String alg_name = alg.getClass().getSimpleName().trim().toLowerCase();
 
-        LogManager.getLogger().info("Calculating spanning tree...");
-        LabeledUndirectedGraph<Node, SimpleEdge<Node>> min = alg.getMinGraph();
-        min.calculateSpanningTree();
-        LogManager.getLogger().info("Done.");
-        println();
-        println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.CYAN).a("MINIMUM LABELLING GRAPH:").format().reset().nl().format().boldOn().a(graph).format().reset());
-        println();
-        LogManager.getLogger().info("Plotting...");
-        min.plot(prefix + "_min.png", !nograph, (prefix != null));
-        if (output != null && !output.isEmpty()) {
-          LogManager.getLogger().info("Saving...");
-          min.save("mingraph_alg1_" + output);
-          min.saveData("data_mingraph_alg1_" + output);
+          try {
+            LogManager.getLogger().info("Algorithm: " + alg_name);
+            println(Ansi.ansi().format().fg(AnsiColor.RED).a("ALGORITHM: ").format().bg(AnsiColor.YELLOW).format().boldOn().a(alg_name).format().reset());
+
+            LogManager.getLogger().info("Starting calculating MLST with " + alg_name + "...");
+            Date dstart = new Date();
+            alg.start();
+            Date dend = new Date();
+            times.put(alg_name, new Date(dend.getTime() - dstart.getTime()));
+            LogManager.getLogger().info("Done.");
+
+            LogManager.getLogger().info("Calculating spanning tree...");
+            LabeledUndirectedGraph<Node, SimpleEdge<Node>> min = alg.getMinGraph();
+            min.calculateSpanningTree();
+            LogManager.getLogger().info("Done.");
+            println();
+            println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.CYAN).a("MINIMUM LABELLING GRAPH:").format().reset().nl().format().boldOn().a(graph).format().reset());
+            println();
+            LogManager.getLogger().info("Plotting...");
+            min.plot(prefix + "_" + alg_name + "_min.png", !nograph, (prefix != null));
+            if (output != null && !output.isEmpty()) {
+              LogManager.getLogger().info("Saving...");
+              min.save("mingraph_" + alg_name + "_" + output);
+              min.saveData("data_mingraph_" + alg_name + "_" + output);
+            }
+
+            println();
+            min.printData();
+            println();
+            println();
+          } catch (IOException ex) {
+            LogManager.getLogger().error("IOException: " + ex.getMessage(), ex);
+          } catch (Exception ex) {
+            LogManager.getLogger().fatal("Exception: " + ex.getMessage(), ex);
+          }
         }
 
-        println();
-        min.printData();
-        println();
-
         LogManager.getLogger().info("All done.");
+        times.forEach((alg, time) -> {
+          long diff = time.getTime();
+          long diffMills = diff % 1000;
+          long diffSeconds = diff / 1000 % 60;
+          long diffMinutes = diff / (60 * 1000) % 60;
+          long diffHours = diff / (60 * 60 * 1000);
+          println(Ansi.ansi()
+                  .format().fg(AnsiColor.MAGENTA).a("For algorithm ").a(alg).a(": ")
+                  .format().boldOn().a(diff).format().boldOff().a("ms")
+                  .nl().a("\t")
+                  .a(diffHours).a(":").a(diffMinutes).a(":").a(diffSeconds).a(".").a(diffMills)
+                  .format().reset());
+        });
       }
     } catch (NotConnectedGraphException ex) {
       LogManager.getLogger().error("NotConnectedGraphException: " + ex.getMessage(), ex);
@@ -394,10 +437,10 @@ public class MLST {
     graph.setType(String.class);
     options.addOption(graph);
 
-    Option algorithm = new Option("a", ALGORITHM, true, "Choose algorithm:" + System.lineSeparator()
+    Option algorithm = new Option("a", ALGORITHM, true, "Choose algorithm, you can select more algorithm at same time separating them with a comma:" + System.lineSeparator()
             + "* " + Alg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
             + "* " + RAlg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
-            + "* " + VCover.class.getSimpleName().toLowerCase());
+            + "* " + VCover.class.getSimpleName().toLowerCase() + " [NOT SUPPORTED YET]");
     algorithm.setArgName(ALGORITHM);
     algorithm.setRequired(false);
     algorithm.setOptionalArg(false);

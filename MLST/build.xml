@@ -97,5 +97,6 @@
 
   <target name="-run-post-one-jar">
     <exec dir="." executable="./create_executable.sh"/>
+    <exec dir="." executable="./makepack.sh"/>
   </target>
 </project>

@@ -43,12 +43,14 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
 
   private final Set<E> spanningEdges = new HashSet<>();
   private final Set<E> removedEdges;
+  private final Set<String> removedLabels;
 
   public LabeledUndirectedGraph() {
     this.nodes = new HashSet<>();
     this.edges = new HashSet<>();
     this.labels = new HashSet<>();
     this.removedEdges = new HashSet<>();
+    this.removedLabels = new HashSet<>();
   }
 
   public LabeledUndirectedGraph(Collection<N> nodes) {
@@ -61,6 +63,7 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
     this.edges = new HashSet<>(graph.edges);
     this.labels = new HashSet<>(graph.labels);
     this.removedEdges = new HashSet<>(graph.removedEdges);
+    this.removedLabels = new HashSet<>(graph.removedLabels);
   }
 
   public boolean addNode(N node) {
@@ -76,6 +79,7 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
       edges.add(edge);
       removedEdges.remove(edge);
       labels.add(edge.getLabel());
+      removedLabels.remove(edge.getLabel());
       return true;
     }
     return false;
@@ -100,8 +104,10 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
   }
 
   private void recalculateLabels() {
+    removedLabels.addAll(labels);
     labels.clear();
     edges.forEach(edge -> labels.add(edge.getLabel()));
+    removedLabels.removeAll(labels);
   }
 
   public void removeNode(N node) {
@@ -190,6 +196,10 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
 
   public Set<E> getRemovedEdges() {
     return new HashSet<>(removedEdges);
+  }
+
+  public Set<String> getRemovedLabels() {
+    return new HashSet<>(removedLabels);
   }
 
   @Override
@@ -319,6 +329,10 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
 
       printWriter.println("Removed edges:");
       printWriter.println(removedEdges);
+      println();
+
+      printWriter.println("Removed labels:");
+      printWriter.println(removedLabels);
     } catch (IOException ex) {
       throw ex;
     }
@@ -347,6 +361,10 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
 
     println(Ansi.ansi().format().fg(AnsiColor.YELLOW).format().bg(AnsiColor.BLUE).a("Removed edges:").format().reset());
     println(removedEdges.toString());
+    println();
+
+    println(Ansi.ansi().format().fg(AnsiColor.YELLOW).format().bg(AnsiColor.BLUE).a("Removed labels:").format().reset());
+    println(removedLabels.toString());
   }
 
   @Override

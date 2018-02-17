@@ -21,16 +21,34 @@ public class RAlg1<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
 
   public RAlg1(LabeledUndirectedGraph<N, E> graph) throws NotConnectedGraphException {
     super(graph);
+    minGraph = new LabeledUndirectedGraph<>(graph);
+  }
+
+  private void compute(LabeledUndirectedGraph<N, E> g) {
+    g.getRemovedLabels().forEach(label -> {
+      LabeledUndirectedGraph<N, E> cg = new LabeledUndirectedGraph<>(g);
+      cg.getRemovedEdges().forEach(redge -> {
+        if (redge.getLabel().equals(label)) {
+          cg.addEdge(redge);
+        }
+      });
+      if (cg.isConnected()) {
+        if (minGraph.calculateCost() > cg.calculateCost()) {
+          minGraph = cg;
+        }
+      } else {
+        if (cg.calculateCost() < minGraph.calculateCost()) {
+          compute(cg);
+        }
+      }
+    });
   }
 
   @Override
   public void start() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public LabeledUndirectedGraph<N, E> getMinGraph() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    LabeledUndirectedGraph<N, E> zero = new LabeledUndirectedGraph<>(minGraph);
+    zero.getEdges().forEach(edge -> zero.removeEdge(edge));
+    compute(zero);
   }
 
 }
