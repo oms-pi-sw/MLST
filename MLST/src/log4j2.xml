@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Properties>
+    <Property name="filename">trace.log</Property>
+    <Property name="msgcolor">FATAL=Red Bright, ERROR=Red, WARN=Yellow Bold, INFO=Green, DEBUG=Cyan, TRACE=blue, VERBOSE=BG_Magenta Yellow, NOTICE=BG_Blue Yellow, EVENT=BG_Yellow Blue, SERVER=BG_Blue White, CLIENT=BG_Green White, LOADSCREEN_OUT=BG_Green Blue, LOADSCREEN_ERR=BG_Green Red, NORMAL=Normal Default</Property>
+    <!--\e == \\(e|u001b|033|x1b)-->
+    <Property name="escape">\e\[[0-9;:]*m</Property>
+  </Properties>
+  
+  <CustomLevels>
+    <CustomLevel name="NORMAL" intLevel="410" />
+    <CustomLevel name="VERBOSE" intLevel="420" />
+    <CustomLevel name="SERVER" intLevel="440" />
+    <CustomLevel name="CLIENT" intLevel="440" />
+    <CustomLevel name="NOTICE" intLevel="460" />
+    <CustomLevel name="EVENT" intLevel="480" />
+    <CustomLevel name="LOADSCREEN_OUT" intLevel="360" />
+    <CustomLevel name="LOADSCREEN_ERR" intLevel="330" />
+  </CustomLevels>
+  
+  <!--%t:%T:%C{1}:%M:%c{1}:%L-->
+  
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <!--<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss,SSS} %highlight{%level}{${msgcolor}} %logger{10}]: %highlight{%message{ansi}}{${msgcolor}}%style{%n}{Default Normal}%throwable" />-->
+      <PatternLayout pattern="[%highlight{%level}{${msgcolor}}]: %highlight{%message{ansi}}{${msgcolor}}%style{%n}{Default Normal}%throwable" />
+    </Console>
+    <RollingFile name="File" fileName="${filename}" filePattern="${filename}.%d{yyyy-MM-dd}">
+      <PatternLayout disableAnsi="true" noConsoleNoAnsi="true" pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-10p %t:%T:%C{1}:%M:%c{1}:%L - %replace{%message}{(\@\|[\w,]+\s)|(\|\@)|(${escape})}{}%n" />
+      <!--<PatternLayout disableAnsi="true" noConsoleNoAnsi="true" pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-10p %logger{10} - %replace{%message}{(\@\|[\w,]+\s)|(\|\@)|(${escape})}{}%n" />-->
+      <Policies>
+        <SizeBasedTriggeringPolicy size="20MB" />
+      </Policies>
+    </RollingFile>
+  </Appenders>
+  
+  <Loggers>
+    <Root level="ALL">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Root>
+  </Loggers>
+</Configuration>

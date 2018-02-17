@@ -1,0 +1,1 @@
+2018-02-16 18:58:12,142 ERROR      main:1:MLST:main:MLST:228 - ParseException: Missing required option: [-i The input graph file., -h Print help., -v Print version., -r Generate random graph.]
