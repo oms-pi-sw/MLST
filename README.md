@@ -75,5 +75,7 @@ For windows you need to run the console with a program like *ansicon*.
 
 ## TODO:
 * Add a mixed exact algorith that use RAlg1 with MVCA, to find an *upper bound* for minimum graph cost.
+* Tabù heuristic algorithm.
+* Ant heuristic algorithm.
 * Genetic heuristic algorith.
 * AStar (A*) exact algorithm.
