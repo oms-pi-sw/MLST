@@ -38,6 +38,6 @@ public class Alg1<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
 
   @Override
   public void start() throws Exception {
-    compute(graph);
+    compute(minGraph);
   }
 }

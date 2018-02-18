@@ -31,7 +31,7 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     if (!graph.isConnected()) {
       throw new NotConnectedGraphException("Graph must be connected");
     }
-    this.graph = graph;
+    this.graph = new LabeledUndirectedGraph<>(graph);
     minGraph = new LabeledUndirectedGraph<>(graph);
   }
 

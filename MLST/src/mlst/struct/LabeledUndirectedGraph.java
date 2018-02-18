@@ -254,10 +254,11 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
       graph.getNode(name).setAttribute("ui.label", name);
     });
 
-    int id = 0;
+    long id = 0;
     for (E edge : edges) {
       String label = edge.getLabel();
-      String node1 = edge.getNode1().getName(), node2 = edge.getNode2().getName(), name = node1 + node2 + (id++);
+      String node1 = edge.getNode1().getName(), node2 = edge.getNode2().getName(), name = node1 + node2 + "E" + id;
+      id++;
       graph.addEdge(name, node1, node2);
       if (spanningEdges.contains(edge)) {
         graph.getEdge(name).addAttribute("ui.style", "fill-color: red; size: 5px; text-alignment: center; text-color: green; text-style: bold; text-size: 12;");
@@ -269,7 +270,8 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
 
     for (E edge : removedEdges) {
       String label = edge.getLabel();
-      String node1 = edge.getNode1().getName(), node2 = edge.getNode2().getName(), name = node1 + node2 + (id++);
+      String node1 = edge.getNode1().getName(), node2 = edge.getNode2().getName(), name = node1 + node2 + "E" + id;
+      id++;
       graph.addEdge(name, node1, node2);
       graph.getEdge(name).addAttribute("ui.style", "fill-color: black; size: 1px; text-alignment: center; text-color: green; text-size: 10; stroke-mode: dashes;");
       graph.getEdge(name).setAttribute("ui.label", label);

@@ -14,7 +14,7 @@ import engines.impl.Alg1;
 import engines.exceptions.NotConnectedGraphException;
 import engines.impl.RAlg1;
 import engines.impl.RAlg1Opt1;
-import engines.vcover.VCover;
+import engines.impl.MVCA;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -203,7 +203,7 @@ public class MLST {
         System.out.println("\t" + Alg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
         System.out.println("\t" + RAlg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
         System.out.println("\t" + RAlg1Opt1.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + RAlg1.class.getSimpleName().toLowerCase() + " with multithreading support. [EXPERIMENTAL]");
-        System.out.println("\t" + VCover.class.getSimpleName().toLowerCase() + ": Heuristic algorithm. [NOT SUPPORTED YET]");
+        System.out.println("\t" + MVCA.class.getSimpleName().toLowerCase() + ": MVCA, Maximum Vertex Cover Algorithm. Heuristic algorithm.");
       } else if (commandLine.hasOption(INPUT)) {
         LogManager.getLogger().info("Reading graph from file...");
         LabeledUndirectedGraph<Node, SimpleEdge<Node>> rg = MLST.readGraph(commandLine.getOptionValue(INPUT).trim());
@@ -281,8 +281,8 @@ public class MLST {
               algs.add(new RAlg1<>(graph));
             } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1Opt1.class.getSimpleName().toLowerCase())) {
               algs.add(new RAlg1Opt1<>(graph));
-            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(VCover.class.getSimpleName().toLowerCase())) {
-              algs.add(new VCover<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(MVCA.class.getSimpleName().toLowerCase())) {
+              algs.add(new MVCA<>(graph));
             } else {
               LogManager.getLogger().warn("No algorithm found with name: " + alg_name);
             }
@@ -444,7 +444,7 @@ public class MLST {
             + "* " + Alg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
             + "* " + RAlg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
             + "* " + RAlg1Opt1.class.getSimpleName().toLowerCase() + System.lineSeparator()
-            + "* " + VCover.class.getSimpleName().toLowerCase() + " [NOT SUPPORTED YET]");
+            + "* " + MVCA.class.getSimpleName().toLowerCase() + " [NOT SUPPORTED YET]");
     algorithm.setArgName(ALGORITHM);
     algorithm.setRequired(false);
     algorithm.setOptionalArg(false);

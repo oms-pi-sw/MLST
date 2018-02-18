@@ -35,7 +35,7 @@ public class RAlg1Opt1<N extends Node, E extends Edge<N>> extends RAlg1<N, E> {
   public void start() throws InterruptedException, Exception {
     try {
       Set<String> nlabels = new HashSet<>();
-      LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(graph);
+      LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(minGraph);
       test.getLabels().forEach(label -> {
         Set<E> ledges = test.getEdges().stream().filter(edge -> edge.getLabel().equals(label)).collect(Collectors.toSet());
         for (E edge : ledges) {
@@ -47,7 +47,7 @@ public class RAlg1Opt1<N extends Node, E extends Edge<N>> extends RAlg1<N, E> {
           test.addEdge(edge);
         }
       });
-      LabeledUndirectedGraph<N, E> zero = new LabeledUndirectedGraph<>(graph);
+      LabeledUndirectedGraph<N, E> zero = new LabeledUndirectedGraph<>(minGraph);
       zero.getEdges().forEach(edge -> {
         if (!nlabels.contains(edge.getLabel())) {
           zero.removeEdge(edge);
