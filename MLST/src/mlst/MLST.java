@@ -12,6 +12,7 @@ import ansiTTY.ansi.format.AnsiColor;
 import engines.Algorithm;
 import engines.impl.Alg1;
 import engines.exceptions.NotConnectedGraphException;
+import engines.impl.ERA;
 import engines.impl.RAlg1;
 import engines.impl.RAlg1Opt1;
 import engines.impl.MVCA;
@@ -39,6 +40,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
 /**
@@ -202,14 +204,12 @@ public class MLST {
         System.out.println("MLST: v" + version() + " ALPHA");
         System.out.println("\t" + Alg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
         System.out.println("\t" + RAlg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
-        System.out.println("\t" + RAlg1Opt1.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + RAlg1.class.getSimpleName().toLowerCase() + " with multithreading support. [EXPERIMENTAL]");
+        System.out.println("\t" + RAlg1Opt1.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + RAlg1.class.getSimpleName().toLowerCase() + " with multithreading support.");
         System.out.println("\t" + MVCA.class.getSimpleName().toLowerCase() + ": MVCA, Maximum Vertex Cover Algorithm. Heuristic algorithm.");
+        System.out.println("\t" + ERA.class.getSimpleName().toLowerCase() + ": ERA, Edge Replacement Algorithm. Heuristic algorithm.");
       } else if (commandLine.hasOption(INPUT)) {
         LogManager.getLogger().info("Reading graph from file...");
         LabeledUndirectedGraph<Node, SimpleEdge<Node>> rg = MLST.readGraph(commandLine.getOptionValue(INPUT).trim());
-        rg.calculateSpanningTree();
-        println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.BLUE).a("LOADED GRAPH:").format().reset().nl().format().boldOn().a(rg).format().reset());
-        println();
 
         graph = rg;
       } else if (commandLine.hasOption(RANDOM)) {
@@ -257,20 +257,16 @@ public class MLST {
 
         LogManager.getLogger().info("Generating random graph...");
         LabeledUndirectedGraph<Node, SimpleEdge<Node>> gg = MLST.generateGraph(nnodes, nlabels, nedges);
-        gg.calculateSpanningTree();
-        println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.BLUE).a("GENERATED GRAPH:").format().reset().nl().format().boldOn().a(gg).format().reset());
-        println();
 
         graph = gg;
       }
 
       if (graph != null) {
-        println();
-        graph.printData();
-        println();
-
         List<Algorithm<Node, SimpleEdge<Node>>> algs = new ArrayList<>();
-        Map<String, Date> times = new HashMap<>();
+
+        Map<Algorithm<Node, SimpleEdge<Node>>, Date> times = new HashMap<>();
+        Map<Algorithm<Node, SimpleEdge<Node>>, Integer> costs = new HashMap<>();
+        Map<Algorithm<Node, SimpleEdge<Node>>, LabeledUndirectedGraph<Node, SimpleEdge<Node>>> graphs = new HashMap<>();
 
         if (commandLine.hasOption(ALGORITHM)) {
           String algs_name = commandLine.getOptionValue(ALGORITHM);
@@ -283,6 +279,8 @@ public class MLST {
               algs.add(new RAlg1Opt1<>(graph));
             } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(MVCA.class.getSimpleName().toLowerCase())) {
               algs.add(new MVCA<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(ERA.class.getSimpleName().toLowerCase())) {
+              algs.add(new ERA<>(graph));
             } else {
               LogManager.getLogger().warn("No algorithm found with name: " + alg_name);
             }
@@ -310,6 +308,27 @@ public class MLST {
           nograph = true;
         }
 
+        boolean verbose = false;
+        if (commandLine.hasOption(VERBOSE)) {
+          verbose = true;
+        }
+
+        Integer max_threads = null;
+        if (commandLine.hasOption(THREADS)) {
+          max_threads = Integer.parseInt(commandLine.getOptionValue(THREADS).trim());
+        }
+
+        graph.calculateSpanningTree();
+        println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.BLUE).a("MAIN GRAPH:").format().reset());
+        if (verbose) {
+          println(Ansi.ansi().format().boldOn().a(graph).format().reset());
+        }
+        println();
+
+        println();
+        graph.printData();
+        println();
+
         LogManager.getLogger().info("Plotting...");
         graph.plot(prefix + "_main.png", !nograph, (prefix != null));
         if (output != null && !output.isEmpty()) {
@@ -321,25 +340,38 @@ public class MLST {
 
         for (Algorithm alg : algs) {
           String alg_name = alg.getClass().getSimpleName().trim().toLowerCase();
+          alg.setMaxThreads(max_threads);
 
           try {
             LogManager.getLogger().info("Algorithm: " + alg_name);
             println(Ansi.ansi().format().fg(AnsiColor.RED).a("ALGORITHM: ").format().bg(AnsiColor.YELLOW).format().boldOn().a(alg_name).format().reset());
 
+            //START ALGORITHM SECTION
             LogManager.getLogger().info("Starting calculating MLST with " + alg_name + "...");
             Date dstart = new Date();
             alg.start();
             Date dend = new Date();
-            times.put(alg_name, new Date(dend.getTime() - dstart.getTime()));
+            times.put(alg, new Date(dend.getTime() - dstart.getTime()));
             LogManager.getLogger().info("Done.");
 
             LogManager.getLogger().info("Calculating spanning tree...");
             LabeledUndirectedGraph<Node, SimpleEdge<Node>> min = alg.getMinGraph();
             min.calculateSpanningTree();
+            costs.put(alg, min.calculateCost());
+            graphs.put(alg, min);
             LogManager.getLogger().info("Done.");
+            if (verbose) {
+              LogManager.getLogger().log(Level.getLevel("VERBOSE"), "Check -> connected: " + min.isConnected());
+            }
+            //END ALGORITHM SECTION
+
             println();
-            println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.CYAN).a("MINIMUM LABELLING GRAPH:").format().reset().nl().format().boldOn().a(graph).format().reset());
+            println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.CYAN).a("MINIMUM LABELLING GRAPH:").format().reset());
+            if (verbose) {
+              println(Ansi.ansi().format().boldOn().a(graph).format().reset());
+            }
             println();
+
             LogManager.getLogger().info("Plotting...");
             min.plot(prefix + "_" + alg_name + "_min.png", !nograph, (prefix != null));
             if (output != null && !output.isEmpty()) {
@@ -360,19 +392,31 @@ public class MLST {
         }
 
         LogManager.getLogger().info("All done.");
-        times.forEach((alg, time) -> {
+        algs.forEach(alg -> {
+          Date time = times.get(alg);
+          Integer cost = costs.get(alg);
+          LabeledUndirectedGraph<Node, SimpleEdge<Node>> g = graphs.get(alg);
+
           long diff = time.getTime();
           long diffMills = diff % 1000;
           long diffSeconds = diff / 1000 % 60;
           long diffMinutes = diff / (60 * 1000) % 60;
           long diffHours = diff / (60 * 60 * 1000);
           println(Ansi.ansi()
-                  .format().fg(AnsiColor.MAGENTA).a("For algorithm ").a(alg).a(": ")
+                  .format().fg(AnsiColor.MAGENTA).a("For algorithm ").a(alg.getClass().getSimpleName().trim().toLowerCase()).a(": ")
                   .format().boldOn().a(diff).format().boldOff().a("ms")
                   .nl().a("\t")
                   .a(diffHours).a(":").a(diffMinutes).a(":").a(diffSeconds).a(".").a(diffMills)
+                  .nl().a("\t")
+                  .a("Cost: ").a(cost)
+                  .nl().a("\t")
+                  .a("Consistent: ").a(g.isConnected())
                   .format().reset());
         });
+        println(Ansi.ansi()
+                .format().fg(AnsiColor.MAGENTA)
+                .a("Initial cost: ").a(graph.calculateCost())
+                .format().reset());
       }
     } catch (NotConnectedGraphException ex) {
       LogManager.getLogger().error("NotConnectedGraphException: " + ex.getMessage(), ex);
@@ -397,6 +441,8 @@ public class MLST {
   private static final String GRAPH = "graph";
   private static final String NOGRAPH = "nograph";
   private static final String ALGORITHM = "algorithm";
+  private static final String VERBOSE = "verbose";
+  private static final String THREADS = "threads";
 
   private static Options setOptions() {
     Options options = new Options();
@@ -441,10 +487,11 @@ public class MLST {
     options.addOption(graph);
 
     Option algorithm = new Option("a", ALGORITHM, true, "Choose algorithm, you can select more algorithm at same time separating them with a comma:" + System.lineSeparator()
-            + "* " + Alg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
-            + "* " + RAlg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
-            + "* " + RAlg1Opt1.class.getSimpleName().toLowerCase() + System.lineSeparator()
-            + "* " + MVCA.class.getSimpleName().toLowerCase() + " [NOT SUPPORTED YET]");
+            + "* " + Alg1.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
+            + "* " + RAlg1.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
+            + "* " + RAlg1Opt1.class.getSimpleName().toLowerCase() + " [EXACT, MULTITHREAD]" + System.lineSeparator()
+            + "* " + MVCA.class.getSimpleName().toLowerCase() + " [HEURISTIC]" + System.lineSeparator()
+            + "* " + ERA.class.getSimpleName().toLowerCase() + " [HEURISTIC]");
     algorithm.setArgName(ALGORITHM);
     algorithm.setRequired(false);
     algorithm.setOptionalArg(false);
@@ -455,6 +502,18 @@ public class MLST {
     nograph.setArgName(NOGRAPH);
     nograph.setRequired(false);
     options.addOption(nograph);
+
+    Option verbose = new Option(null, VERBOSE, false, "Enable verbose modality.");
+    verbose.setArgName(VERBOSE);
+    verbose.setRequired(false);
+    options.addOption(verbose);
+
+    Option threads = new Option("t", THREADS, true, "Specify number of threads. Works only for multithreading algorithms.");
+    threads.setArgName(THREADS);
+    threads.setRequired(false);
+    threads.setOptionalArg(false);
+    threads.setType(Integer.class);
+    options.addOption(threads);
 
     required.setRequired(true);
     options.addOptionGroup(required);

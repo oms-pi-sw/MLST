@@ -27,6 +27,8 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
 
   protected volatile LabeledUndirectedGraph<N, E> minGraph;
 
+  protected Integer maxThreads = null;
+
   public Algorithm(LabeledUndirectedGraph<N, E> graph) throws NotConnectedGraphException {
     if (!graph.isConnected()) {
       throw new NotConnectedGraphException("Graph must be connected");
@@ -72,5 +74,13 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
 
   public LabeledUndirectedGraph<N, E> getMinGraph() {
     return minGraph;
+  }
+
+  public Integer getMaxThreads() {
+    return maxThreads;
+  }
+
+  public void setMaxThreads(Integer maxThreads) {
+    this.maxThreads = maxThreads;
   }
 }

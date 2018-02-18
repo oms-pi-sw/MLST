@@ -54,7 +54,7 @@ public class RAlg1Opt1<N extends Node, E extends Edge<N>> extends RAlg1<N, E> {
         }
       });
 
-      int nthreads = Runtime.getRuntime().availableProcessors();
+      int nthreads = getMaxThreads() == null ? Runtime.getRuntime().availableProcessors() : getMaxThreads();
       List<Thread> pool = new ArrayList<>();
 
       Queue<LabeledUndirectedGraph<N, E>> graphs = new LinkedList<>();
