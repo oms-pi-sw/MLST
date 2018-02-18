@@ -1,5 +1,5 @@
 # MLST
-## Minimum Labelling Spanning Tree.
+## Minimum Labelling Spanning Tree:
 Solver for MLST problem.
 
 ## Download binary:
