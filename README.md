@@ -9,5 +9,5 @@ Solver for MLST problem: actual supported algorithm:
     Check if at k step the graph is connected:
         If TRUE then call recursively and remove another label.
 ```
-* RAlg1:
+* RAlg1:<br />
     Dual of Alg1: start with empty graph and then add edges.
