@@ -1,4 +1,4 @@
-# MLST
+# MLST [![build status](http://minegrado.ovh/badges/build-passing-brightgreen.svg)](https://github.com/oms-pi-sw/MLST) [![license](http://minegrado.ovh/badges/license-MIT-blue.svg)](LICENSE)
 ## Minimum Labelling Spanning Tree:
 Solver for MLST problem.
 
