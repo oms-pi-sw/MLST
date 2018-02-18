@@ -9,5 +9,6 @@ Solver for MLST problem.
     3. Check if at k step the graph is connected:
         1. If TRUE then call recursively and remove another label.
 <br />
+
 * RAlg1:<br />
-    * Dual of Alg1: start with empty graph and then add edges.
+    + Dual of Alg1: start with empty graph and then add edges.
