@@ -25,7 +25,7 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
 
   protected final LabeledUndirectedGraph<N, E> graph;
 
-  protected LabeledUndirectedGraph<N, E> minGraph;
+  protected volatile LabeledUndirectedGraph<N, E> minGraph;
 
   public Algorithm(LabeledUndirectedGraph<N, E> graph) throws NotConnectedGraphException {
     if (!graph.isConnected()) {
@@ -35,7 +35,7 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     minGraph = new LabeledUndirectedGraph<>(graph);
   }
 
-  public abstract void start();
+  public abstract void start() throws Exception;
 
   public LabeledUndirectedGraph<N, E> getSpanningTree() {
     Queue<N> queue = new LinkedList<>();

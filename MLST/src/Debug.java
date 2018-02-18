@@ -1,5 +1,5 @@
 
-import engines.alg1.Alg1;
+import engines.impl.Alg1;
 import engines.exceptions.NotConnectedGraphException;
 import java.io.IOException;
 import java.util.Set;
@@ -20,7 +20,7 @@ import mlst.struct.exceptions.LoopEdgeException;
 public class Debug {
 
   @Deprecated
-  public static void debug() throws IOException, NotConnectedGraphException, LoopEdgeException {
+  public static void debug() throws IOException, NotConnectedGraphException, LoopEdgeException, Exception {
     LabeledUndirectedGraph<Node, Edge<Node>> g = new LabeledUndirectedGraph<>();
     LabeledUndirectedGraph<Node, Edge<Node>> gc1, gc2;
     Node a, b, c, d, e;

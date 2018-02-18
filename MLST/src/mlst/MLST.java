@@ -10,16 +10,16 @@ import static ansiTTY.ansi.Ansi.print;
 import static ansiTTY.ansi.Ansi.println;
 import ansiTTY.ansi.format.AnsiColor;
 import engines.Algorithm;
-import engines.alg1.Alg1;
+import engines.impl.Alg1;
 import engines.exceptions.NotConnectedGraphException;
-import engines.ralg1.RAlg1;
+import engines.impl.RAlg1;
+import engines.impl.RAlg1Opt1;
 import engines.vcover.VCover;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -199,9 +199,10 @@ public class MLST {
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp("MLST", options);
       } else if (commandLine.hasOption(VERSION)) {
-        System.out.println("MLST: v" + version() + " DEMO");
+        System.out.println("MLST: v" + version() + " ALPHA");
         System.out.println("\t" + Alg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
         System.out.println("\t" + RAlg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
+        System.out.println("\t" + RAlg1Opt1.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + RAlg1.class.getSimpleName().toLowerCase() + " with multithreading support. [EXPERIMENTAL]");
         System.out.println("\t" + VCover.class.getSimpleName().toLowerCase() + ": Heuristic algorithm. [NOT SUPPORTED YET]");
       } else if (commandLine.hasOption(INPUT)) {
         LogManager.getLogger().info("Reading graph from file...");
@@ -278,6 +279,8 @@ public class MLST {
               algs.add(new Alg1<>(graph));
             } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1.class.getSimpleName().toLowerCase())) {
               algs.add(new RAlg1<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1Opt1.class.getSimpleName().toLowerCase())) {
+              algs.add(new RAlg1Opt1<>(graph));
             } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(VCover.class.getSimpleName().toLowerCase())) {
               algs.add(new VCover<>(graph));
             } else {
@@ -440,6 +443,7 @@ public class MLST {
     Option algorithm = new Option("a", ALGORITHM, true, "Choose algorithm, you can select more algorithm at same time separating them with a comma:" + System.lineSeparator()
             + "* " + Alg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
             + "* " + RAlg1.class.getSimpleName().toLowerCase() + System.lineSeparator()
+            + "* " + RAlg1Opt1.class.getSimpleName().toLowerCase() + System.lineSeparator()
             + "* " + VCover.class.getSimpleName().toLowerCase() + " [NOT SUPPORTED YET]");
     algorithm.setArgName(ALGORITHM);
     algorithm.setRequired(false);
