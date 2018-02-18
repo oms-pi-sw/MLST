@@ -1,9 +1,9 @@
 # MLST
-Minimum Labelling Spanning Tree
+## Minimum Labelling Spanning Tree.
 Solver for MLST problem.
 
 ## Download binary:
-[BIN](http://minegrado.ovh/DWN/MLST)
+### [BIN](http://minegrado.ovh/DWN/MLST)
 **MLST-bin** *.tar.xz* or *.zip* is binary updated archive.
 
 ## Supported algorithm:
