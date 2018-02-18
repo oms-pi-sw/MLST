@@ -67,6 +67,12 @@ usage: MLST
     --verbose                 Enable verbose modality.
 ```
 
+## UI: [![GraphStream](http://minegrado.ovh/badges/dependecy-GraphStream-blue.svg)](http://graphstream-project.org/)
+Graphic interface use GraphStream library.
+
+## WINDOWS: [![ansicon](http://minegrado.ovh/badges/dependecy-ansicon-blue.svg)](https://github.com/adoxa/ansicon)
+For windows you need to run the console with a program like *ansicon*.
+
 ## TODO:
 * Add a mixed exact algorith that use RAlg1 with MVCA, to find an *upper bound* for minimum graph cost.
 * Genetic heuristic algorith.
