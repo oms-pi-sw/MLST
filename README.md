@@ -3,7 +3,7 @@
 Solver for MLST problem.
 
 ## Download binary:
-### [BIN](http://minegrado.ovh/DWN/MLST)
+### [REPOSITORY](http://minegrado.ovh/DWN/MLST)
 **MLST-bin** *.tar.xz* or *.zip* is binary updated archive.
 * [tar.xz](http://minegrado.ovh/DWN/MLST/MLST-bin.tar.xz)
 * [zip](http://minegrado.ovh/DWN/MLST/MLST-bin.zip)
