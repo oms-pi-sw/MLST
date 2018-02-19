@@ -8,9 +8,13 @@ package engines;
 import engines.exceptions.NotConnectedGraphException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
+import java.util.Set;
+import java.util.stream.Collectors;
 import mlst.struct.Edge;
 import mlst.struct.LabeledUndirectedGraph;
 import mlst.struct.Node;
@@ -37,7 +41,12 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     minGraph = new LabeledUndirectedGraph<>(graph);
   }
 
-  public abstract void start() throws Exception;
+  public final void run() throws Exception {
+    minGraph = new LabeledUndirectedGraph<>(graph);
+    start();
+  }
+
+  protected abstract void start() throws Exception;
 
   public LabeledUndirectedGraph<N, E> getSpanningTree() {
     Queue<N> queue = new LinkedList<>();
@@ -68,6 +77,29 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     return spanningTree;
   }
 
+  protected LabeledUndirectedGraph<N, E> getZeroGraph(LabeledUndirectedGraph<N, E> g) {
+    LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(g);
+    Set<String> nlabels = new HashSet<>();
+    test.getLabels().forEach(label -> {
+      Set<E> ledges = test.getEdges().stream().filter(edge -> edge.getLabel().equals(label)).collect(Collectors.toSet());
+      for (E edge : ledges) {
+        test.removeEdge(edge);
+        if (!test.isConnected()) {
+          nlabels.add(label);
+          break;
+        }
+        test.addEdge(edge);
+      }
+    });
+    LabeledUndirectedGraph<N, E> zero = new LabeledUndirectedGraph<>(g);
+    zero.getEdges().forEach(edge -> {
+      if (!nlabels.contains(edge.getLabel())) {
+        zero.removeEdge(edge);
+      }
+    });
+    return zero;
+  }
+
   public LabeledUndirectedGraph<N, E> getGraph() {
     return graph;
   }
@@ -83,4 +115,26 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
   public void setMaxThreads(Integer maxThreads) {
     this.maxThreads = maxThreads;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!getClass().equals(obj.getClass())) {
+      return false;
+    }
+    return Objects.hashCode(this) == Objects.hashCode(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 13 * hash + Objects.hashCode(getClass().getName());
+    return hash;
+  }
+
 }
