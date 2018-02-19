@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/engines/impl/BBBottomUpT.java</file>
+            <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/engines/impl/MVCA.java</file>
+            <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/engines/Algorithm.java</file>
+            <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/engines/impl/BottomUp.java</file>
+            <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/engines/impl/MVCAO1.java</file>
             <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/mlst/MLST.java</file>
+            <file>file:/home/nick/NetBeansProjects/MLST/MLST/src/engines/impl/BottomUpT.java</file>
         </group>
     </open-files>
 </project-private>

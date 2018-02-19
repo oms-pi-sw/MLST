@@ -9,7 +9,7 @@ Solver for MLST problem.
 * [zip](http://minegrado.ovh/DWN/MLST/MLST-bin.zip)
 
 ## Supported algorithm:
-* BBTopDown: [Branch&Bound Top-Down]
+* BBTopDown: (Branch&Bound Top-Down)
     1. Start with complete graph.
     2. Remove recurively one label and check if is connected:
         1. If is connected check if the cost of found graph is less than last saved graph, if TRUE update saved graph.
@@ -17,16 +17,20 @@ Solver for MLST problem.
         1. If TRUE then call recursively and remove another label.
 <br />
 
-* BBBottomUp: [Branch&Bound Bottom-Up]<br />
+* BottomUp: (Branch&Bound Bottom-Up)<br />
     + Dual of Alg1: start with empty graph and then add edges.
 <br />
 
-* BBBottomUpT: [Branch&Bound Bottom-Up with Threads]<br />
+* BottomUpT: (Branch&Bound Bottom-Up with Threads)<br />
     + Version of RAlg1 with multithreading optimization.
 <br />
 
 * MVCA:<br />
     + Maximum Vertex Cover Algorithm. **Heuristic**
+<br />
+
+* MVCAO1:<br />
+    + Variant of Maximum Vertex Cover Algorithm. **Heuristic**
 <br />
 
 * ERA:<br />
@@ -50,10 +54,11 @@ usage: MLST
  -a,--algorithm <algorithm>   Choose algorithm, you can select more
                               algorithm at same time separating them with
                               a comma:
-                              * bbtopdown [EXACT]
-                              * bbbottomup [EXACT]
-                              * bbbottomupt [EXACT, MULTITHREAD]
+                              * topdown [EXACT]
+                              * bottomup [EXACT]
+                              * bottomupt [EXACT, MULTITHREAD]
                               * mvca [HEURISTIC]
+                              * mvcao1 [HEURISTIC]
                               * era [HEURISTIC]
  -g,--graph <graph>           Prefix of filenames where save graphs.
  -h,--help                    Print help.
