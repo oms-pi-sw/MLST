@@ -10,11 +10,11 @@ import static ansiTTY.ansi.Ansi.print;
 import static ansiTTY.ansi.Ansi.println;
 import ansiTTY.ansi.format.AnsiColor;
 import engines.Algorithm;
-import engines.impl.Alg1;
+import engines.impl.BBTopDown;
 import engines.exceptions.NotConnectedGraphException;
 import engines.impl.ERA;
-import engines.impl.RAlg1;
-import engines.impl.RAlg1Opt1;
+import engines.impl.BBBottomUp;
+import engines.impl.BBBottomUpT;
 import engines.impl.MVCA;
 import java.io.BufferedReader;
 import java.io.File;
@@ -202,9 +202,9 @@ public class MLST {
         formatter.printHelp("MLST", options);
       } else if (commandLine.hasOption(VERSION)) {
         System.out.println("MLST: v" + version() + " ALPHA");
-        System.out.println("\t" + Alg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
-        System.out.println("\t" + RAlg1.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
-        System.out.println("\t" + RAlg1Opt1.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + RAlg1.class.getSimpleName().toLowerCase() + " with multithreading support.");
+        System.out.println("\t" + BBTopDown.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
+        System.out.println("\t" + BBBottomUp.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
+        System.out.println("\t" + BBBottomUpT.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + BBBottomUp.class.getSimpleName().toLowerCase() + " with multithreading support.");
         System.out.println("\t" + MVCA.class.getSimpleName().toLowerCase() + ": MVCA, Maximum Vertex Cover Algorithm. Heuristic algorithm.");
         System.out.println("\t" + ERA.class.getSimpleName().toLowerCase() + ": ERA, Edge Replacement Algorithm. Heuristic algorithm.");
       } else if (commandLine.hasOption(INPUT)) {
@@ -271,12 +271,12 @@ public class MLST {
         if (commandLine.hasOption(ALGORITHM)) {
           String algs_name = commandLine.getOptionValue(ALGORITHM);
           for (String alg_name : algs_name.split(",")) {
-            if (alg_name.trim().toLowerCase().equalsIgnoreCase(Alg1.class.getSimpleName().toLowerCase())) {
-              algs.add(new Alg1<>(graph));
-            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1.class.getSimpleName().toLowerCase())) {
-              algs.add(new RAlg1<>(graph));
-            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(RAlg1Opt1.class.getSimpleName().toLowerCase())) {
-              algs.add(new RAlg1Opt1<>(graph));
+            if (alg_name.trim().toLowerCase().equalsIgnoreCase(BBTopDown.class.getSimpleName().toLowerCase())) {
+              algs.add(new BBTopDown<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(BBBottomUp.class.getSimpleName().toLowerCase())) {
+              algs.add(new BBBottomUp<>(graph));
+            } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(BBBottomUpT.class.getSimpleName().toLowerCase())) {
+              algs.add(new BBBottomUpT<>(graph));
             } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(MVCA.class.getSimpleName().toLowerCase())) {
               algs.add(new MVCA<>(graph));
             } else if (alg_name.trim().toLowerCase().equalsIgnoreCase(ERA.class.getSimpleName().toLowerCase())) {
@@ -287,7 +287,7 @@ public class MLST {
           }
         }
         if (algs.isEmpty()) {
-          algs.add(new Alg1<>(graph));
+          algs.add(new BBTopDown<>(graph));
         }
         println();
 
@@ -487,9 +487,9 @@ public class MLST {
     options.addOption(graph);
 
     Option algorithm = new Option("a", ALGORITHM, true, "Choose algorithm, you can select more algorithm at same time separating them with a comma:" + System.lineSeparator()
-            + "* " + Alg1.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
-            + "* " + RAlg1.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
-            + "* " + RAlg1Opt1.class.getSimpleName().toLowerCase() + " [EXACT, MULTITHREAD]" + System.lineSeparator()
+            + "* " + BBTopDown.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
+            + "* " + BBBottomUp.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
+            + "* " + BBBottomUpT.class.getSimpleName().toLowerCase() + " [EXACT, MULTITHREAD]" + System.lineSeparator()
             + "* " + MVCA.class.getSimpleName().toLowerCase() + " [HEURISTIC]" + System.lineSeparator()
             + "* " + ERA.class.getSimpleName().toLowerCase() + " [HEURISTIC]");
     algorithm.setArgName(ALGORITHM);

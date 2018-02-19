@@ -1,5 +1,5 @@
 
-import engines.impl.Alg1;
+import engines.impl.BBTopDown;
 import engines.exceptions.NotConnectedGraphException;
 import java.io.IOException;
 import java.util.Set;
@@ -64,7 +64,7 @@ public class Debug {
 
     System.out.println();
     System.out.println(">>>Algorithm1:");
-    Alg1<Node, Edge<Node>> al = new Alg1<>(g);
+    BBTopDown<Node, Edge<Node>> al = new BBTopDown<>(g);
     System.out.println("Spanning tree for g:\n\t" + al.getSpanningTree());
     al.start();
     System.out.println("g:\n\t" + al.getGraph());
