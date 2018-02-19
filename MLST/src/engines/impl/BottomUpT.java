@@ -34,51 +34,59 @@ public class BottomUpT<N extends Node, E extends Edge<N>> extends BottomUp<N, E>
       LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(minGraph);
 
       LabeledUndirectedGraph<N, E> zero = getZeroGraph(test);
+      if (zero.isConnected()) {
+        minGraph = zero;
+      } else {
+        int nthreads = getMaxThreads() == null ? Runtime.getRuntime().availableProcessors() : getMaxThreads();
+        List<Thread> pool = new ArrayList<>();
 
-      int nthreads = getMaxThreads() == null ? Runtime.getRuntime().availableProcessors() : getMaxThreads();
-      List<Thread> pool = new ArrayList<>();
+        Queue<LabeledUndirectedGraph<N, E>> graphs = new LinkedList<>();
 
-      Queue<LabeledUndirectedGraph<N, E>> graphs = new LinkedList<>();
+        zero.getRemovedLabels().forEach(label -> {
+          LabeledUndirectedGraph<N, E> g = new LabeledUndirectedGraph<>(zero);
+          g.getRemovedEdges().stream()
+                  .filter(edge -> edge.getLabel().equals(label))
+                  .forEachOrdered(edge -> g.addEdge(edge));
+          graphs.add(g);
+        });
 
-      zero.getRemovedLabels().forEach(label -> {
-        LabeledUndirectedGraph<N, E> g = new LabeledUndirectedGraph<>(zero);
-        g.getRemovedEdges().stream()
-                .filter(edge -> edge.getLabel().equals(label))
-                .forEachOrdered(edge -> g.addEdge(edge));
-        graphs.add(g);
-      });
-
-      for (int i = 0; i < nthreads; i++) {
-        Thread th = new Thread(() -> {
-          boolean empty;
-          synchronized (lock) {
-            empty = graphs.isEmpty();
-          }
-
-          while (!empty) {
-            LabeledUndirectedGraph<N, E> g;
-
-            synchronized (lock) {
-              g = graphs.poll();
-            }
-            if (g == null) {
-              break;
-            }
-            compute(g);
-
+        for (int i = 0; i < nthreads; i++) {
+          Thread th = new Thread(() -> {
+            boolean empty;
             synchronized (lock) {
               empty = graphs.isEmpty();
             }
-          }
-        });
-        th.setDaemon(false);
-        th.setName("RAlg1Opt1_Calc_" + i);
-        th.setPriority(Thread.MAX_PRIORITY);
-        th.start();
-        pool.add(th);
-      }
-      for (Thread th : pool) {
-        th.join();
+
+            while (!empty) {
+              LabeledUndirectedGraph<N, E> g;
+
+              synchronized (lock) {
+                g = graphs.poll();
+              }
+              if (g == null) {
+                break;
+              }
+              if (!g.isConnected()) {
+                compute(g);
+              } else {
+                if (g.calculateCost() < minGraph.calculateCost()) {
+                  minGraph = g;
+                }
+              }
+              synchronized (lock) {
+                empty = graphs.isEmpty();
+              }
+            }
+          });
+          th.setDaemon(false);
+          th.setName("RAlg1Opt1_Calc_" + i);
+          th.setPriority(Thread.MAX_PRIORITY);
+          th.start();
+          pool.add(th);
+        }
+        for (Thread th : pool) {
+          th.join();
+        }
       }
     } catch (InterruptedException ex) {
       throw ex;

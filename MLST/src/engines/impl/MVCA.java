@@ -41,10 +41,9 @@ public class MVCA<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
   }
 
   protected void compute(LabeledUndirectedGraph<N, E> g) {
-    final LabeledUndirectedGraph<N, E> cg = new LabeledUndirectedGraph<>(minGraph);
-    cg.getEdges().forEach(edge -> cg.removeEdge(edge));
+    final LabeledUndirectedGraph<N, E> cg = new LabeledUndirectedGraph<>(g);
     final Random rand = new Random();
-    do {
+    while (!cg.isConnected()) {
       Map<String, Integer> cover = new HashMap<>();
       cg.getRemovedLabels().forEach(rlabel -> {
         Set<Node> covered_nodes = new HashSet<>();
@@ -64,13 +63,15 @@ public class MVCA<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
       cg.getRemovedEdges().stream()
               .filter(redge -> redge.getLabel().equals(mlabel))
               .forEachOrdered(redge -> cg.addEdge(redge));
-    } while (!cg.isConnected());
+    }
     minGraph = cg;
   }
 
   @Override
   public void start() {
-    compute(minGraph);
+    LabeledUndirectedGraph<N, E> zero = new LabeledUndirectedGraph<>(minGraph);
+    zero.getEdges().forEach(edge -> zero.removeEdge(edge));
+    compute(zero);
   }
 
 }

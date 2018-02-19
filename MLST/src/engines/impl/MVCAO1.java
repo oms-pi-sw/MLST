@@ -6,10 +6,6 @@
 package engines.impl;
 
 import engines.exceptions.NotConnectedGraphException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import mlst.struct.Edge;
 import mlst.struct.LabeledUndirectedGraph;
 import mlst.struct.Node;
@@ -28,7 +24,7 @@ public class MVCAO1<N extends Node, E extends Edge<N>> extends MVCA<N, E> {
 
   @Override
   public void start() {
-    super.compute(getZeroGraph(minGraph));
+    compute(getZeroGraph(minGraph));
   }
 
 }
