@@ -6,7 +6,15 @@
 package engines;
 
 import engines.exceptions.NotConnectedGraphException;
+import engines.impl.BottomUp;
+import engines.impl.BottomUpT;
+import engines.impl.ERA;
+import engines.impl.MVCA;
+import engines.impl.MVCAO1;
+import engines.impl.TopDown;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -26,6 +34,84 @@ import mlst.struct.Node;
  * @param <E>
  */
 public abstract class Algorithm<N extends Node, E extends Edge<N>> {
+
+  public static enum Algorithms {
+    E_TOPDOWN(TopDown.class, "[EXACT]", "td"),
+    E_BOTTOMUP(BottomUp.class, "[EXACT]", "bu"),
+    E_MULTITHREADS_BOTTOMUP(BottomUpT.class, "[EXACT, MULTITHREADED]", "threaded_bu"),
+    H_GREDDY_MVCA(MVCA.class, "[HEURISTIC, GREEDY]", "greedy"),
+    H_GREEDY_MVCAO1_GREEDY(MVCAO1.class, "[HEURISTIC, GREEDY]", "greedy_opt1"),
+    H_ERA(ERA.class, "[HEURISTIC]");
+
+    private final Class<? extends Algorithm> aclass;
+    private final List<String> aliases = new ArrayList<>();
+    private final String desc;
+
+    private Algorithms(Class<? extends Algorithm> aclass, String desc, String... aliases) {
+      this.aclass = aclass;
+      this.desc = desc;
+      if (aliases != null) {
+        this.aliases.addAll(Arrays.asList(aliases));
+      }
+    }
+
+    @Override
+    public String toString() {
+      return aclass.getSimpleName().trim().toLowerCase();
+    }
+
+    public Class<? extends Algorithm> getAclass() {
+      return aclass;
+    }
+
+    public List<String> getAliases() {
+      return aliases;
+    }
+
+    public String getDesc() {
+      return desc;
+    }
+
+    public static <N extends Node, E extends Edge<N>> List<Algorithm<N, E>> getAlgorithmsInstances(String name, LabeledUndirectedGraph<N, E> graph) throws Exception {
+      List<Algorithm<N, E>> algs_i = new ArrayList<>();
+      List<Algorithms> algs = getAlgorithms(name);
+      if (algs != null && !algs.isEmpty()) {
+        for (Algorithms _alg : algs) {
+          algs_i.add(getAlgorithmInstance(_alg, graph));
+        }
+      }
+      return algs_i;
+    }
+
+    public static List<Algorithms> getAlgorithms(String name) {
+      List<Algorithms> algorithms = new ArrayList<>();
+      for (Algorithms alg : values()) {
+        List<String> names = new ArrayList<>();
+        names.add(alg.getAclass().getSimpleName().trim().toLowerCase());
+        names.addAll(alg.getAliases());
+        if (names.contains(name)) {
+          algorithms.add(alg);
+        }
+      }
+      return algorithms;
+    }
+
+    public static <N extends Node, E extends Edge<N>> Algorithm<N, E> getAlgorithmInstance(Algorithms alg, LabeledUndirectedGraph<N, E> graph) throws Exception {
+      if (alg != null && graph != null) {
+        Class<? extends Algorithm> aclass = alg.getAclass();
+        Constructor<? extends Algorithm> constructor = aclass.getConstructor(graph.getClass());
+        constructor.setAccessible(true);
+        Algorithm<N, E> algorithm = (Algorithm<N, E>) constructor.newInstance(graph);
+        return algorithm;
+      } else {
+        return null;
+      }
+    }
+
+    public static List<Algorithms> getValues() {
+      return Arrays.asList(values());
+    }
+  }
 
   protected final LabeledUndirectedGraph<N, E> graph;
 

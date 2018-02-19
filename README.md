@@ -56,9 +56,9 @@ usage: MLST
                               a comma:
                               * topdown [EXACT]
                               * bottomup [EXACT]
-                              * bottomupt [EXACT, MULTITHREAD]
-                              * mvca [HEURISTIC]
-                              * mvcao1 [HEURISTIC]
+                              * bottomupt [EXACT, MULTITHREADED]
+                              * mvca [HEURISTIC, GREEDY]
+                              * mvcao1 [HEURISTIC, GREEDY]
                               * era [HEURISTIC]
  -g,--graph <graph>           Prefix of filenames where save graphs.
  -h,--help                    Print help.

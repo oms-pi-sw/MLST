@@ -10,13 +10,9 @@ import static ansiTTY.ansi.Ansi.print;
 import static ansiTTY.ansi.Ansi.println;
 import ansiTTY.ansi.format.AnsiColor;
 import engines.Algorithm;
+import engines.Algorithm.Algorithms;
 import engines.impl.TopDown;
 import engines.exceptions.NotConnectedGraphException;
-import engines.impl.ERA;
-import engines.impl.BottomUp;
-import engines.impl.BottomUpT;
-import engines.impl.MVCA;
-import engines.impl.MVCAO1;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -26,11 +22,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.stream.Collectors;
 import mlst.struct.LabeledUndirectedGraph;
 import mlst.struct.Node;
@@ -205,12 +199,9 @@ public class MLST {
         formatter.printHelp("MLST", options);
       } else if (commandLine.hasOption(VERSION)) {
         System.out.println("MLST: v" + version() + " ALPHA");
-        System.out.println("\t" + TopDown.class.getSimpleName().toLowerCase() + ": exact algorithm: start from complete graph and removes edges.");
-        System.out.println("\t" + BottomUp.class.getSimpleName().toLowerCase() + ": exact algorithm: start from empty graph and adds edges.");
-        System.out.println("\t" + BottomUpT.class.getSimpleName().toLowerCase() + ": exact algorithm: variant of " + BottomUp.class.getSimpleName().toLowerCase() + " with multithreading support.");
-        System.out.println("\t" + MVCA.class.getSimpleName().toLowerCase() + ": MVCA, Maximum Vertex Cover Algorithm. Heuristic algorithm.");
-        System.out.println("\t" + MVCAO1.class.getSimpleName().toLowerCase() + ": MVCAO1, variant of Maximum Vertex Cover Algorithm. Heuristic algorithm.");
-        System.out.println("\t" + ERA.class.getSimpleName().toLowerCase() + ": ERA, Edge Replacement Algorithm. Heuristic algorithm.");
+        Algorithms.getValues().forEach(alg -> {
+          System.out.println("\t" + alg + ": " + alg.getDesc());
+        });
       } else if (commandLine.hasOption(INPUT)) {
         LogManager.getLogger().info("Reading graph from file...");
         LabeledUndirectedGraph<Node, SimpleEdge<Node>> rg = MLST.readGraph(commandLine.getOptionValue(INPUT).trim());
@@ -273,27 +264,18 @@ public class MLST {
         Map<Algorithm<Node, SimpleEdge<Node>>, LabeledUndirectedGraph<Node, SimpleEdge<Node>>> graphs = new HashMap<>();
 
         if (commandLine.hasOption(ALGORITHM)) {
-          List<Algorithm<Node, SimpleEdge<Node>>> all_algs = new ArrayList<>();
-          all_algs.add(new TopDown<>(graph));
-          all_algs.add(new BottomUp<>(graph));
-          all_algs.add(new BottomUpT<>(graph));
-          all_algs.add(new MVCA<>(graph));
-          all_algs.add(new MVCAO1<>(graph));
-          all_algs.add(new ERA<>(graph));
-
           String algs_name = commandLine.getOptionValue(ALGORITHM);
           if (algs_name.equals("all")) {
-            algs.addAll(all_algs);
+            for (Algorithms _alg : Algorithms.getValues()) {
+              algs.add(Algorithms.getAlgorithmInstance(_alg, graph));
+            }
           } else {
             for (String alg_name : algs_name.split(",")) {
-              Set<Algorithm<Node, SimpleEdge<Node>>> sel_algs = all_algs.stream()
-                      .filter(alg -> alg.getClass().getSimpleName().trim().toLowerCase().equalsIgnoreCase(alg_name))
-                      .collect(Collectors.toSet());
-
-              if (sel_algs == null || sel_algs.isEmpty()) {
+              List<Algorithm<Node, SimpleEdge<Node>>> _algs = Algorithms.getAlgorithmsInstances(alg_name, graph);
+              if (_algs == null || _algs.isEmpty()) {
                 LogManager.getLogger().warn("No algorithm found with name: " + alg_name);
               } else {
-                algs.addAll(sel_algs);
+                algs.addAll(_algs);
               }
             }
           }
@@ -500,19 +482,21 @@ public class MLST {
     graph.setType(String.class);
     options.addOption(graph);
 
-    Option algorithm = new Option("a", ALGORITHM, true, "Choose algorithm, you can select more algorithm at same time separating them with a comma:" + System.lineSeparator()
-            + "* " + TopDown.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
-            + "* " + BottomUp.class.getSimpleName().toLowerCase() + " [EXACT]" + System.lineSeparator()
-            + "* " + BottomUpT.class.getSimpleName().toLowerCase() + " [EXACT, MULTITHREAD]" + System.lineSeparator()
-            + "* " + MVCA.class.getSimpleName().toLowerCase() + " [HEURISTIC]" + System.lineSeparator()
-            + "* " + MVCAO1.class.getSimpleName().toLowerCase() + " [HEURISTIC]" + System.lineSeparator()
-            + "* " + ERA.class.getSimpleName().toLowerCase() + " [HEURISTIC]");
+    String desc = "Choose algorithm, you can select more algorithm at same time separating them with a comma:";
+    desc = Algorithms.getValues().stream().map((alg) -> System.lineSeparator() + "* " + alg + " " + alg.getDesc()).reduce(desc, String::concat);
+    Option algorithm = new Option("a", ALGORITHM, true, desc);
     algorithm.setArgName(ALGORITHM);
     algorithm.setRequired(false);
     algorithm.setOptionalArg(false);
     algorithm.setType(String.class);
     options.addOption(algorithm);
 
+//    Algorithms.getValues().forEach(alg -> {
+//      Option al = new Option(null, alg.toString(), false, alg.getDesc() + ". Same to use -a.");
+//      al.setArgName(alg.name());
+//      al.setRequired(false);
+//      options.addOption(al);
+//    });
     Option nograph = new Option("n", NOGRAPH, false, "Don't open graphic interface for graph.");
     nograph.setArgName(NOGRAPH);
     nograph.setRequired(false);
