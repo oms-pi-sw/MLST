@@ -39,12 +39,16 @@ Solver for MLST problem.
 
 ## Example:
 ### Random graph
-`MLST.run -r -abbbottomupt,mvca -ograph -gimage`
+```
+MLST.run -r -abottomupt,mvca -ograph -gimage
+```
 
 Generate a random graph with **nnodes** nodes, *max* **nlabels** labels, **nedges** edges and then solve MLST problem with given algorithms.
 
 ### Input graph
-`MLST.run -iinput -aralg1opt1,mvca -ograph -gimage`
+```
+MLST.run -iinput -abottomupt,mvca -ograph -gimage
+```
 
 Parse **input** file and create graph and then solve MLST problem with given algorithms.
 
