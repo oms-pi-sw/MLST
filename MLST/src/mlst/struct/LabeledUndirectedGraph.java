@@ -131,17 +131,21 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
   }
 
   public boolean isConnected() {
-    if (!nodes.isEmpty()) {
-      List<N> unvisited = new ArrayList<>(nodes);
+    return getSubGraphsNodes().size() == 1;
+  }
 
-      List<List<N>> components = new ArrayList<>();
+  public Set<Set<N>> getSubGraphsNodes() {
+    if (!nodes.isEmpty()) {
+      Set<N> unvisited = new HashSet<>(nodes);
+
+      Set<Set<N>> components = new HashSet<>();
 
       nodes.forEach(node -> {
         if (unvisited.contains(node)) {
           Queue<N> queue = new LinkedList<>();
           queue.add(node);
 
-          List<N> component = new ArrayList<>();
+          Set<N> component = new HashSet<>();
           components.add(component);
 
           while (!queue.isEmpty()) {
@@ -158,9 +162,9 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
         }
       });
 
-      return components.size() == 1;
+      return components;
     } else {
-      return false;
+      return new HashSet<>();
     }
   }
 

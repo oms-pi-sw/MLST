@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -424,6 +425,8 @@ public class MLST {
       LogManager.getLogger().error("NumberFormatException: " + ex.getMessage(), ex);
     } catch (LoopEdgeException ex) {
       LogManager.getLogger().fatal("LoopEdgeException: " + ex.getMessage(), ex);
+    } catch (InvocationTargetException ex) {
+      LogManager.getLogger().fatal("Exception during initialization of algorithms: " + ex.getMessage() + ". Cause: " + ex.getCause().getMessage(), ex);
     } catch (Exception ex) {
       LogManager.getLogger().fatal("Exception: " + ex.getMessage(), ex);
     }

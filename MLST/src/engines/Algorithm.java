@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import mlst.struct.Edge;
 import mlst.struct.LabeledUndirectedGraph;
 import mlst.struct.Node;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -34,7 +35,7 @@ import mlst.struct.Node;
  * @param <E>
  */
 public abstract class Algorithm<N extends Node, E extends Edge<N>> {
-
+  
   public static enum Algorithms {
     E_TOPDOWN(TopDown.class, "[EXACT]", "td"),
     E_BOTTOMUP(BottomUp.class, "[EXACT]", "bu"),
@@ -42,11 +43,11 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     H_GREDDY_MVCA(MVCA.class, "[HEURISTIC, GREEDY]", "greedy"),
     H_GREEDY_MVCAO1_GREEDY(MVCAO1.class, "[HEURISTIC, GREEDY]", "greedy_opt1"),
     H_ERA(ERA.class, "[HEURISTIC]");
-
+    
     private final Class<? extends Algorithm> aclass;
     private final List<String> aliases = new ArrayList<>();
     private final String desc;
-
+    
     private Algorithms(Class<? extends Algorithm> aclass, String desc, String... aliases) {
       this.aclass = aclass;
       this.desc = desc;
@@ -54,24 +55,24 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
         this.aliases.addAll(Arrays.asList(aliases));
       }
     }
-
+    
     @Override
     public String toString() {
       return aclass.getSimpleName().trim().toLowerCase();
     }
-
+    
     public Class<? extends Algorithm> getAclass() {
       return aclass;
     }
-
+    
     public List<String> getAliases() {
       return aliases;
     }
-
+    
     public String getDesc() {
       return desc;
     }
-
+    
     public static <N extends Node, E extends Edge<N>> List<Algorithm<N, E>> getAlgorithmsInstances(String name, LabeledUndirectedGraph<N, E> graph) throws Exception {
       List<Algorithm<N, E>> algs_i = new ArrayList<>();
       List<Algorithms> algs = getAlgorithms(name);
@@ -82,8 +83,8 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
       }
       return algs_i;
     }
-
-    public static List<Algorithms> getAlgorithms(String name) {
+    
+    public static List<Algorithms> getAlgorithms(String name) throws Exception {
       List<Algorithms> algorithms = new ArrayList<>();
       for (Algorithms alg : values()) {
         List<String> names = new ArrayList<>();
@@ -95,7 +96,7 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
       }
       return algorithms;
     }
-
+    
     public static <N extends Node, E extends Edge<N>> Algorithm<N, E> getAlgorithmInstance(Algorithms alg, LabeledUndirectedGraph<N, E> graph) throws Exception {
       if (alg != null && graph != null) {
         Class<? extends Algorithm> aclass = alg.getAclass();
@@ -107,47 +108,49 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
         return null;
       }
     }
-
+    
     public static List<Algorithms> getValues() {
       return Arrays.asList(values());
     }
   }
-
+  
   protected final LabeledUndirectedGraph<N, E> graph;
-
+  
   protected volatile LabeledUndirectedGraph<N, E> minGraph;
-
+  
   protected Integer maxThreads = null;
-
+  
   public Algorithm(LabeledUndirectedGraph<N, E> graph) throws NotConnectedGraphException {
     if (!graph.isConnected()) {
-      throw new NotConnectedGraphException("Graph must be connected");
+      NotConnectedGraphException ex = new NotConnectedGraphException("Graph must be connected");
+      LogManager.getLogger().fatal("NotConnectedGraphException: " + ex.getMessage(), ex);
+      throw ex;
     }
     this.graph = new LabeledUndirectedGraph<>(graph);
     minGraph = new LabeledUndirectedGraph<>(graph);
   }
-
+  
   public final void run() throws Exception {
     minGraph = new LabeledUndirectedGraph<>(graph);
     start();
   }
-
+  
   protected abstract void start() throws Exception;
-
+  
   public LabeledUndirectedGraph<N, E> getSpanningTree() {
     Queue<N> queue = new LinkedList<>();
     List<N> ns = new ArrayList<>(minGraph.getNodes());
     List<E> sedges = new ArrayList<>();
     List<E> edges = new ArrayList<>(minGraph.getEdges());
-
+    
     Collections.shuffle(ns);
-
+    
     N start = ns.remove(0);
     queue.add(start);
-
+    
     while (!queue.isEmpty()) {
       N n = queue.poll();
-
+      
       edges.forEach(edge -> {
         N o = edge.other(n);
         if (edge.has(n) && ns.contains(o)) {
@@ -157,12 +160,12 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
         }
       });
     }
-
+    
     LabeledUndirectedGraph<N, E> spanningTree = new LabeledUndirectedGraph<>(minGraph.getNodes());
     sedges.forEach(edge -> spanningTree.addEdge(edge));
     return spanningTree;
   }
-
+  
   protected LabeledUndirectedGraph<N, E> getZeroGraph(LabeledUndirectedGraph<N, E> g) {
     LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(g);
     Set<String> nlabels = new HashSet<>();
@@ -185,23 +188,23 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     });
     return zero;
   }
-
+  
   public LabeledUndirectedGraph<N, E> getGraph() {
     return graph;
   }
-
+  
   public LabeledUndirectedGraph<N, E> getMinGraph() {
     return minGraph;
   }
-
+  
   public Integer getMaxThreads() {
     return maxThreads;
   }
-
+  
   public void setMaxThreads(Integer maxThreads) {
     this.maxThreads = maxThreads;
   }
-
+  
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -215,12 +218,12 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     }
     return Objects.hashCode(this) == Objects.hashCode(obj);
   }
-
+  
   @Override
   public int hashCode() {
     int hash = 5;
     hash = 13 * hash + Objects.hashCode(getClass().getName());
     return hash;
   }
-
+  
 }

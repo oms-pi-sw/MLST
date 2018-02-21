@@ -474,3 +474,136 @@
 2018-02-19 21:02:02,006 INFO       main:1:MLST:main:MLST:358 - Done.
 2018-02-19 21:02:02,006 INFO       main:1:MLST:main:MLST:371 - Plotting...
 2018-02-19 21:02:02,038 INFO       main:1:MLST:main:MLST:390 - All done.
+2018-02-21 00:56:37,027 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:00:14,520 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:00:51,924 FATAL      main:1:MLST:main:MLST:428 - Exception: null
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:104) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+Caused by: engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:124) ~[classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) ~[classes/:?]
+	... 6 more
+2018-02-21 01:01:11,656 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:01:16,374 FATAL      main:1:MLST:main:MLST:428 - Exception: null
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:104) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+Caused by: engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:124) ~[classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) ~[classes/:?]
+	... 6 more
+2018-02-21 01:01:22,351 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:03:00,878 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:03:00,901 FATAL      main:1:MLST:main:MLST:428 - Exception: null
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:104) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+Caused by: engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:124) ~[classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) ~[classes/:?]
+	... 6 more
+2018-02-21 01:06:09,437 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:06:16,295 FATAL      main:1:Algorithm:<init>:Algorithm:126 - NotConnectedGraphException: Graph must be connected
+engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) [classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) [classes/:?]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) [?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) [?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) [classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+2018-02-21 01:06:22,437 FATAL      main:1:MLST:main:MLST:428 - Exception: null
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+Caused by: engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) ~[classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) ~[classes/:?]
+	... 6 more
+2018-02-21 01:06:41,760 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:06:47,700 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:06:47,732 FATAL      main:1:Algorithm:<init>:Algorithm:126 - NotConnectedGraphException: Graph must be connected
+engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) [classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) [classes/:?]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) [?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) [?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) [classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+2018-02-21 01:06:47,740 FATAL      main:1:MLST:main:MLST:428 - Exception: null
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+Caused by: engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) ~[classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) ~[classes/:?]
+	... 6 more
+2018-02-21 01:07:16,017 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:07:31,363 FATAL      main:1:Algorithm:<init>:Algorithm:126 - NotConnectedGraphException: Graph must be connected
+engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) [classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) [classes/:?]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) [?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) [?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) [classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+2018-02-21 01:07:35,645 INFO       main:1:MLST:main:MLST:206 - Reading graph from file...
+2018-02-21 01:08:02,490 FATAL      main:1:Algorithm:<init>:Algorithm:126 - NotConnectedGraphException: Graph must be connected
+engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) [classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) [classes/:?]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) [?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) [?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) [classes/:?]
+	at mlst.MLST.main(MLST.java:270) [classes/:?]
+2018-02-21 01:12:31,174 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-21 01:12:31,199 FATAL      main:1:Algorithm:<init>:Algorithm:126 - NotConnectedGraphException: Graph must be connected
+engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) [classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) [classes/:?]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) [?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) [?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) [classes/:?]
+	at mlst.MLST.main(MLST.java:271) [classes/:?]
+2018-02-21 01:12:31,210 FATAL      main:1:MLST:main:MLST:429 - Exception during initialization of algorithms: null. Caused by: Graph must be connected
+java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_161]
+	at engines.Algorithm$Algorithms.getAlgorithmInstance(Algorithm.java:105) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:271) [classes/:?]
+Caused by: engines.exceptions.NotConnectedGraphException: Graph must be connected
+	at engines.Algorithm.<init>(Algorithm.java:125) ~[classes/:?]
+	at engines.impl.TopDown.<init>(TopDown.java:23) ~[classes/:?]
+	... 6 more
