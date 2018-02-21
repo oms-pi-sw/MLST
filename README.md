@@ -26,16 +26,19 @@ Solver for MLST problem.
 <br />
 
 * MVCA:<br />
-    + Maximum Vertex Cover Algorithm. **Heuristic**
+    + Maximum Vertex Cover Algorithm. **Heuristic** *greedy* algorithm.
 <br />
 
 * MVCAO1:<br />
-    + Variant of Maximum Vertex Cover Algorithm. **Heuristic**
+    + Variant of Maximum Vertex Cover Algorithm. **Heuristic** *greedy* algorithm.
 <br />
 
 * ERA:<br />
-    + Edge Replacement Algorithm. **Heuristic**
+    + Edge Replacement Algorithm. **Heuristic** *local search* algorithm.
 <br />
+
+* TABU SEARCH:<br />
+    + Tabu Search Algorithm. **Heuristic**. Use **MVCAO1** *greedy* to generate an initial solution then try to improve it with *Tabu Search*.<br />**TODO**: use *Path Relinking* as intensification method and *Multi Start* as difersification method.
 
 ## Example:
 ### Random graph
@@ -55,25 +58,44 @@ Parse **input** file and create graph and then solve MLST problem with given alg
 ## HELP:
 ```
 usage: MLST
- -a,--algorithm <algorithm>   Choose algorithm, you can select more
-                              algorithm at same time separating them with
-                              a comma:
-                              * topdown [EXACT]
-                              * bottomup [EXACT]
-                              * bottomupt [EXACT, MULTITHREADED]
-                              * mvca [HEURISTIC, GREEDY]
-                              * mvcao1 [HEURISTIC, GREEDY]
-                              * era [HEURISTIC]
- -g,--graph <graph>           Prefix of filenames where save graphs.
- -h,--help                    Print help.
- -i,--input <input>           The input graph file.
- -n,--nograph                 Don't open graphic interface for graph.
- -o,--output <output>         The output filename where to save the graph.
- -r,--random                  Generate random graph.
- -t,--threads <threads>       Specify number of threads. Works only for
-                              multithreading algorithms.
- -v,--version                 Print version.
-    --verbose                 Enable verbose modality.
+ -a,--algorithm <algorithm>             Choose algorithm, you can select
+                                        more algorithm at same time
+                                        separating them with a comma:
+                                        * topdown [EXACT]
+                                        * bottomup [EXACT]
+                                        * bottomupt [EXACT, MULTITHREADED]
+                                        * mvca [HEURISTIC, GREEDY]
+                                        * mvcao1 [HEURISTIC, GREEDY]
+                                        * era [HEURISTIC]
+                                        * tabusearch [HEURISTIC]
+ -g,--graph <graph>                     Prefix of filenames where save
+                                        graphs.
+ -h,--help                              Print help.
+ -i,--input <input>                     The input graph file.
+ -m,--min-queue <min-queue>             To use with Tabu Search heuristic
+                                        algorithm. Specify the max queue
+                                        of forbidden moves in Tabu Search.
+ -M,--multistart <multistart>           To use with Tabu Search heuristic
+                                        algorithm. Specify the number of
+                                        multistart.
+ -n,--nograph                           Don't open graphic interface for
+                                        graph.
+ -o,--output <output>                   The output filename where to save
+                                        the graph.
+ -q,--max-iter <max-iter>               To use with Tabu Search heuristic
+                                        algorithm. Specify the max number
+                                        of iterations.
+ -r,--random                            Generate random graph.
+ -t,--threads <threads>                 To use with Tabu Search heuristic
+                                        algorithm or Bottom-Up
+                                        MultiThreaded algorithm.Specify
+                                        number of threads. Works only for
+                                        multithreading algorithms.
+ -v,--version                           Print version.
+    --verbose                           Enable verbose modality.
+ -w,--no-improvement <no-improvement>   To use with Tabu Search heuristic
+                                        algorithm. Specify the max number
+                                        of iterations without improvement.
 ```
 
 ## UI: [![GraphStream](http://minegrado.ovh/badges/dependecy-GraphStream-blue.svg)](http://graphstream-project.org/)
@@ -84,4 +106,4 @@ For windows you need to run the console with a program like *ansicon*.
 
 ## TODO:
 * Add a mixed exact algorith that use **Multithreaded Bottom-Up** *with an Heuristic Algorithm*, to find an *upper bound* for minimum graph cost.
-* Tabu heuristic algorithm and Path Relinking.
+* Tabu heuristic algorithm and Path Relinking. *Already work in progress*.

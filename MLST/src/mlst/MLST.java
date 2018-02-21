@@ -13,6 +13,7 @@ import engines.Algorithm;
 import engines.Algorithm.Algorithms;
 import engines.impl.TopDown;
 import engines.exceptions.NotConnectedGraphException;
+import engines.impl.TabuSearch;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -315,6 +316,49 @@ public class MLST {
           max_threads = Integer.parseInt(commandLine.getOptionValue(THREADS).trim());
         }
 
+        Integer min_queue = null;
+        if (commandLine.hasOption(MINQUEUE)) {
+          min_queue = Integer.parseInt(commandLine.getOptionValue(MINQUEUE).trim());
+        }
+
+        Integer multi_start = null;
+        if (commandLine.hasOption(MULTISTART)) {
+          multi_start = Integer.parseInt(commandLine.getOptionValue(MULTISTART).trim());
+        }
+
+        Integer max_iter = null;
+        if (commandLine.hasOption(MAXITER)) {
+          max_iter = Integer.parseInt(commandLine.getOptionValue(MAXITER).trim());
+        }
+
+        Integer no_improvement = null;
+        if (commandLine.hasOption(NOIMPROVEMENT)) {
+          no_improvement = Integer.parseInt(commandLine.getOptionValue(NOIMPROVEMENT).trim());
+        }
+
+        boolean found = false;
+        for (Algorithm alg : algs) {
+          if (alg != null && alg instanceof TabuSearch) {
+            found = true;
+            TabuSearch ts = (TabuSearch) alg;
+            if (min_queue != null) {
+              ts.setMinQueue(min_queue);
+            }
+            if (multi_start != null) {
+              ts.setMultiStart(multi_start);
+            }
+            if (max_iter != null) {
+              ts.setMaxIterations(max_iter);
+            }
+            if (no_improvement != null) {
+              ts.setMaxIterationsWithoutImprovement(no_improvement);
+            }
+          }
+        }
+        if (!found) {
+          LogManager.getLogger().warn("No Tabu Search found. Settings for TS algorithms does not take any effects.");
+        }
+
         graph.calculateSpanningTree();
         println(Ansi.ansi().format().boldOn().format().fg(AnsiColor.BLUE).a("MAIN GRAPH:").format().reset());
         if (verbose) {
@@ -442,6 +486,10 @@ public class MLST {
   private static final String ALGORITHM = "algorithm";
   private static final String VERBOSE = "verbose";
   private static final String THREADS = "threads";
+  private static final String MINQUEUE = "min-queue";
+  private static final String MAXITER = "max-iter";
+  private static final String NOIMPROVEMENT = "no-improvement";
+  private static final String MULTISTART = "multistart";
 
   private static Options setOptions() {
     Options options = new Options();
@@ -510,12 +558,40 @@ public class MLST {
     verbose.setRequired(false);
     options.addOption(verbose);
 
-    Option threads = new Option("t", THREADS, true, "Specify number of threads. Works only for multithreading algorithms.");
+    Option threads = new Option("t", THREADS, true, "To use with Tabu Search heuristic algorithm or Bottom-Up MultiThreaded algorithm.Specify number of threads. Works only for multithreading algorithms.");
     threads.setArgName(THREADS);
     threads.setRequired(false);
     threads.setOptionalArg(false);
     threads.setType(Integer.class);
     options.addOption(threads);
+
+    Option minqueue = new Option("m", MINQUEUE, true, "To use with Tabu Search heuristic algorithm. Specify the max queue of forbidden moves in Tabu Search.");
+    minqueue.setArgName(MINQUEUE);
+    minqueue.setRequired(false);
+    minqueue.setOptionalArg(false);
+    minqueue.setType(Integer.class);
+    options.addOption(minqueue);
+
+    Option multistart = new Option("M", MULTISTART, true, "To use with Tabu Search heuristic algorithm. Specify the number of multistart.");
+    multistart.setArgName(MULTISTART);
+    multistart.setRequired(false);
+    multistart.setOptionalArg(false);
+    multistart.setType(Integer.class);
+    options.addOption(multistart);
+
+    Option maxiter = new Option("q", MAXITER, true, "To use with Tabu Search heuristic algorithm. Specify the max number of iterations.");
+    maxiter.setArgName(MAXITER);
+    maxiter.setRequired(false);
+    maxiter.setOptionalArg(false);
+    maxiter.setType(Integer.class);
+    options.addOption(maxiter);
+
+    Option noimprovement = new Option("w", NOIMPROVEMENT, true, "To use with Tabu Search heuristic algorithm. Specify the max number of iterations without improvement.");
+    noimprovement.setArgName(NOIMPROVEMENT);
+    noimprovement.setRequired(false);
+    noimprovement.setOptionalArg(false);
+    noimprovement.setType(Integer.class);
+    options.addOption(noimprovement);
 
     required.setRequired(true);
     options.addOptionGroup(required);

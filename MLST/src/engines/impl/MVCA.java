@@ -32,14 +32,6 @@ public class MVCA<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
     super(graph);
   }
 
-  private static <T, E> List<T> getKeysByValue(Map<T, E> map, E value) {
-    List<T> keys = new ArrayList<>();
-    map.entrySet().stream().filter((entry) -> (Objects.equals(value, entry.getValue()))).forEachOrdered((entry) -> {
-      keys.add(entry.getKey());
-    });
-    return keys;
-  }
-
   protected void compute(LabeledUndirectedGraph<N, E> g) {
     final LabeledUndirectedGraph<N, E> cg = new LabeledUndirectedGraph<>(g);
     final Random rand = new Random();
