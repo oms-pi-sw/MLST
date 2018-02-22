@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import mlst.struct.Edge;
@@ -34,7 +33,7 @@ public class MVCA<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
 
   protected void compute(LabeledUndirectedGraph<N, E> g) {
     final LabeledUndirectedGraph<N, E> cg = new LabeledUndirectedGraph<>(g);
-    final Random rand = new Random();
+    final Random rand = new Random(System.currentTimeMillis());
     while (!cg.isConnected()) {
       Map<String, Integer> cover = new HashMap<>();
       cg.getRemovedLabels().forEach(rlabel -> {

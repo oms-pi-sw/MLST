@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import mlst.struct.Edge;
@@ -140,13 +141,14 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
 
   protected abstract void start() throws Exception;
 
-  public LabeledUndirectedGraph<N, E> getSpanningTree() {
+  public LabeledUndirectedGraph<N, E> getSpanningTree(LabeledUndirectedGraph<N, E> g) {
     Queue<N> queue = new LinkedList<>();
-    List<N> ns = new ArrayList<>(minGraph.getNodes());
+    List<N> ns = new ArrayList<>(g.getNodes());
     List<E> sedges = new ArrayList<>();
-    List<E> edges = new ArrayList<>(minGraph.getEdges());
+    List<E> edges = new ArrayList<>(g.getEdges());
 
-    Collections.shuffle(ns);
+    Random rand = new Random(System.currentTimeMillis());
+    Collections.shuffle(ns, rand);
 
     N start = ns.remove(0);
     queue.add(start);
@@ -154,6 +156,7 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     while (!queue.isEmpty()) {
       N n = queue.poll();
 
+      Collections.shuffle(edges, rand);
       edges.forEach(edge -> {
         N o = edge.other(n);
         if (edge.has(n) && ns.contains(o)) {
@@ -172,6 +175,10 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
       }
     });
     return spanningTree;
+  }
+
+  public LabeledUndirectedGraph<N, E> getSpanningTree() {
+    return getSpanningTree(minGraph);
   }
 
   protected LabeledUndirectedGraph<N, E> getZeroGraph(LabeledUndirectedGraph<N, E> g) {

@@ -40,6 +40,19 @@ Solver for MLST problem.
 * TABU SEARCH:<br />
     + Tabu Search Algorithm. **Heuristic**. Use **MVCAO1** *greedy* to generate an initial solution then try to improve it with *Tabu Search*.<br />**TODO**: use *Path Relinking* as intensification method and *Multi Start* as difersification method.
 
+## Taboo Search:
+It's an *heuristic* algorithm that start from a feasible solution and, in a loop, search for another solution in the defined neighborhood.<br />
+
+### Intensification strategies
+* A first intensification strategy is to start a *local search* with **ERA** algorithm to improve the solution just found.
+* Another intensification is to keep a *best moves* list and evaluate next moves using this list.
+* The last proposed way is run a *Path Relinking* algorithm at the end of all *Tabu Search* starts.
+
+### Diversification strategies
+* A first simple diversification strategy is achieved starting Tabu Search many times using different initial graph.
+* Another difersification technique is to *harden* moves comparison criteria, to reject more moves.
+* The last proposed diversification technique is to keep a long memory moves list.  
+
 ## Example:
 ### Random graph
 ```
