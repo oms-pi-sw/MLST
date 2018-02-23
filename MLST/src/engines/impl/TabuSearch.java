@@ -9,14 +9,15 @@ import engines.Algorithm;
 import engines.exceptions.NotConnectedGraphException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.stream.Collectors;
 import mlst.struct.Edge;
 import mlst.struct.LabeledUndirectedGraph;
 import mlst.struct.Node;
@@ -63,7 +64,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
   /**
    * Class that describe a move.
    */
-  protected class Move implements Comparable<Move> {
+  public class MoveEdge implements Comparable<MoveEdge> {
 
     private final E out, in;
     private final LabeledUndirectedGraph<N, E> graph;
@@ -76,7 +77,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
      * @param in the added Edge.
      * @param graph The graph to modify.
      */
-    public Move(E out, E in, LabeledUndirectedGraph<N, E> graph) {
+    public MoveEdge(E out, E in, LabeledUndirectedGraph<N, E> graph) {
       this.out = out;
       this.in = in;
       this.graph = new LabeledUndirectedGraph<>(graph);
@@ -150,7 +151,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       if (getClass() != obj.getClass()) {
         return false;
       }
-      final Move other = (Move) obj;
+      final MoveEdge other = (MoveEdge) obj;
       if (!moveDiversification) {
         return (Objects.equals(in, other.out));
       } else {
@@ -159,13 +160,13 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
 
     @Override
-    public int compareTo(Move o) {
-      return afterCost - beforeCost;
+    public int compareTo(MoveEdge o) {
+      return (afterCost - beforeCost) - (o.afterCost - o.beforeCost);
     }
 
     @Override
     public String toString() {
-      return "Move{" + "out=" + out + ", in=" + in + ", afterCost=" + afterCost + ", beforeCost=" + beforeCost + '}';
+      return "MoveEdge{" + "out=" + out + ", in=" + in + ", afterCost=" + afterCost + ", beforeCost=" + beforeCost + '}';
     }
 
     /**
@@ -174,7 +175,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
      * @param other the other move.
      * @return true if the other move is identical to this.
      */
-    public boolean isSame(Move other) {
+    public boolean isSame(MoveEdge other) {
       if (other == this) {
         return true;
       }
@@ -182,42 +183,133 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
   }
 
-  /**
-   * Get the set of moves from a feasible solution (<code>sk</code> must be a
-   * spanning tree)
-   *
-   * @param sk a spanning tree.
-   * @return the set of moves ordered by the delta of cost before and after this
-   * move.
-   */
-  public SortedSet<Move> getEdgeNeighborhood(final LabeledUndirectedGraph<N, E> sk) {
-    final SortedSet<Move> neighborood = new TreeSet<>();
-    final LabeledUndirectedGraph<N, E> csk = new LabeledUndirectedGraph<>(sk);
-    // For each spanning edges...
-    csk.getEdges().forEach(edge -> {
-      csk.removeEdge(edge);
-      final List<Set<N>> nodes = new ArrayList<>(csk.getSubGraphsNodes());
-      if (nodes.size() == 2) {
-        final Set<E> candidates = new HashSet<>();
-        csk.getRemovedEdges().stream()
-                .filter(redge -> (!redge.equals(edge))
-                && ((nodes.get(0).contains(redge.getNode1()) && nodes.get(1).contains(redge.getNode2()))
-                || (nodes.get(0).contains(redge.getNode2()) && nodes.get(1).contains(redge.getNode1()))))
-                .forEachOrdered(redge -> candidates.add(redge));
-        candidates.forEach(candidate -> neighborood.add(new Move(edge, candidate, sk)));
+  public class MoveLabel implements Comparable<MoveLabel> {
+
+    private final Set<E> out, in;
+    private final LabeledUndirectedGraph<N, E> graph;
+    private final int afterCost, beforeCost;
+
+    /**
+     * Constructor.
+     *
+     * @param out the removed Edge.
+     * @param in the added Edge.
+     * @param graph The graph to modify.
+     */
+    public MoveLabel(Set<E> out, Set<E> in, LabeledUndirectedGraph<N, E> graph) {
+      this.out = out;
+      this.in = in;
+      this.graph = new LabeledUndirectedGraph<>(graph);
+      beforeCost = this.graph.calculateCost();
+      this.out.forEach(e -> this.graph.removeEdge(e));
+      this.in.forEach(e -> this.graph.addEdge(e));
+      afterCost = this.graph.calculateCost();
+    }
+
+    /**
+     * Get removed edge.
+     *
+     * @return the removed edge.
+     */
+    public Set<E> getOut() {
+      return out;
+    }
+
+    /**
+     * Get the added edge.
+     *
+     * @return the added edge.
+     */
+    public Set<E> getIn() {
+      return in;
+    }
+
+    /**
+     * Get the modified graph.
+     *
+     * @return the modified graph.
+     */
+    public LabeledUndirectedGraph<N, E> getGraph() {
+      return graph;
+    }
+
+    /**
+     * Get the cost of resulting graph.
+     *
+     * @return the cost of resulting graph.
+     */
+    public int getAfterCost() {
+      return afterCost;
+    }
+
+    /**
+     * Get the cost of original graph.
+     *
+     * @return the cost of original graph.
+     */
+    public int getBeforeCost() {
+      return beforeCost;
+    }
+
+    @Override
+    public int hashCode() {
+      int hash = 7;
+      hash = 97 * hash + Objects.hashCode(this.out);
+      hash = 97 * hash + Objects.hashCode(this.in);
+      return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
       }
-      csk.addEdge(edge);
-    });
-    return neighborood;
+      if (obj == null) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
+      final MoveEdge other = (MoveEdge) obj;
+      if (!moveDiversification) {
+        return (Objects.equals(in, other.out));
+      } else {
+        return (Objects.equals(in, other.out) || Objects.equals(out, other.in));
+      }
+    }
+
+    @Override
+    public int compareTo(MoveLabel o) {
+      return (afterCost - beforeCost) - (o.afterCost - o.beforeCost);
+    }
+
+    @Override
+    public String toString() {
+      return "MoveLabel{" + "out=" + out + ", in=" + in + ", afterCost=" + afterCost + ", beforeCost=" + beforeCost + '}';
+    }
+
+    /**
+     * Check if this move is identical to another.
+     *
+     * @param other the other move.
+     * @return true if the other move is identical to this.
+     */
+    public boolean isSame(MoveLabel other) {
+      if (other == this) {
+        return true;
+      }
+      return Objects.equals(in, other.in) && Objects.equals(out, other.out);
+    }
+
   }
 
   /**
    * Class that stores move statistics, used to implement some intensifications
    * and diversifications techniques.
    */
-  protected class MoveStat {
+  public class MoveStat {
 
-    private final Move move;
+    private final MoveEdge move;
     private int occurences = 1;
     private int improvements = 0;
 
@@ -226,7 +318,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
      *
      * @param move the move.
      */
-    public MoveStat(Move move) {
+    public MoveStat(MoveEdge move) {
       this.move = move;
     }
 
@@ -246,13 +338,42 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       improvements++;
     }
 
-    public Move getMove() {
+    public MoveEdge getMove() {
       return move;
     }
 
-    public boolean hasMove(Move move) {
+    public boolean hasMove(MoveEdge move) {
       return this.move.isSame(move);
     }
+  }
+
+  /**
+   * Get the set of moves from a feasible solution (<code>sk</code> must be a
+   * spanning tree)
+   *
+   * @param sk a spanning tree.
+   * @return the set of moves ordered by the delta of cost before and after this
+   * move.
+   */
+  public List<MoveEdge> getEdgeNeighborhood(final LabeledUndirectedGraph<N, E> sk) {
+    final List<MoveEdge> neighborood = new ArrayList<>();
+    final LabeledUndirectedGraph<N, E> csk = new LabeledUndirectedGraph<>(sk);
+    // For each spanning edges...
+    csk.getEdges().forEach(edge -> {
+      csk.removeEdge(edge);
+      final List<Set<N>> nodes = new ArrayList<>(csk.getSubGraphsNodes());
+      if (nodes.size() == 2) {
+        final Set<E> candidates = new HashSet<>();
+        csk.getRemovedEdges().stream()
+                .filter(redge -> (!redge.equals(edge))
+                && ((nodes.get(0).contains(redge.getNode1()) && nodes.get(1).contains(redge.getNode2()))
+                || (nodes.get(0).contains(redge.getNode2()) && nodes.get(1).contains(redge.getNode1()))))
+                .forEachOrdered(redge -> candidates.add(redge));
+        candidates.forEach(candidate -> neighborood.add(new MoveEdge(edge, candidate, sk)));
+      }
+      csk.addEdge(edge);
+    });
+    return neighborood;
   }
 
   /**
@@ -262,7 +383,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
    * @param move the move.
    * @return the move statistics related to given move.
    */
-  protected MoveStat getStat(List<MoveStat> moveStatsList, Move move) {
+  protected MoveStat getStat(List<MoveStat> moveStatsList, MoveEdge move) {
     MoveStat stat = null;
     for (MoveStat s : moveStatsList) {
       if (s.hasMove(move)) {
@@ -279,7 +400,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
    * @param moveStatsList the move statistics list.
    * @param move the move.
    */
-  protected void incOccurrences(List<MoveStat> moveStatsList, Move move) {
+  protected void incOccurrences(List<MoveStat> moveStatsList, MoveEdge move) {
     boolean found = false;
     for (MoveStat s : moveStatsList) {
       if (s.hasMove(move)) {
@@ -293,7 +414,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
   }
 
-  protected double occurrencesRate(List<MoveStat> moveStatsList, Move move) {
+  protected double occurrencesRate(List<MoveStat> moveStatsList, MoveEdge move) {
     double total = 0;
     double x = 0;
     for (MoveStat s : moveStatsList) {
@@ -313,7 +434,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
    * @param moveStatsList the move statistics list.
    * @param move the move.
    */
-  protected void incImprovements(List<MoveStat> moveStatsList, Move move) {
+  protected void incImprovements(List<MoveStat> moveStatsList, MoveEdge move) {
     for (MoveStat s : moveStatsList) {
       if (s.hasMove(move)) {
         s.incImprovements();
@@ -322,7 +443,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
   }
 
-  protected double improvementsRate(List<MoveStat> moveStatsList, Move move) {
+  protected double improvementsRate(List<MoveStat> moveStatsList, MoveEdge move) {
     double total = 0;
     double x = 0;
     for (MoveStat s : moveStatsList) {
@@ -337,63 +458,111 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     return x / total;
   }
 
+  protected LabeledUndirectedGraph<N, E> applyMVCA() throws NotConnectedGraphException, Exception {
+    MVCAO1 mvcao1 = new MVCAO1(graph);
+    mvcao1.run();
+    return mvcao1.getSpanningTree();
+  }
+
+  protected LabeledUndirectedGraph<N, E> applyERA(LabeledUndirectedGraph<N, E> sk) throws NotConnectedGraphException, Exception {
+    ERA era = new ERA(sk);
+    era.run();
+    sk = era.getSpanningTree();
+    return sk;
+  }
+
   /**
    * Compute taboo search.
    *
    * @param s0 the initial solution.
+   * @throws java.lang.Exception
    */
-  protected void compute(final LabeledUndirectedGraph<N, E> s0) {
-    final Queue<Move> tabuQueue = new LinkedList<>();
+  protected void compute(final LabeledUndirectedGraph<N, E> s0) throws Exception {
+    //Tabu queue
+    final Queue<MoveEdge> tabuQueue = new LinkedList<>();
 
+    //Long term memory
     final List<MoveStat> moveStatsList = new ArrayList<>();
 
+    //Minimum graph for this start instance
     LabeledUndirectedGraph<N, E> localMinGraph = s0;
 
+    //Iterations counters
     int iterationsWithoutImprovement = 0;
     int iterations = 0;
 
+    //Minimum lists
     final List<LabeledUndirectedGraph<N, E>> localMinimumsList = new ArrayList<>();
     final List<LabeledUndirectedGraph<N, E>> candidateMinimumsList = new ArrayList<>();
 
+    //Cost & minimum variables
     int cCost = s0.calculateCost();
     int km1Cost = cCost + 1, km2Cost;
     boolean inMinimum = false;
 
-    SortedSet<Move> sk_neighborhood;
+    //Random iterations counter
+    final int randomIters = maxIterations / 20, notRandomIters = randomIters * 2;
+    int randomItersCount = 0, notRandomItersCount = 0;
+
+    //Start computation
+    List<MoveEdge> ordered_neighborhood;
     LabeledUndirectedGraph<N, E> sk = new LabeledUndirectedGraph<>(s0);
     while (sk != null
             && iterations < maxIterations
             && iterationsWithoutImprovement < maxIterationsWithoutImprovement
             && localMinGraph.calculateCost() > minCost) {
+      //Iterations increment
       iterations++;
       iterationsWithoutImprovement++;
 
-      sk_neighborhood = getEdgeNeighborhood(sk);
+      //Local search intensification & diversification
+      if (localSearchIntensification && inMinimum) {
+        randomItersCount = randomIters;
+      }
 
-      List<Move> ordered_neighborhood = new ArrayList<>(sk_neighborhood);
-      Collections.sort(ordered_neighborhood, (m1, m2) -> {
-        double improv = 0, occurr = 0;
-        if (intensificationLearning) {
-          improv = improvementsRate(moveStatsList, m1);
-        }
-        if (diversificationLearning) {
-          occurr = occurrencesRate(moveStatsList, m1);
-        }
-        int r = (int) (((m1.afterCost - m1.beforeCost) - improv + occurr) * 1000);
-        return r;
-      });
+      //GET ALL NEIGHBORS
+      ordered_neighborhood = getEdgeNeighborhood(sk);
 
-      Move move = null;
-      for (Move m : ordered_neighborhood) {
+      //Order neighbors by  improvement
+      if (!localSearchIntensification || (randomItersCount <= 0 || notRandomItersCount > 0)) {
+        //If intensification learning or diversification learning is setted then weight cost with occurrences
+        Collections.sort(ordered_neighborhood, (m1, m2) -> {
+          double improvM1 = 0, improvM2 = 0, occurrM1 = 0, occurrM2 = 0;
+          if (intensificationLearning) {
+            improvM1 = improvementsRate(moveStatsList, m1);
+            improvM2 = improvementsRate(moveStatsList, m2);
+          }
+          if (diversificationLearning) {
+            occurrM1 = occurrencesRate(moveStatsList, m1);
+            occurrM2 = occurrencesRate(moveStatsList, m2);
+          }
+          int r = (int) ((((m1.afterCost - m1.beforeCost) - improvM1 + occurrM1) * 1000)
+                  - (((m2.afterCost - m2.beforeCost) - improvM2 + occurrM2) * 1000));
+          return r;
+        });
+
+        notRandomItersCount--;
+      } else {
+        //To diversificate after a local minimum shuffle ordered neighbors
+        Collections.shuffle(ordered_neighborhood, new Random(System.currentTimeMillis()));
+        randomItersCount--;
+        if (randomItersCount <= 0) {
+          notRandomItersCount = notRandomIters;
+        }
+      }
+
+      //Select a move that VIOLATE a tabu condition or SATISFY an aspiration condition
+      MoveEdge move = null;
+      for (MoveEdge m : ordered_neighborhood) {
         if ((!tabuQueue.contains(m) || m.getGraph().calculateCost() < localMinGraph.calculateCost()) && m.getGraph().isConnected()) {
           move = m;
-//          System.out.println("out=" + move.out + " in=" + move.in);
           break;
         }
       }
       if (move == null) {
         sk = null;
       } else {
+        //Increment occurrences in move list
         incOccurrences(moveStatsList, move);
 
         LabeledUndirectedGraph<N, E> km1Sk = sk;
@@ -403,78 +572,50 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
         km1Cost = cCost;
         cCost = sk.calculateCost();
 
+        //If local search intensification is specified apply ERA local search to a solution that improve the previous one.
+        if (cCost < km1Cost && localSearchIntensification) {
+          sk = applyERA(sk);
+        }
+
+        //If this solution improve the previous one then increment improvements
         if (cCost < km1Cost) {
           incImprovements(moveStatsList, move);
         }
 
-//        Set<E> edges = km1Sk.getEdges();
-//        edges.removeAll(sk.getEdges());
-//        System.out.println("[(k-1)-k] diff=" + edges);
-//        edges = sk.getEdges();
-//        edges.removeAll(km1Sk.getEdges());
-//        System.out.println("[k-(k-1)] diff=" + edges);
+        //Online search for elite solutions
         if (km2Cost > km1Cost && km1Cost < cCost) {
           localMinimumsList.add(km1Sk);
           inMinimum = false;
-//          System.out.println("MINIMUM " + km1Sk.calculateCost());
-//
-//          int k1 = localMinimum.size() - 2;
-//          int k = localMinimum.size() - 1;
-//          if (k - 2 >= 0) {
-//            edges = localMinimum.get(k1).getEdges();
-//            edges.removeAll(localMinimum.get(k).getEdges());
-//            System.out.println("[(m-1)-m] diff=" + edges);
-//            edges = localMinimum.get(k).getEdges();
-//            edges.removeAll(localMinimum.get(k1).getEdges());
-//            System.out.println("[m-(m-1)] diff=" + edges);
-//          }
         } else if (!inMinimum && (km2Cost > km1Cost && km1Cost == cCost)) {
           inMinimum = true;
           candidateMinimumsList.add(km1Sk);
-//          System.out.println("ADD CANDIDATE");
         } else if (inMinimum && (km1Cost == cCost)) {
           candidateMinimumsList.add(km1Sk);
-//          System.out.println("ADD CANDIDATE");
         } else if (inMinimum && (km1Cost < cCost)) {
           inMinimum = false;
           candidateMinimumsList.add(km1Sk);
           localMinimumsList.addAll(candidateMinimumsList);
-//          System.out.println("ALL MINIMUM");
         } else {
           inMinimum = false;
           candidateMinimumsList.clear();
         }
 
-//        System.out.println("cCost=" + cCost);
+        //Add move to tabu queue
         tabuQueue.add(move);
-//        System.out.println("added");
-//        System.out.println();
 
+        //If this solution improve best solution for this instance then update.
         if (cCost < localMinGraph.calculateCost()) {
           localMinGraph = sk;
           iterationsWithoutImprovement = 0;
         } else {
+          //Remove older solution if tabu queue is longer than minQueue threshold.
           if (tabuQueue.size() > minQueue) {
             tabuQueue.poll();
           }
         }
       }
-//      System.out.println("CURRENT THREAD=" + Thread.currentThread().getName() + ";\t" + iterations + " : " + iterationsWithoutImprovement + "; tabuQueue=" + tabuQueue.size());
     }
-//    System.out.println();
-//    LabeledUndirectedGraph<N, E> last = null;
-//    for (LabeledUndirectedGraph<N, E> min : localMinimum) {
-//      if (last != null) {
-//        Set<E> edges = last.getEdges();
-//        edges.removeAll(min.getEdges());
-//        System.out.println("[last-min] diff=" + edges);
-//        edges = min.getEdges();
-//        edges.removeAll(last.getEdges());
-//        System.out.println("[min-last] diff=" + edges);
-//      }
-//      System.out.println("min=" + min.calculateCost());
-//      last = min;
-//    }
+    //Update global elites and min graphs.
     synchronized (lock) {
       elites.addAll(localMinimumsList);
       minGraphs.add(localMinGraph);
@@ -489,15 +630,14 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
   @Override
   protected void start() throws Exception {
     System.out.println("MINQUEUE=" + minQueue + "; MAXITER=" + maxIterations + "; MAXITERATIONSWITHOUTIMPROVEMENT=" + maxIterationsWithoutImprovement);
-    LabeledUndirectedGraph<N, E> zero;
-    if (!(zero = getZeroGraph(minGraph)).isConnected()) {
+    LabeledUndirectedGraph<N, E> zero = getZeroGraph(minGraph);
+
+    if (!zero.isConnected()) {
       minCost = zero.calculateCost() + 1;
 
       Queue<LabeledUndirectedGraph<N, E>> startsQueue = new LinkedList<>();
       for (int i = 0; i < greedyMultiStart; i++) {
-        MVCAO1 mvcao1 = new MVCAO1(graph);
-        mvcao1.run();
-        startsQueue.add(mvcao1.getSpanningTree());
+        startsQueue.add(applyMVCA());
       }
       for (int i = 0; i < randomMultiStart; i++) {
         startsQueue.add(new LabeledUndirectedGraph<>(getSpanningTree(graph)));
@@ -523,21 +663,25 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
         List<Thread> pool = new ArrayList<>();
         for (int i = 0; i < nthreads; i++) {
           Thread th = new Thread(() -> {
-            boolean empty;
-            synchronized (lock) {
-              empty = startsQueue.isEmpty();
-            }
-
-            while (!empty) {
-              LabeledUndirectedGraph<N, E> g;
-
-              synchronized (lock) {
-                g = startsQueue.poll();
-              }
-              compute(g);
+            try {
+              boolean empty;
               synchronized (lock) {
                 empty = startsQueue.isEmpty();
               }
+
+              while (!empty) {
+                LabeledUndirectedGraph<N, E> g;
+
+                synchronized (lock) {
+                  g = startsQueue.poll();
+                }
+                compute(g);
+                synchronized (lock) {
+                  empty = startsQueue.isEmpty();
+                }
+              }
+            } catch (Exception ex) {
+              throw new RuntimeException(ex);
             }
           });
           th.setDaemon(false);
@@ -557,9 +701,190 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
           minGraph = _min;
         }
       });
+      if (pathRelinking) {
+        pathRelinking();
+      }
     } else {
       minGraph = zero;
     }
+  }
+
+  protected class Best {
+
+    private LabeledUndirectedGraph<N, E> graph;
+
+    public Best(LabeledUndirectedGraph<N, E> graph) {
+      this.graph = graph;
+    }
+
+    public void setGraph(LabeledUndirectedGraph<N, E> graph) {
+      this.graph = graph;
+    }
+
+    public LabeledUndirectedGraph<N, E> getGraph() {
+      return graph;
+    }
+  }
+
+  protected void repair(final LabeledUndirectedGraph<N, E> g, final Set<String> label, final Set<E> allEdges) {
+    final LabeledUndirectedGraph<N, E> cg = new LabeledUndirectedGraph<>(g);
+    Set<String> local = new HashSet<>(label);
+    label.forEach(l -> {
+      local.remove(l);
+      allEdges.stream()
+              .filter(e -> e.getLabel().equals(l))
+              .forEachOrdered(e -> cg.addEdge(e));
+      if (!cg.isConnected()) {
+        repair(cg, local, allEdges);
+      }
+      local.add(l);
+    });
+  }
+
+  /**
+   * Get the set of moves from a feasible solution (<code>sk</code> must be a
+   * spanning tree)
+   *
+   * @param sk a spanning tree.
+   * @param objective
+   * @return the set of moves ordered by the delta of cost before and after this
+   * move.
+   */
+  public List<MoveLabel> getLabelNeighborhood(final LabeledUndirectedGraph<N, E> sk, final LabeledUndirectedGraph<N, E> objective) {
+    final List<MoveLabel> neighborood = new ArrayList<>();
+    final LabeledUndirectedGraph<N, E> csk = new LabeledUndirectedGraph<>(sk);
+
+    Set<String> diff = csk.getLabels();
+    diff.removeAll(objective.getLabels());
+
+    Set<E> allEdges = new HashSet<>(sk.getEdges());
+    allEdges.addAll(sk.getRemovedEdges());
+
+    diff.forEach(label -> {
+      final LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(csk);
+      test.removeLabel(label);
+
+      test.getLabels().forEach(_label -> {
+        allEdges.stream()
+                .filter(_edge -> _edge.getLabel().equals(_label))
+                .forEachOrdered(_edge -> test.addEdge(_edge));
+      });
+
+      Queue<String> olabels = new LinkedList<>(objective.getLabels());
+      while (!olabels.isEmpty() && !test.isConnected()) {
+        String l = olabels.poll();
+
+        Set<E> es = allEdges.stream()
+                .filter(e -> e.getLabel().equals(l))
+                .collect(Collectors.toSet());
+
+        es.forEach(e -> test.addEdge(e));
+
+        if (!test.isConnected()) {
+          es.forEach(e -> test.removeEdge(e));
+        }
+      }
+      while (!test.isConnected()) {
+        test.getRemovedLabels().stream()
+                .filter(rlabel -> !rlabel.equals(label))
+                .forEachOrdered(rlabel -> {
+                  allEdges.stream()
+                          .filter(edge -> edge.getLabel().equals(rlabel))
+                          .forEachOrdered(edge -> test.addEdge(edge));
+                });
+      }
+      if (test.isConnected()) {
+        final LabeledUndirectedGraph<N, E> stest = getSpanningTree(test);
+        Set<E> out = stest.getRemovedEdges(), in = stest.getEdges();
+        out.removeAll(csk.getRemovedEdges());
+        in.removeAll(csk.getEdges());
+        neighborood.add(new MoveLabel(out, in, sk));
+      }
+    });
+
+//    Set<E> objectiveEdges = objective.getEdges();
+//    objectiveEdges.addAll(objective.getRemovedEdges());
+//    objectiveEdges.removeAll(sk.getEdges());
+//
+//    diff.forEach(label -> {
+//      final Set<E> out_edges = csk.getEdges().stream()
+//              .filter(edge -> edge.getLabel().equals(label))
+//              .collect(Collectors.toSet()),
+//              in_edges = new HashSet<>();
+//
+//      final HashMap<E, Set<E>> selected = new HashMap<>();
+//      out_edges.forEach(edge -> {
+//        selected.put(edge, new HashSet<>());
+//        csk.removeEdge(edge);
+//
+//        final List<Set<N>> nodes = new ArrayList<>(csk.getSubGraphsNodes());
+//
+//        if (nodes.size() == 2) {
+//          final Set<E> candidates = new HashSet<>();
+//          csk.getRemovedEdges().stream()
+//                  .filter(redge -> (!redge.equals(edge) && objective.getLabels().contains(redge.getLabel()))
+//                  && ((nodes.get(0).contains(redge.getNode1()) && nodes.get(1).contains(redge.getNode2()))
+//                  || (nodes.get(0).contains(redge.getNode2()) && nodes.get(1).contains(redge.getNode1()))))
+//                  .forEachOrdered(redge -> candidates.add(redge));
+//
+//          candidates.forEach(candidate -> selected.get(edge).add(candidate));
+//        }
+//
+//        csk.addEdge(edge);
+//      });
+//
+//      out_edges.forEach(edge -> {
+//        Set<E> in = selected.get(edge);
+//        List<E> tmp = new ArrayList<>(in);
+//        tmp.removeAll(objective.getRemovedEdges());
+//        E sel = null;
+//        if (tmp.size() >= 1) {
+//          Collections.shuffle(tmp, new Random(System.currentTimeMillis()));
+//          sel = tmp.get(0);
+//        } else {
+//          tmp.addAll(in);
+//          if (tmp.size() >= 0) {
+//            Collections.shuffle(tmp, new Random(System.currentTimeMillis()));
+//            sel = tmp.get(0);
+//          }
+//        }
+//        if (sel != null) {
+//          in_edges.add(sel);
+//        }
+//      });
+//
+//      if (out_edges.size() == in_edges.size()) {
+//        neighborood.add(new MoveLabel(out_edges, in_edges, sk));
+//      }
+//    });
+    return neighborood;
+  }
+
+  /**
+   * Path relinking procedure.
+   */
+  protected void pathRelinking() {
+    Collections.shuffle(elites, new Random(System.currentTimeMillis()));
+    Queue<LabeledUndirectedGraph<N, E>> elitesQueue = new LinkedList<>(elites);
+
+    LabeledUndirectedGraph<N, E> start, end = new LabeledUndirectedGraph<>(elitesQueue.poll());
+
+    while (!elitesQueue.isEmpty()) {
+      System.out.println(elitesQueue.size());
+      start = new LabeledUndirectedGraph<>(end);
+      end = elitesQueue.poll();
+
+      while (!start.getLabels().equals(end.getLabels())) {
+        List<MoveLabel> neighborhood = getLabelNeighborhood(start, end);
+        Collections.sort(neighborhood);
+        if (neighborhood.isEmpty()) {
+          System.out.println("break");
+          break;
+        }
+        start = neighborhood.get(0).getGraph();
+      }
+    }
+
   }
 
   public int getMaxIterations() {

@@ -167,9 +167,8 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
       });
     }
 
-    LabeledUndirectedGraph<N, E> spanningTree = new LabeledUndirectedGraph<>(graph.getNodes());
+    LabeledUndirectedGraph<N, E> spanningTree = new LabeledUndirectedGraph<>(graph);
     graph.getEdges().forEach(edge -> {
-      spanningTree.addEdge(edge);
       if (!sedges.contains(edge)) {
         spanningTree.removeEdge(edge);
       }

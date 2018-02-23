@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -376,5 +377,35 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
   @Override
   public String toString() {
     return "Nodes: " + nodes + "; Edges: " + edges + "; Labels: " + labels + "; Spanning tree: " + spanningEdges;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 59 * hash + Objects.hashCode(this.nodes);
+    hash = 59 * hash + Objects.hashCode(this.edges);
+    hash = 59 * hash + Objects.hashCode(this.labels);
+    hash = 59 * hash + Objects.hashCode(this.removedEdges);
+    hash = 59 * hash + Objects.hashCode(this.removedLabels);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final LabeledUndirectedGraph<?, ?> other = (LabeledUndirectedGraph<?, ?>) obj;
+    return Objects.equals(nodes, other.nodes)
+            && Objects.equals(edges, other.edges)
+            && Objects.equals(labels, other.labels)
+            && Objects.equals(removedEdges, other.removedEdges)
+            && Objects.equals(removedLabels, other.removedLabels);
   }
 }

@@ -1763,3 +1763,621 @@ java.lang.NumberFormatException: For input string: ""
 2018-02-22 19:47:43,281 INFO       main:1:MLST:main:MLST:453 - Plotting...
 2018-02-22 19:47:43,295 INFO       main:1:MLST:main:MLST:424 - Algorithm: tabusearch
 2018-02-22 19:47:43,296 INFO       main:1:MLST:main:MLST:428 - Starting calculating MLST with tabusearch...
+2018-02-22 23:22:17,766 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:22:17,836 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:22:17,837 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:22:17,839 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:22:17,839 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:22:17,840 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:22:17,840 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:22:17,840 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:22:17,841 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:22:17,841 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:22:17,866 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:22:18,214 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:22:18,215 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:22:18,216 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:22:52,386 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-22 23:22:52,386 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-22 23:22:52,387 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-22 23:22:52,388 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-22 23:22:52,394 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-22 23:23:02,886 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:23:02,935 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:23:02,936 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:23:02,939 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:23:02,939 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:23:02,940 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:23:02,940 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:23:02,940 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:23:02,941 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:23:02,941 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:23:02,970 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:23:03,324 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:23:03,325 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:23:03,325 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:23:32,027 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:23:32,077 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:23:32,078 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:23:32,079 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:23:32,080 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:23:32,080 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:23:32,080 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:23:32,081 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:23:32,081 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:23:32,081 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:23:32,102 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:23:32,424 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:23:32,425 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:23:32,426 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:25:20,176 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:25:20,227 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:25:20,228 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:25:20,231 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:25:20,231 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:25:20,232 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:25:20,232 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:25:20,233 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:25:20,233 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:25:20,233 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:25:20,261 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:25:20,584 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:25:20,585 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:25:20,586 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:26:43,357 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:26:43,406 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:26:43,407 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:26:43,409 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:26:43,409 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:26:43,410 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:26:43,410 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:26:43,411 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:26:43,411 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:26:43,411 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:26:43,434 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:26:43,758 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:26:43,759 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:26:43,760 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:27:22,106 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:27:22,160 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:27:22,162 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:27:22,164 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:27:22,165 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:27:22,165 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:27:22,166 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:27:22,166 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:27:22,166 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:27:22,167 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:27:22,197 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:27:22,561 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:27:22,562 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:27:22,562 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:29:22,355 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:29:22,408 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:29:22,409 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:29:22,411 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:29:22,411 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:29:22,412 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:29:22,412 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:29:22,412 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:29:22,413 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:29:22,413 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:29:22,433 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:29:22,761 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:29:22,762 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:29:22,763 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-22 23:33:03,258 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-22 23:33:03,310 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-22 23:33:03,311 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-22 23:33:03,314 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-22 23:33:03,314 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-22 23:33:03,315 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-22 23:33:03,315 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-22 23:33:03,316 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-22 23:33:03,316 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-22 23:33:03,316 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-22 23:33:03,345 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-22 23:33:03,654 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-22 23:33:03,655 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-22 23:33:03,656 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:03:30,008 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:03:30,358 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:03:30,361 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:03:30,366 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:03:30,367 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:03:30,368 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:03:30,369 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:03:30,370 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 16:03:30,370 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:03:30,371 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:03:30,584 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:03:33,730 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:03:33,732 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:03:33,733 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:04:41,855 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:04:42,030 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:04:42,034 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:04:42,044 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:04:42,045 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:04:42,047 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:04:42,049 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:04:42,050 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 16:04:42,051 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:04:42,056 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:04:42,147 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:04:43,261 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:04:43,264 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:04:43,266 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:07:02,686 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:07:02,789 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:07:02,792 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:07:02,799 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:07:02,801 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:07:02,803 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:07:02,804 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:07:02,805 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:07:02,806 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:07:02,901 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:07:03,809 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:07:03,811 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:07:03,814 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:07:05,610 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-23 16:07:05,612 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-23 16:07:05,615 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-23 16:07:05,618 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-23 16:07:05,668 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:08:32,515 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:08:32,548 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:08:32,549 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:08:32,550 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:08:32,551 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:08:32,551 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:08:32,551 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:08:32,552 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:08:32,552 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:08:32,587 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:08:32,849 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:08:32,849 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:08:32,850 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:08:39,478 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-23 16:08:39,479 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-23 16:08:39,481 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-23 16:08:39,483 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-23 16:08:39,508 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:11:32,687 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:11:32,719 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:11:32,720 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:11:32,721 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:11:32,722 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:11:32,722 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:11:32,723 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:11:32,723 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:11:32,723 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:11:32,758 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:11:33,016 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:11:33,016 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:11:33,018 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:11:33,550 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-23 16:11:33,550 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-23 16:11:33,551 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-23 16:11:33,552 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-23 16:11:33,559 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:12:57,690 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:12:57,792 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:12:57,795 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:12:57,801 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:12:57,802 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:12:57,804 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:12:57,805 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:12:57,806 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:12:57,807 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:12:57,898 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:12:58,609 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:12:58,610 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:12:58,612 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:13:11,671 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-23 16:13:11,672 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-23 16:13:11,672 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-23 16:13:11,673 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-23 16:13:11,685 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:13:48,085 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:13:48,118 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:13:48,119 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:13:48,122 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:13:48,122 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:13:48,123 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:13:48,123 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:13:48,124 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:13:48,124 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:13:48,160 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:13:48,460 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:13:48,461 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:13:48,462 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:13:48,727 FATAL      main:1:MLST:main:MLST:529 - Exception: Comparison method violates its general contract!
+java.lang.IllegalArgumentException: Comparison method violates its general contract!
+	at java.util.TimSort.mergeLo(TimSort.java:777) ~[?:1.8.0_161]
+	at java.util.TimSort.mergeAt(TimSort.java:514) ~[?:1.8.0_161]
+	at java.util.TimSort.mergeCollapse(TimSort.java:441) ~[?:1.8.0_161]
+	at java.util.TimSort.sort(TimSort.java:245) ~[?:1.8.0_161]
+	at java.util.Arrays.sort(Arrays.java:1512) ~[?:1.8.0_161]
+	at java.util.ArrayList.sort(ArrayList.java:1462) ~[?:1.8.0_161]
+	at java.util.Collections.sort(Collections.java:175) ~[?:1.8.0_161]
+	at engines.impl.TabuSearch.compute(TabuSearch.java:412) ~[classes/:?]
+	at engines.impl.TabuSearch.start(TabuSearch.java:539) ~[classes/:?]
+	at engines.Algorithm.run(Algorithm.java:139) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:491) [classes/:?]
+2018-02-23 16:13:48,745 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:13:48,747 FATAL      main:1:MLST:main:MLST:573 - Exception: null
+java.lang.NullPointerException: null
+	at mlst.MLST.lambda$main$6(MLST.java:539) ~[classes/:?]
+	at java.util.ArrayList.forEach(ArrayList.java:1257) ~[?:1.8.0_161]
+	at mlst.MLST.main(MLST.java:534) [classes/:?]
+2018-02-23 16:14:22,367 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:14:22,409 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:14:22,411 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:14:22,413 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:14:22,413 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:14:22,414 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:14:22,414 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:14:22,415 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:14:22,415 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:14:22,460 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:14:22,842 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:14:22,843 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:14:22,844 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:14:23,194 FATAL      main:1:MLST:main:MLST:529 - Exception: Comparison method violates its general contract!
+java.lang.IllegalArgumentException: Comparison method violates its general contract!
+	at java.util.TimSort.mergeLo(TimSort.java:777) ~[?:1.8.0_161]
+	at java.util.TimSort.mergeAt(TimSort.java:514) ~[?:1.8.0_161]
+	at java.util.TimSort.mergeCollapse(TimSort.java:439) ~[?:1.8.0_161]
+	at java.util.TimSort.sort(TimSort.java:245) ~[?:1.8.0_161]
+	at java.util.Arrays.sort(Arrays.java:1512) ~[?:1.8.0_161]
+	at java.util.ArrayList.sort(ArrayList.java:1462) ~[?:1.8.0_161]
+	at java.util.Collections.sort(Collections.java:175) ~[?:1.8.0_161]
+	at engines.impl.TabuSearch.compute(TabuSearch.java:412) ~[classes/:?]
+	at engines.impl.TabuSearch.start(TabuSearch.java:539) ~[classes/:?]
+	at engines.Algorithm.run(Algorithm.java:139) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:491) [classes/:?]
+2018-02-23 16:14:23,205 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:14:23,207 FATAL      main:1:MLST:main:MLST:573 - Exception: null
+java.lang.NullPointerException: null
+	at mlst.MLST.lambda$main$6(MLST.java:539) ~[classes/:?]
+	at java.util.ArrayList.forEach(ArrayList.java:1257) ~[?:1.8.0_161]
+	at mlst.MLST.main(MLST.java:534) [classes/:?]
+2018-02-23 16:18:00,928 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:18:01,030 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:18:01,033 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:18:01,039 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:18:01,040 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:18:01,041 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:18:01,042 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:18:01,043 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:18:01,044 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:18:01,126 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:18:01,914 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:18:01,915 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:18:01,918 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:18:41,497 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-23 16:18:41,498 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-23 16:18:41,499 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-23 16:18:41,501 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-23 16:18:41,527 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:18:51,706 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:18:51,781 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:18:51,783 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:18:51,787 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:18:51,788 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:18:51,790 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:18:51,791 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:18:51,792 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:18:51,792 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:18:51,858 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:18:52,427 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:18:52,428 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:18:52,431 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 16:19:26,993 INFO       main:1:MLST:main:MLST:494 - Done.
+2018-02-23 16:19:26,994 INFO       main:1:MLST:main:MLST:496 - Calculating spanning tree...
+2018-02-23 16:19:26,996 INFO       main:1:MLST:main:MLST:501 - Done.
+2018-02-23 16:19:26,997 INFO       main:1:MLST:main:MLST:514 - Plotting...
+2018-02-23 16:19:27,020 INFO       main:1:MLST:main:MLST:533 - All done.
+2018-02-23 16:20:34,101 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 16:20:34,164 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 16:20:34,166 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 16:20:34,168 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 16:20:34,168 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 16:20:34,169 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 16:20:34,169 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 16:20:34,170 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 16:20:34,170 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 16:20:34,195 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 16:20:34,559 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 16:20:34,559 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 16:20:34,561 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 17:57:53,108 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 17:57:53,282 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 17:57:53,285 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 17:57:53,290 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 17:57:53,292 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 17:57:53,295 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 17:57:53,296 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 17:57:53,298 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 17:57:53,300 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 17:57:53,382 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 17:58:32,354 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 17:58:32,423 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 17:58:32,424 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 17:58:32,427 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 17:58:32,428 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 17:58:32,428 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 17:58:32,429 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 17:58:32,429 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 17:58:32,429 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 17:58:32,430 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 17:58:32,430 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 17:58:32,462 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 17:58:32,935 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 17:58:32,936 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 17:58:32,937 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 17:59:36,900 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 17:59:36,984 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 17:59:36,986 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 17:59:36,990 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 17:59:36,991 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 17:59:36,992 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 17:59:36,992 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 17:59:36,993 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 17:59:36,994 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 17:59:36,994 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 17:59:36,995 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 17:59:37,034 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 17:59:37,946 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 17:59:37,947 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 17:59:37,949 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 18:14:10,727 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 18:14:10,825 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 18:14:10,827 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 18:14:10,831 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 18:14:10,832 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 18:14:10,833 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 18:14:10,834 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 18:14:10,834 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 18:14:10,835 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 18:14:10,835 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 500
+2018-02-23 18:14:10,836 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 250
+2018-02-23 18:14:10,879 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 18:14:11,444 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 18:14:11,444 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 18:14:11,445 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 18:14:40,665 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 18:14:40,857 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 18:14:40,860 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 18:14:40,866 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 18:14:40,868 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 18:14:40,870 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 18:14:40,871 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 18:14:40,872 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 18:14:40,873 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 18:14:40,874 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 18:14:40,875 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 18:14:41,004 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 18:14:42,578 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 18:14:42,580 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 18:14:42,607 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 18:15:36,718 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 18:15:36,915 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 18:15:36,942 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 18:15:36,955 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 18:15:36,957 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 18:15:36,958 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 18:15:36,960 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 18:15:36,961 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 18:15:36,962 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 18:15:36,963 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 18:15:36,964 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 18:15:37,033 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 18:15:38,356 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 18:15:38,358 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 18:15:38,384 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 18:16:23,945 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 18:16:24,194 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 18:16:24,196 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 18:16:24,228 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 18:16:24,230 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 18:16:24,233 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 18:16:24,235 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 18:16:24,236 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 18:16:24,237 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 18:16:24,238 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 18:16:24,240 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 18:16:24,348 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 18:16:26,062 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 18:16:26,064 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 18:16:26,067 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:16:00,129 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:16:00,194 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:16:00,196 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:16:00,198 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:16:00,199 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:16:00,199 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:16:00,200 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:16:00,200 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:16:00,200 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:16:00,201 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:16:00,201 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:16:00,237 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:16:00,698 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:16:00,698 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:16:00,699 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:16:54,720 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:16:54,792 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:16:54,794 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:16:54,797 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:16:54,798 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:16:54,799 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:16:54,800 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:16:54,800 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:16:54,801 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:16:54,801 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:16:54,802 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:16:54,843 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:16:55,324 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:16:55,324 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:16:55,325 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:19:22,440 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:19:22,609 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:19:22,613 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:19:22,621 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:19:22,623 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:19:22,624 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:19:22,626 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:19:22,627 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:19:22,628 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:19:22,629 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:19:22,630 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:19:22,712 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:19:23,813 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:19:23,814 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:19:23,816 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:19:59,681 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:19:59,861 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:19:59,865 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:19:59,872 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:19:59,874 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:19:59,876 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:19:59,877 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:19:59,879 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:19:59,880 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:19:59,881 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:19:59,882 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:19:59,973 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:20:01,099 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:20:01,100 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:20:01,102 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:21:32,837 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:21:32,888 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:21:32,890 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:21:32,891 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:21:32,892 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:21:32,892 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:21:32,892 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:21:32,893 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:21:32,893 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:21:32,893 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:21:32,893 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:21:32,917 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:21:33,248 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:21:33,248 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:21:33,249 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:28:29,915 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:28:30,074 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:28:30,077 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:28:30,082 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:28:30,084 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:28:30,086 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:28:30,087 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:28:30,089 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:28:30,090 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:28:30,091 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:28:30,092 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:28:30,177 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:28:31,268 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:28:31,269 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:28:31,270 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:34:15,967 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:34:16,023 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:34:16,024 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:34:16,026 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:34:16,026 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:34:16,027 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:34:16,027 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:34:16,028 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:34:16,028 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:34:16,028 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:34:16,029 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:34:16,058 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:34:16,410 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:34:16,411 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:34:16,411 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:34:33,685 FATAL      main:1:MLST:main:MLST:529 - Exception: Index: 0, Size: 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:657) ~[?:1.8.0_161]
+	at java.util.ArrayList.get(ArrayList.java:433) ~[?:1.8.0_161]
+	at engines.impl.TabuSearch.pathRelinking(TabuSearch.java:848) ~[classes/:?]
+	at engines.impl.TabuSearch.start(TabuSearch.java:707) ~[classes/:?]
+	at engines.Algorithm.run(Algorithm.java:139) ~[classes/:?]
+	at mlst.MLST.main(MLST.java:491) [classes/:?]
+2018-02-23 19:34:57,066 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:34:57,253 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:34:57,257 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:34:57,268 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:34:57,270 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:34:57,272 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:34:57,273 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:34:57,274 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:34:57,275 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:34:57,277 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:34:57,278 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:34:57,387 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:34:58,569 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:34:58,570 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:34:58,572 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:35:47,980 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:35:48,120 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:35:48,123 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:35:48,127 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:35:48,128 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:35:48,129 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:35:48,130 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:35:48,132 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:35:48,133 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:35:48,134 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:35:48,135 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:35:48,217 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:35:49,200 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:35:49,201 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:35:49,203 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:56:48,428 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:56:48,481 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:56:48,482 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:56:48,484 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:56:48,484 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:56:48,485 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:56:48,485 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:56:48,485 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:56:48,486 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:56:48,486 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:56:48,486 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:56:48,512 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:56:48,857 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:56:48,858 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:56:48,858 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 19:59:27,153 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 19:59:27,183 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 19:59:27,184 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 19:59:27,186 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 19:59:27,186 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 19:59:27,187 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 19:59:27,187 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 19:59:27,188 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 19:59:27,188 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 19:59:27,188 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 19:59:27,189 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 19:59:27,220 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 19:59:27,483 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 19:59:27,484 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 19:59:27,485 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
+2018-02-23 20:01:01,254 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-23 20:01:01,287 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-23 20:01:01,288 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-23 20:01:01,290 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-23 20:01:01,291 NOTICE     main:1:MLST:main:MLST:364 - You selected diversification Multi-Start technique. # of greedy starts: 1. # of random starts: 0
+2018-02-23 20:01:01,291 NOTICE     main:1:MLST:main:MLST:378 - You selected diversification learning technique.
+2018-02-23 20:01:01,292 NOTICE     main:1:MLST:main:MLST:386 - You selected intenstification learning technique.
+2018-02-23 20:01:01,292 NOTICE     main:1:MLST:main:MLST:393 - You selected intenstification with local search.
+2018-02-23 20:01:01,292 NOTICE     main:1:MLST:main:MLST:400 - You selected intenstification with Path Relinking.
+2018-02-23 20:01:01,293 NOTICE     main:1:MLST:main:MLST:407 - You selected maximum iterstions: 100
+2018-02-23 20:01:01,293 NOTICE     main:1:MLST:main:MLST:414 - You selected maximum iterations without any improvements: 50
+2018-02-23 20:01:01,320 INFO       main:1:MLST:main:MLST:471 - Plotting...
+2018-02-23 20:01:01,566 INFO       main:1:MLST:main:MLST:478 - All done.
+2018-02-23 20:01:01,567 INFO       main:1:MLST:main:MLST:485 - Algorithm: tabusearch
+2018-02-23 20:01:01,567 INFO       main:1:MLST:main:MLST:489 - Starting calculating MLST with tabusearch...
