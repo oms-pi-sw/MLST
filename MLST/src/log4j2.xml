@@ -2,7 +2,7 @@
 <Configuration>
   <Properties>
     <Property name="filename">trace.log</Property>
-    <Property name="msgcolor">FATAL=Red Bright, ERROR=Red, WARN=Yellow Bold, INFO=Green, DEBUG=Cyan, TRACE=blue, VERBOSE=BG_Magenta Yellow, NOTICE=BG_Blue Yellow, EVENT=BG_Yellow Blue, SERVER=BG_Blue White, CLIENT=BG_Green White, LOADSCREEN_OUT=BG_Green Blue, LOADSCREEN_ERR=BG_Green Red, NORMAL=Normal Default</Property>
+    <Property name="msgcolor">FATAL=Red Bright, ERROR=Red, WARN=Yellow Bold, INFO=Green, DEBUG=Cyan, TRACE=blue, VERBOSE=BG_Magenta Yellow, NOTICE=BG_Blue Yellow, PROGRESS=BG_Yellow Blue, ALGORITHM=BG_Blue White, END=BG_Green White, OUT=BG_Green Blue, ERR=BG_Green Red, NORMAL=Normal Default</Property>
     <!--\e == \\(e|u001b|033|x1b)-->
     <Property name="escape">\e\[[0-9;:]*m</Property>
   </Properties>
@@ -10,12 +10,12 @@
   <CustomLevels>
     <CustomLevel name="NORMAL" intLevel="410" />
     <CustomLevel name="VERBOSE" intLevel="420" />
-    <CustomLevel name="SERVER" intLevel="440" />
-    <CustomLevel name="CLIENT" intLevel="440" />
+    <CustomLevel name="ALGORITHM" intLevel="440" />
+    <CustomLevel name="END" intLevel="440" />
     <CustomLevel name="NOTICE" intLevel="460" />
-    <CustomLevel name="EVENT" intLevel="480" />
-    <CustomLevel name="LOADSCREEN_OUT" intLevel="360" />
-    <CustomLevel name="LOADSCREEN_ERR" intLevel="330" />
+    <CustomLevel name="PROGRESS" intLevel="480" />
+    <CustomLevel name="OUT" intLevel="360" />
+    <CustomLevel name="ERR" intLevel="330" />
   </CustomLevels>
   
   <!--%t:%T:%C{1}:%M:%c{1}:%L-->
