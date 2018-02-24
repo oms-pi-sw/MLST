@@ -125,12 +125,26 @@ usage: MLST
                                         heuristic after tabu search
                                         collected all elite results.
                                         [INTENSIFICATION OPTION]
+    --path-relinking-min                To USE WITH Tabu Search heuristic
+                                        algorithm. Require to use path
+                                        relinking alternative algorithm
+                                        (simplier and faster)
+                                        intensification heuristic after
+                                        tabu search collected all elite
+                                        results. [INTENSIFICATION OPTION]
  -R,--move-diversification              To USE WITH Tabu Search heuristic
                                         algorithm. Specify a stronger
                                         policy for tabu queue rejection in
                                         order to diversify more.
                                         [DIVERSIFICATION OPTION]
  -r,--random                            Generate random graph.
+ -S,--path-relinking-alt                To USE WITH Tabu Search heuristic
+                                        algorithm. Require to use path
+                                        relinking alternative algorithm
+                                        (simplier and faster)
+                                        intensification heuristic after
+                                        tabu search collected all elite
+                                        results. [INTENSIFICATION OPTION]
  -t,--threads <threads>                 To USE WITH Tabu Search heuristic
                                         algorithm or Bottom-Up
                                         MultiThreaded algorithm. Specify
