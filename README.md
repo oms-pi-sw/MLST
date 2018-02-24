@@ -9,7 +9,7 @@ Solver for MLST problem.
 * [zip](http://minegrado.ovh/DWN/MLST/MLST-bin.zip)
 
 ## Supported algorithm:
-* TopDown: (Branch&Bound Top-Down)
+* TopDown: (Branch&Bound Top-Down) [![algorithm](http://minegrado.ovh/badges/algorithm-exact-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-single-orange.svg)](#)<br />
     + Destructive algorithm.
     1. Start with complete graph.
     2. Remove recurively one label and check if is connected:
@@ -42,7 +42,7 @@ Solver for MLST problem.
 * TABU SEARCH: [![algorithm](http://minegrado.ovh/badges/algorithm-heuristic-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-multi-orange.svg)](#)<br />
     + Tabu Search Algorithm. **Heuristic**. Use **MVCAO1** *greedy* to generate an initial solution then try to improve it with *Tabu Search*.<br />**TODO**: use *Path Relinking* as intensification method and *Multi Start* as difersification method.
 
-## Taboo Search:
+## Tabu Search:
 It's an *heuristic* algorithm that start from a feasible solution and, in a loop, search for another solution in the defined neighborhood.<br />
 
 ### Intensification strategies
