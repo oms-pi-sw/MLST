@@ -81,34 +81,63 @@ usage: MLST
                                         * mvcao1 [HEURISTIC, GREEDY]
                                         * era [HEURISTIC]
                                         * tabusearch [HEURISTIC]
+ -A,--intensification                   To USE WITH Tabu Search heuristic
+                                        algorithm. Use a "good moves" list
+                                        to learn best moves and evaluate
+                                        after exploration of neighborhood.
+                                        [INTENSIFICATION OPTION]
+ -B,--diversification                   To USE WITH Tabu Search heuristic
+                                        algorithm. Use a "frequently
+                                        moves" list to learn too frequent
+                                        moves and reject after exploration
+                                        of neighborhood. [DIVERSIFICATION
+                                        OPTION]
  -g,--graph <graph>                     Prefix of filenames where save
                                         graphs.
  -h,--help                              Print help.
- -i,--input <input>                     The input graph file.
- -m,--min-queue <min-queue>             To use with Tabu Search heuristic
-                                        algorithm. Specify the max queue
-                                        of forbidden moves in Tabu Search.
- -M,--multistart <multistart>           To use with Tabu Search heuristic
-                                        algorithm. Specify the number of
-                                        multistart.
- -n,--nograph                           Don't open graphic interface for
-                                        graph.
- -o,--output <output>                   The output filename where to save
-                                        the graph.
- -q,--max-iter <max-iter>               To use with Tabu Search heuristic
+ -I,--max-iter <max-iter>               To USE WITH Tabu Search heuristic
                                         algorithm. Specify the max number
                                         of iterations.
+ -i,--input <input>                     The input graph file.
+ -L,--local-search-intensification      To USE WITH Tabu Search heuristic
+                                        algorithm. Require to use path
+                                        relinking intensification
+                                        heuristic after tabu search
+                                        collected all elite results.
+                                        [INTENSIFICATION OPTION]
+ -m,--min-queue <min-queue>             To USE WITH Tabu Search heuristic
+                                        algorithm. Specify the max queue
+                                        of forbidden moves in Tabu Search.
+ -M,--multistart <multistart>           To USE WITH Tabu Search heuristic
+                                        algorithm. Specify the number of
+                                        multistart. [DIVERSIFICATION
+                                        OPTION]
+ -n,--nograph                           Don't open graphic interface for
+                                        graph.
+ -N,--no-improvement <no-improvement>   To USE WITH Tabu Search heuristic
+                                        algorithm. Specify the max number
+                                        of iterations without improvement.
+ -o,--output <output>                   The output filename where to save
+                                        the graph.
+ -P,--path-relinking                    To USE WITH Tabu Search heuristic
+                                        algorithm. Require to use path
+                                        relinking intensification
+                                        heuristic after tabu search
+                                        collected all elite results.
+                                        [INTENSIFICATION OPTION]
+ -R,--move-diversification              To USE WITH Tabu Search heuristic
+                                        algorithm. Specify a stronger
+                                        policy for tabu queue rejection in
+                                        order to diversify more.
+                                        [DIVERSIFICATION OPTION]
  -r,--random                            Generate random graph.
- -t,--threads <threads>                 To use with Tabu Search heuristic
+ -t,--threads <threads>                 To USE WITH Tabu Search heuristic
                                         algorithm or Bottom-Up
-                                        MultiThreaded algorithm.Specify
+                                        MultiThreaded algorithm. Specify
                                         number of threads. Works only for
                                         multithreading algorithms.
  -v,--version                           Print version.
     --verbose                           Enable verbose modality.
- -w,--no-improvement <no-improvement>   To use with Tabu Search heuristic
-                                        algorithm. Specify the max number
-                                        of iterations without improvement.
 ```
 
 ## UI: [![GraphStream](http://minegrado.ovh/badges/dependecy-GraphStream-blue.svg)](http://graphstream-project.org/)
