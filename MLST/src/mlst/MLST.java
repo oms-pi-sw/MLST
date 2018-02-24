@@ -323,8 +323,8 @@ public class MLST {
 
         //MINQUEUE FOR TABU SEARCH
         Integer min_queue = null;
-        if (commandLine.hasOption(MINQUEUE)) {
-          min_queue = Integer.parseInt(commandLine.getOptionValue(MINQUEUE).trim());
+        if (commandLine.hasOption(MIN_QUEUE)) {
+          min_queue = Integer.parseInt(commandLine.getOptionValue(MIN_QUEUE).trim());
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected minimum queue length: " + min_queue);
         }
 
@@ -366,64 +366,103 @@ public class MLST {
 
         //DIVERSIFICATION MOVE
         Boolean diversification_move = null;
-        if (commandLine.hasOption(MOVEDIVERSIFICATION)) {
+        if (commandLine.hasOption(MOVE_DIVERSIFICATION)) {
           diversification_move = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected diversification with move technique.");
         }
 
+        //DIVERSIFICATION
+        Boolean diversification = null;
+        if (commandLine.hasOption(DIVERSIFICATION)) {
+          diversification = true;
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected diversification technique.");
+        }
+        //DIVERSIFICATION
+        Integer max_equivalent_moves = null;
+        if (diversification != null && diversification && commandLine.hasOption(MAX_EQUIVALENT_MOVES)) {
+          max_equivalent_moves = Integer.parseInt(commandLine.getOptionValue(MAX_EQUIVALENT_MOVES).trim());
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected max equivalent moves = " + max_equivalent_moves + ".");
+        }
+        //DIVERSIFICATION
+        Integer random_iter = null;
+        if (diversification != null && diversification && commandLine.hasOption(RANDOM_ITERATIONS)) {
+          random_iter = Integer.parseInt(commandLine.getOptionValue(RANDOM_ITERATIONS).trim());
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected random moves = " + random_iter + ".");
+        }
+        //DIVERSIFICATION
+        Integer min_nonrandom_iter = null;
+        if (diversification != null && diversification && commandLine.hasOption(MIN_NONRANDOM_ITERATIONS)) {
+          min_nonrandom_iter = Integer.parseInt(commandLine.getOptionValue(MIN_NONRANDOM_ITERATIONS).trim());
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected minimum non random moves after random moves = " + min_nonrandom_iter + ".");
+        }
+
         //DIVERSIFICATION LEARNING
         Boolean diversification_learning = null;
-        if (commandLine.hasOption(DIVERSIFICATION)) {
+        if (commandLine.hasOption(DIVERSIFICATION_LEARNING)) {
           diversification_learning = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected diversification learning technique.");
         }
 
         //INTENSIFICATION FOR TABU SEARCH
+        //INTENSIFICATION
+        Boolean intenstification = null;
+        if (commandLine.hasOption(INTENSIFICATION)) {
+          intenstification = true;
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification technique.");
+        }
+
         //INTENSIFICATION LEARNING
         Boolean intenstification_learning = null;
-        if (commandLine.hasOption(INTENSIFICATION)) {
+        if (commandLine.hasOption(INTENSIFICATION_LEARNING)) {
           intenstification_learning = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification learning technique.");
         }
 
         //INTENSIFICATION LEARNING
         Boolean intenstification_local_search = null;
-        if (commandLine.hasOption(LOCALSEARCHI)) {
+        if (commandLine.hasOption(LOCAL_SEARCH_INTENSIFICATION)) {
           intenstification_local_search = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification with local search.");
         }
 
         //INTENSIFICATION PATH RELINKING
         Boolean path_relinking = null;
-        if (commandLine.hasOption(PATHRELINKING)) {
+        if (commandLine.hasOption(PATH_RELINKING)) {
           path_relinking = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification with Path Relinking.");
         }
         //PATH RELINKING ALT
         Boolean path_relinking_alt = null;
-        if (commandLine.hasOption(PATHRELINKINGALT)) {
+        if (commandLine.hasOption(PATH_RELINKING_ALT)) {
           path_relinking = true;
           path_relinking_alt = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification with Path Relinking Alternative Algorithm.");
         }
         //PATH RELINKING MIN OPTION
         Boolean path_relinking_min = null;
-        if (path_relinking && commandLine.hasOption(PATHRELINKINGMIN)) {
+        if (path_relinking != null && path_relinking && commandLine.hasOption(PATH_RELINKING_MIN)) {
           path_relinking_min = true;
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification with Path Relinking MIN option.");
         }
 
+        //PATH RELINKING MIN OPTION
+        Boolean path_relinking_desc = null;
+        if (path_relinking != null && path_relinking && commandLine.hasOption(PATH_RELINKING_DESC)) {
+          path_relinking_desc = true;
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected intenstification with Path Relinking DESC option.");
+        }
+
         //MAX ITERATIONS FOR TABU SEARCH
         Integer max_iter = null;
-        if (commandLine.hasOption(MAXITER)) {
-          max_iter = Integer.parseInt(commandLine.getOptionValue(MAXITER).trim());
+        if (commandLine.hasOption(MAX_ITER)) {
+          max_iter = Integer.parseInt(commandLine.getOptionValue(MAX_ITER).trim());
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected maximum iterstions: " + max_iter);
         }
 
         //MAX ITERATIONS WITHOUT IMPROVEMENTS FOR TABU SEARCH
         Integer no_improvement = null;
-        if (commandLine.hasOption(NOIMPROVEMENT)) {
-          no_improvement = Integer.parseInt(commandLine.getOptionValue(NOIMPROVEMENT).trim());
+        if (commandLine.hasOption(NO_IMPROVEMENT)) {
+          no_improvement = Integer.parseInt(commandLine.getOptionValue(NO_IMPROVEMENT).trim());
           LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected maximum iterations without any improvements: " + no_improvement);
         }
 
@@ -443,18 +482,35 @@ public class MLST {
             }
 
             //DIVERSIFICATION
+            //MULTISTART
             if (multi_start) {
               ts.setGreedyMultiStart(greedy_starts);
               ts.setRandomMultiStart(random_starts);
             }
+            //MOVE
             if (diversification_move != null) {
               ts.setMoveDiversification(diversification_move);
             }
+            //LEARNING
             if (diversification_learning != null) {
               ts.setDiversificationLearning(diversification_learning);
             }
+            //DIVERSIFICATION
+            if (diversification != null) {
+              ts.setDiversification(diversification);
+            }
+            if (max_equivalent_moves != null) {
+              ts.setDiversificationMaxEquivalentMoves(max_equivalent_moves);
+            }
+            if (random_iter != null) {
+              ts.setRandomIters(random_iter);
+            }
+            if (min_nonrandom_iter != null) {
+              ts.setNotRandomIters(min_nonrandom_iter);
+            }
 
             //INTENSIFICATION
+            //PATH RELINKING
             if (path_relinking != null) {
               ts.setPathRelinking(path_relinking);
             }
@@ -464,9 +520,18 @@ public class MLST {
             if (path_relinking_min != null) {
               ts.setPathRelinkingMin(path_relinking_min);
             }
+            if (path_relinking_desc != null) {
+              ts.setPathRelinkingDesc(path_relinking_desc);
+            }
+            //LEARNING
             if (intenstification_learning != null) {
               ts.setIntensificationLearning(intenstification_learning);
             }
+            //INTENSIFICATION
+            if (intenstification != null) {
+              ts.setIntensification(intenstification);
+            }
+            //LOCAL SEARCH
             if (intenstification_local_search != null) {
               ts.setLocalSearchIntensification(intenstification_local_search);
             }
@@ -603,17 +668,26 @@ public class MLST {
   private static final String ALGORITHM = "algorithm";
   private static final String VERBOSE = "verbose";
   private static final String THREADS = "threads";
-  private static final String MINQUEUE = "min-queue";
-  private static final String MAXITER = "max-iter";
-  private static final String NOIMPROVEMENT = "no-improvement";
+  //TabuSearch options
+  private static final String MIN_QUEUE = "min-queue";
+  private static final String MAX_ITER = "max-iter";
+  private static final String NO_IMPROVEMENT = "no-improvement";
+  //Diversification
+  private static final String DIVERSIFICATION_LEARNING = "diversification-learning";
   private static final String MULTISTART = "multistart";
-  private static final String MOVEDIVERSIFICATION = "move-diversification";
-  private static final String PATHRELINKING = "path-relinking";
-  private static final String LOCALSEARCHI = "local-search-intensification";
-  private static final String INTENSIFICATION = "intensification";
+  private static final String MOVE_DIVERSIFICATION = "move-diversification";
   private static final String DIVERSIFICATION = "diversification";
-  private static final String PATHRELINKINGALT = "path-relinking-alt";
-  private static final String PATHRELINKINGMIN = "path-relinking-min";
+  private static final String MAX_EQUIVALENT_MOVES = "max-equivalent-moves";
+  private static final String RANDOM_ITERATIONS = "random-iter";
+  private static final String MIN_NONRANDOM_ITERATIONS = "min-nonrandom-iter";
+  //Intensification
+  private static final String LOCAL_SEARCH_INTENSIFICATION = "local-search-intensification";
+  private static final String INTENSIFICATION_LEARNING = "intensification-learning";
+  private static final String INTENSIFICATION = "intensification";
+  private static final String PATH_RELINKING = "path-relinking";
+  private static final String PATH_RELINKING_ALT = "path-relinking-alt";
+  private static final String PATH_RELINKING_MIN = "path-relinking-min";
+  private static final String PATH_RELINKING_DESC = "path-relinking-desc";
 
   private static Options setOptions() {
     Options options = new Options();
@@ -682,75 +756,122 @@ public class MLST {
     verbose.setRequired(false);
     options.addOption(verbose);
 
-    Option threads = new Option("t", THREADS, true, "To USE WITH Tabu Search heuristic algorithm or Bottom-Up MultiThreaded algorithm. Specify number of threads. Works only for multithreading algorithms.");
+    Option threads = new Option("t", THREADS, true, "[REQUIRE MULTITHREADING ALGORITHM]. Specify number of threads. Works only for multithreading algorithms.");
     threads.setArgName(THREADS);
     threads.setRequired(false);
     threads.setOptionalArg(false);
     threads.setType(Integer.class);
     options.addOption(threads);
 
-    Option minqueue = new Option("m", MINQUEUE, true, "To USE WITH Tabu Search heuristic algorithm. Specify the max queue of forbidden moves in Tabu Search.");
-    minqueue.setArgName(MINQUEUE);
+    //TabuSearch Options
+    Option minqueue = new Option("Q", MIN_QUEUE, true, "[REQUIRE TABU SEARCH]. Specify the max queue of forbidden moves in Tabu Search.");
+    minqueue.setArgName(MIN_QUEUE);
     minqueue.setRequired(false);
     minqueue.setOptionalArg(false);
     minqueue.setType(Integer.class);
     options.addOption(minqueue);
 
-    Option maxiter = new Option("I", MAXITER, true, "To USE WITH Tabu Search heuristic algorithm. Specify the max number of iterations.");
-    maxiter.setArgName(MAXITER);
+    Option maxiter = new Option("I", MAX_ITER, true, "[REQUIRE TABU SEARCH]. Specify the max number of iterations.");
+    maxiter.setArgName(MAX_ITER);
     maxiter.setRequired(false);
     maxiter.setOptionalArg(false);
     maxiter.setType(Integer.class);
     options.addOption(maxiter);
 
-    Option noimprovement = new Option("N", NOIMPROVEMENT, true, "To USE WITH Tabu Search heuristic algorithm. Specify the max number of iterations without improvement.");
-    noimprovement.setArgName(NOIMPROVEMENT);
+    Option noimprovement = new Option("N", NO_IMPROVEMENT, true, "[REQUIRE TABU SEARCH]. Specify the max number of iterations without improvement.");
+    noimprovement.setArgName(NO_IMPROVEMENT);
     noimprovement.setRequired(false);
     noimprovement.setOptionalArg(false);
     noimprovement.setType(Integer.class);
     options.addOption(noimprovement);
 
-    Option multistart = new Option("M", MULTISTART, true, "To USE WITH Tabu Search heuristic algorithm. Specify the number of multistart. [DIVERSIFICATION OPTION]");
+    //DIVERSIFICATION
+    //MULTISTART
+    Option multistart = new Option("M", MULTISTART, true, "[REQUIRE TABU SEARCH]. Specify the number of multistart: default use greedy to find start. You can specify which starts ('g' suffix) are greedy and which are random ('r' suffix): -M<x>g,<y>r. [DIVERSIFICATION OPTION]");
     multistart.setArgName(MULTISTART);
     multistart.setRequired(false);
     multistart.setOptionalArg(false);
     multistart.setType(Integer.class);
     options.addOption(multistart);
 
-    Option movediversification = new Option("R", MOVEDIVERSIFICATION, false, "To USE WITH Tabu Search heuristic algorithm. Specify a stronger policy for tabu queue rejection in order to diversify more. [DIVERSIFICATION OPTION]");
-    movediversification.setArgName(MOVEDIVERSIFICATION);
+    //MOVE
+    Option movediversification = new Option("R", MOVE_DIVERSIFICATION, false, "[REQUIRE TABU SEARCH]. Specify a stronger policy for tabu queue rejection in order to diversify more. [DIVERSIFICATION OPTION]");
+    movediversification.setArgName(MOVE_DIVERSIFICATION);
     movediversification.setRequired(false);
     options.addOption(movediversification);
 
-    Option pathrelinking = new Option("P", PATHRELINKING, false, "To USE WITH Tabu Search heuristic algorithm. Require to use path relinking intensification heuristic after tabu search collected all elite results. [INTENSIFICATION OPTION]");
-    pathrelinking.setArgName(PATHRELINKING);
-    pathrelinking.setRequired(false);
-    options.addOption(pathrelinking);
+    //LEARNING
+    Option diversificationlearning = new Option("B", DIVERSIFICATION_LEARNING, false, "[REQUIRE TABU SEARCH]. Use a \"frequently moves\" list to learn too frequent moves and reject after exploration of neighborhood. [DIVERSIFICATION OPTION]");
+    diversificationlearning.setArgName(DIVERSIFICATION_LEARNING);
+    diversificationlearning.setRequired(false);
+    options.addOption(diversificationlearning);
 
-    Option pathrelinkingalt = new Option("S", PATHRELINKINGALT, false, "To USE WITH Tabu Search heuristic algorithm. Require to use path relinking alternative algorithm (simplier and faster) intensification heuristic after tabu search collected all elite results. [INTENSIFICATION OPTION]");
-    pathrelinkingalt.setArgName(PATHRELINKINGALT);
-    pathrelinkingalt.setRequired(false);
-    options.addOption(pathrelinkingalt);
-
-    Option pathrelinkingmin = new Option(null, PATHRELINKINGMIN, false, "To USE WITH Tabu Search heuristic algorithm. Require to use path relinking alternative algorithm (simplier and faster) intensification heuristic after tabu search collected all elite results. [INTENSIFICATION OPTION]");
-    pathrelinkingmin.setArgName(PATHRELINKINGMIN);
-    pathrelinkingmin.setRequired(false);
-    options.addOption(pathrelinkingmin);
-
-    Option localsearchi = new Option("L", LOCALSEARCHI, false, "To USE WITH Tabu Search heuristic algorithm. Require to use path relinking intensification heuristic after tabu search collected all elite results. [INTENSIFICATION OPTION]");
-    localsearchi.setArgName(LOCALSEARCHI);
-    localsearchi.setRequired(false);
-    options.addOption(localsearchi);
-
-    Option intensification = new Option("A", INTENSIFICATION, false, "To USE WITH Tabu Search heuristic algorithm. Use a \"good moves\" list to learn best moves and evaluate after exploration of neighborhood. [INTENSIFICATION OPTION]");
-    intensification.setArgName(INTENSIFICATION);
-    intensification.setRequired(false);
-    options.addOption(intensification);
-
-    Option diversification = new Option("B", DIVERSIFICATION, false, "To USE WITH Tabu Search heuristic algorithm. Use a \"frequently moves\" list to learn too frequent moves and reject after exploration of neighborhood. [DIVERSIFICATION OPTION]");
+    //RANDOM MOVES
+    Option diversification = new Option("Y", DIVERSIFICATION, false, "[REQUIRE TABU SEARCH]. Start to diversificate when stall is detected. [DIVERSIFICATION OPTION]");
     diversification.setArgName(DIVERSIFICATION);
     diversification.setRequired(false);
     options.addOption(diversification);
+
+    Option maxequivalentmoves = new Option(null, MAX_EQUIVALENT_MOVES, true, "[REQUIRE TABU SEARCH AND DIVERSIFICATION]. Set equivalent moves number that define a stall. [DIVERSIFICATION OPTION]");
+    maxequivalentmoves.setArgName(MAX_EQUIVALENT_MOVES);
+    maxequivalentmoves.setRequired(false);
+    maxequivalentmoves.setOptionalArg(false);
+    maxequivalentmoves.setType(Integer.class);
+    options.addOption(maxequivalentmoves);
+
+    Option randomiterations = new Option(null, RANDOM_ITERATIONS, true, "[REQUIRE TABU SEARCH AND DIVERSIFICATION]. Set random iteration during diversification. [DIVERSIFICATION OPTION]");
+    randomiterations.setArgName(RANDOM_ITERATIONS);
+    randomiterations.setRequired(false);
+    randomiterations.setOptionalArg(false);
+    randomiterations.setType(Integer.class);
+    options.addOption(randomiterations);
+
+    Option minnonrandomiterations = new Option(null, MIN_NONRANDOM_ITERATIONS, true, "[REQUIRE TABU SEARCH AND DIVERSIFICATION]. Set minimum non random iteration that follow random iterations. [DIVERSIFICATION OPTION]");
+    minnonrandomiterations.setArgName(MIN_NONRANDOM_ITERATIONS);
+    minnonrandomiterations.setRequired(false);
+    minnonrandomiterations.setOptionalArg(false);
+    minnonrandomiterations.setType(Integer.class);
+    options.addOption(minnonrandomiterations);
+
+    //INTENSIFICATION
+    //PATH RELINKING
+    Option pathrelinking = new Option("P", PATH_RELINKING, false, "[REQUIRE TABU SEARCH]. Require to use path relinking intensification heuristic after tabu search collected all elite results. [INTENSIFICATION OPTION]");
+    pathrelinking.setArgName(PATH_RELINKING);
+    pathrelinking.setRequired(false);
+    options.addOption(pathrelinking);
+
+    Option pathrelinkingalt = new Option("S", PATH_RELINKING_ALT, false, "[REQUIRE TABU SEARCH]. Require to use path relinking alternative algorithm (simplier and faster) intensification heuristic after tabu search collected all elite results. [INTENSIFICATION OPTION]");
+    pathrelinkingalt.setArgName(PATH_RELINKING_ALT);
+    pathrelinkingalt.setRequired(false);
+    options.addOption(pathrelinkingalt);
+
+    Option pathrelinkingmin = new Option(null, PATH_RELINKING_MIN, false, "[REQUIRE TABU SEARCH AND PATH RELINKING]. Always explore from elite that cost more to the cheaper. [INTENSIFICATION OPTION]");
+    pathrelinkingmin.setArgName(PATH_RELINKING_MIN);
+    pathrelinkingmin.setRequired(false);
+    options.addOption(pathrelinkingmin);
+
+    Option pathrelinkingdesc = new Option(null, PATH_RELINKING_DESC, false, "[REQUIRE TABU SEARCH AND PATH RELINKING]. Order elites in descendent mode and not in random default mode. [INTENSIFICATION OPTION]");
+    pathrelinkingdesc.setArgName(PATH_RELINKING_DESC);
+    pathrelinkingdesc.setRequired(false);
+    options.addOption(pathrelinkingdesc);
+
+    //LOCAL SEARCH
+    Option localsearchintensification = new Option("L", LOCAL_SEARCH_INTENSIFICATION, false, "[REQUIRE TABU SEARCH]. Use intensification technique with local search. [INTENSIFICATION OPTION]");
+    localsearchintensification.setArgName(LOCAL_SEARCH_INTENSIFICATION);
+    localsearchintensification.setRequired(false);
+    options.addOption(localsearchintensification);
+
+    //LEARNING
+    Option intensificationlearning = new Option("A", INTENSIFICATION_LEARNING, false, "[REQUIRE TABU SEARCH]. Use a \"good moves\" list to learn best moves and evaluate after exploration of neighborhood. [INTENSIFICATION OPTION]");
+    intensificationlearning.setArgName(INTENSIFICATION_LEARNING);
+    intensificationlearning.setRequired(false);
+    options.addOption(intensificationlearning);
+
+    //QUEUE ABOLISH
+    Option intensification = new Option("X", INTENSIFICATION, false, "[REQUIRE TABU SEARCH]. While you are choosing \"improvements moves\" abolish temporarily tabu queue. [INTENSIFICATION OPTION]");
+    intensification.setArgName(INTENSIFICATION);
+    intensification.setRequired(false);
+    options.addOption(intensification);
 
     required.setRequired(true);
     options.addOptionGroup(required);

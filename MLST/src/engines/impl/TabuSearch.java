@@ -47,14 +47,18 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
   private final List<LabeledUndirectedGraph<N, E>> elites = new ArrayList<>();
 
   // Intensifications options
-  private volatile boolean pathRelinking = false, pathRelinkingAlt = false, pathRelinkingMin = false,
+  private volatile boolean pathRelinking = false, pathRelinkingAlt = false, pathRelinkingMin = false, pathRelinkingDesc = false,
           localSearchIntensification = false,
-          intensificationLearning = false;
+          intensificationLearning = false,
+          intensification = false;
 
   // Diversifications options
   private volatile int greedyMultiStart = 1, randomMultiStart = 0;
   private volatile boolean moveDiversification = false,
-          diversificationLearning = false;
+          diversificationLearning = false,
+          diversification = false;
+  private volatile int diversificationMaxEquivalentMoves = 5;
+  private volatile Integer randomIters = null, notRandomIters = null;
 
   /**
    * Constructor.
@@ -259,8 +263,8 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     @Override
     public int hashCode() {
       int hash = 7;
-      hash = 97 * hash + Objects.hashCode(this.out);
-      hash = 97 * hash + Objects.hashCode(this.in);
+      hash = 97 * hash + Objects.hashCode(out);
+      hash = 97 * hash + Objects.hashCode(in);
       return hash;
     }
 
@@ -506,8 +510,13 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     boolean inMinimum = false, bestUpdated = false;
 
     //Random iterations counter
-    final int randomIters = maxIterations / 20, notRandomIters = randomIters * 2;
+    final int lRandomIters = ((randomIters == null) ? (maxIterations / 20) : randomIters),
+            lNotRandomIters = ((notRandomIters == null) ? (lRandomIters * 2) : notRandomIters);
     int randomItersCount = 0, notRandomItersCount = 0;
+
+    int equivalentMovesCount = 0;
+
+    boolean abolishQueue = false;
 
     //Start computation
     List<MoveEdge> ordered_neighborhood;
@@ -520,16 +529,16 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       iterations++;
       iterationsWithoutImprovement++;
 
-      //Local search intensification & diversification
-      if (localSearchIntensification && bestUpdated) {
-        randomItersCount = randomIters;
+      //Diversification: if you found a new minimum and you just updated best graph or computation exceeded max equivalent moves start to diversificate
+      if (diversification && ((bestUpdated && inMinimum) || equivalentMovesCount > diversificationMaxEquivalentMoves)) {
+        randomItersCount = lRandomIters;
       }
 
       //GET ALL NEIGHBORS
       ordered_neighborhood = getEdgeNeighborhood(sk);
 
       //Order neighbors by  improvement
-      if (!localSearchIntensification || (randomItersCount <= 0 || notRandomItersCount > 0)) {
+      if (!diversification || (randomItersCount <= 0 || notRandomItersCount > 0)) {
         //If intensification learning or diversification learning is setted then weight cost with occurrences
         Collections.sort(ordered_neighborhood, (m1, m2) -> {
           double improvM1 = 0, improvM2 = 0, occurrM1 = 0, occurrM2 = 0;
@@ -552,18 +561,35 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
         Collections.shuffle(ordered_neighborhood, new Random(System.currentTimeMillis()));
         randomItersCount--;
         if (randomItersCount <= 0) {
-          notRandomItersCount = notRandomIters;
+          notRandomItersCount = lNotRandomIters;
         }
       }
 
       //Select a move that VIOLATE a tabu condition or SATISFY an aspiration condition
       MoveEdge move = null;
       for (MoveEdge m : ordered_neighborhood) {
-        if ((!tabuQueue.contains(m) || m.getGraph().calculateCost() < localMinGraph.calculateCost()) && m.getGraph().isConnected()) {
+        long c = tabuQueue.stream()
+                .filter(_m -> (_m.getOut().equals(m.getIn()) || (moveDiversification && _m.getIn().equals(m.getOut()))))
+                .count();
+
+        if ((c <= 0 || m.getGraph().calculateCost() < localMinGraph.calculateCost() || abolishQueue) && m.getGraph().isConnected()) {
           move = m;
+
+          if (m.afterCost - m.beforeCost == 0) {
+            equivalentMovesCount++;
+          } else {
+            equivalentMovesCount = 0;
+          }
+
+          //INTENSIFICATION
+          if (intensification) {
+            abolishQueue = (m.afterCost - m.beforeCost) < 0;
+          }
+
           break;
         }
       }
+
       if (move == null) {
         sk = null;
       } else {
@@ -622,6 +648,9 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
         }
       }
     }
+
+    localMinimumsList.addAll(candidateMinimumsList);
+
     //Update global elites and min graphs.
     synchronized (lock) {
       elites.addAll(localMinimumsList);
@@ -665,6 +694,17 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       }
       iSettings += "PATH RELINKING";
     }
+    if (intensification) {
+      if (iSettings != null) {
+        iSettings += ", ";
+      } else {
+        iSettings = "";
+      }
+      iSettings += "INTENSIFICATION";
+    }
+    if (iSettings == null) {
+      iSettings = "NONE";
+    }
     LogManager.getLogger().log(ALGORITHM, "INTENSIFICATION SETTINGS: " + iSettings);
 
     String dSettings = null;
@@ -686,6 +726,17 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
         dSettings = "";
       }
       dSettings += "PATH RELINKING";
+    }
+    if (diversification) {
+      if (dSettings != null) {
+        dSettings += ", ";
+      } else {
+        dSettings = "";
+      }
+      dSettings += "DIVERSIFICATION";
+    }
+    if (dSettings == null) {
+      dSettings = "NONE";
     }
     LogManager.getLogger().log(ALGORITHM, "DIVERSIFICATION SETTINGS: " + dSettings);
 
@@ -904,6 +955,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     diff.forEach(label -> {
       final LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(csk);
 
+      //Remove label
       test.removeLabel(label);
 
       //Add all edges for all active label in test graph
@@ -913,10 +965,12 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
                 .forEachOrdered(_edge -> test.addEdge(_edge));
       });
 
+      //Select all labels of objective graph that are different from removed label
       Set<String> _labels = objective.getLabels();
       _labels.remove(label);
 
       _labels.forEach(_label -> {
+        //Add label from candidates label in objective graph
         allEdges.stream()
                 .filter(edge -> edge.getLabel().endsWith(_label))
                 .forEachOrdered(edge -> test.addEdge(edge));
@@ -945,7 +999,14 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
    * @param alt alternative mode.
    */
   protected void pathRelinking(boolean alt) {
-    Collections.shuffle(elites, new Random(System.currentTimeMillis()));
+    if (!pathRelinkingDesc) {
+      Collections.shuffle(elites, new Random(System.currentTimeMillis()));
+    } else {
+      Collections.sort(elites, (e1, e2) -> {
+        return e2.calculateCost() - e1.calculateCost();
+      });
+    }
+
     Queue<LabeledUndirectedGraph<N, E>> elitesQueue = new LinkedList<>(elites);
 
     LogManager.getLogger().log(ALGORITHM, "PATH RELINKING WITH " + elites.size() + " ELITES GRAPHS...");
@@ -954,6 +1015,10 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
     if (pathRelinkingMin) {
       LogManager.getLogger().log(ALGORITHM, "YOU CHOOSE MIN OPTION");
+    }
+
+    if (elitesQueue.isEmpty()) {
+      return;
     }
 
     LabeledUndirectedGraph<N, E> start, end = new LabeledUndirectedGraph<>(elitesQueue.poll());
@@ -1113,5 +1178,53 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
   public void setPathRelinkingMin(boolean pathRelinkingMin) {
     this.pathRelinkingMin = pathRelinkingMin;
+  }
+
+  public boolean isIntensification() {
+    return intensification;
+  }
+
+  public void setIntensification(boolean intensification) {
+    this.intensification = intensification;
+  }
+
+  public boolean isDiversification() {
+    return diversification;
+  }
+
+  public void setDiversification(boolean diversification) {
+    this.diversification = diversification;
+  }
+
+  public int getDiversificationMaxEquivalentMoves() {
+    return diversificationMaxEquivalentMoves;
+  }
+
+  public void setDiversificationMaxEquivalentMoves(int diversificationMaxEquivalentMoves) {
+    this.diversificationMaxEquivalentMoves = diversificationMaxEquivalentMoves;
+  }
+
+  public Integer getRandomIters() {
+    return randomIters;
+  }
+
+  public void setRandomIters(Integer randomIters) {
+    this.randomIters = randomIters;
+  }
+
+  public Integer getNotRandomIters() {
+    return notRandomIters;
+  }
+
+  public void setNotRandomIters(Integer notRandomIters) {
+    this.notRandomIters = notRandomIters;
+  }
+
+  public boolean isPathRelinkingDesc() {
+    return pathRelinkingDesc;
+  }
+
+  public void setPathRelinkingDesc(boolean pathRelinkingDesc) {
+    this.pathRelinkingDesc = pathRelinkingDesc;
   }
 }
