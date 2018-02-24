@@ -47,7 +47,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
   private final List<LabeledUndirectedGraph<N, E>> elites = new ArrayList<>();
 
   // Intensifications options
-  private volatile boolean pathRelinking = false,
+  private volatile boolean pathRelinking = false, pathRelinkingAlt = false, pathRelinkingMin = false,
           localSearchIntensification = false,
           intensificationLearning = false;
 
@@ -716,7 +716,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       //PRINT PROGRESS
       prog = 0;
       tot = startsQueue.size();
-      print(Ansi.ansi().cursor().save().erase().eraseLine().a("\t" + prog + "%"));
+      print(Ansi.ansi().cursor().save().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
 
       if (nthreads == 1) {
         while (!startsQueue.isEmpty()) {
@@ -724,7 +724,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
           //PRINT PROGRESS
           prog = (tot - startsQueue.size()) * 100 / tot;
-          print(Ansi.ansi().cursor().load().erase().eraseLine().a("\t" + prog + "%"));
+          print(Ansi.ansi().cursor().load().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
         }
       } else {
 
@@ -749,7 +749,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
                   //PRINT PROGRESS
                   prog = (tot - startsQueue.size()) * 100 / tot;
-                  print(Ansi.ansi().cursor().load().erase().eraseLine().a("\t" + prog + "%"));
+                  print(Ansi.ansi().cursor().load().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
                 }
               }
             } catch (Exception ex) {
@@ -780,13 +780,16 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
       if (pathRelinking) {
         LogManager.getLogger().log(ALGORITHM, "STARTING PATH RELINKING...");
-        pathRelinking();
+
+        pathRelinking(pathRelinkingAlt);
+
+        println();
+        LogManager.getLogger().log(ALGORITHM, "BEST AT THIS POINT: " + minGraph.calculateCost());
       }
     } else {
       minGraph = zero;
     }
 
-    LogManager.getLogger().log(ALGORITHM, "BEST AT THIS POINT: " + minGraph.calculateCost());
     LogManager.getLogger().log(ALGORITHM, "END.");
   }
 
@@ -878,7 +881,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
     return neighborood;
   }
-  
+
   /**
    * Get the set of moves from a feasible solution (<code>sk</code> must be a
    * spanning tree)
@@ -900,6 +903,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
     diff.forEach(label -> {
       final LabeledUndirectedGraph<N, E> test = new LabeledUndirectedGraph<>(csk);
+
       test.removeLabel(label);
 
       //Add all edges for all active label in test graph
@@ -909,22 +913,27 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
                 .forEachOrdered(_edge -> test.addEdge(_edge));
       });
 
-      LabeledUndirectedGraph<N, E> new_graph;
-      if (!test.isConnected()) {
-        Set<String> _labels = objective.getLabels();
-        _labels.removeAll(test.getLabels());
-        new_graph = repair(test, _labels, allEdges);
-      } else {
-        new_graph = test;
-      }
+      Set<String> _labels = objective.getLabels();
+      _labels.remove(label);
 
-      if (new_graph.isConnected()) {
-        final LabeledUndirectedGraph<N, E> stest = getSpanningTree(new_graph);
+      _labels.forEach(_label -> {
+        allEdges.stream()
+                .filter(edge -> edge.getLabel().endsWith(_label))
+                .forEachOrdered(edge -> test.addEdge(edge));
+
+        final LabeledUndirectedGraph<N, E> stest;
+        if (test.isConnected()) {
+          stest = getSpanningTree(test);
+        } else {
+          stest = test;
+        }
         Set<E> out = stest.getRemovedEdges(), in = stest.getEdges();
         out.removeAll(csk.getRemovedEdges());
         in.removeAll(csk.getEdges());
         neighborood.add(new MoveLabel(out, in, sk));
-      }
+
+        test.removeLabel(_label);
+      });
     });
 
     return neighborood;
@@ -932,38 +941,76 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
   /**
    * Path relinking procedure.
+   *
+   * @param alt alternative mode.
    */
-  protected void pathRelinking() {
+  protected void pathRelinking(boolean alt) {
     Collections.shuffle(elites, new Random(System.currentTimeMillis()));
     Queue<LabeledUndirectedGraph<N, E>> elitesQueue = new LinkedList<>(elites);
 
     LogManager.getLogger().log(ALGORITHM, "PATH RELINKING WITH " + elites.size() + " ELITES GRAPHS...");
+    if (alt) {
+      LogManager.getLogger().log(ALGORITHM, "YOU CHOOSE ALTERNATIVE ALGORITHM");
+    }
+    if (pathRelinkingMin) {
+      LogManager.getLogger().log(ALGORITHM, "YOU CHOOSE MIN OPTION");
+    }
 
     LabeledUndirectedGraph<N, E> start, end = new LabeledUndirectedGraph<>(elitesQueue.poll());
 
     prog = 0;
     tot = elitesQueue.size();
-    print(Ansi.ansi().cursor().save().erase().eraseLine().a("\t" + prog + "%"));
+    print(Ansi.ansi().cursor().save().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
 
     while (!elitesQueue.isEmpty()) {
       start = new LabeledUndirectedGraph<>(end);
       end = elitesQueue.poll();
 
-      while (!start.getLabels().equals(end.getLabels())) {
-        List<MoveLabel> neighborhood = getLabelNeighborhood(start, end);
-        Collections.sort(neighborhood);
+      LabeledUndirectedGraph<N, E> elite1, elite2;
+      if (pathRelinkingMin) {
+        if (start.calculateCost() < end.calculateCost()) {
+          elite1 = new LabeledUndirectedGraph<>(start);
+          elite2 = new LabeledUndirectedGraph<>(end);
+        } else {
+          elite1 = new LabeledUndirectedGraph<>(end);
+          elite2 = new LabeledUndirectedGraph<>(start);
+        }
+      } else {
+        elite1 = new LabeledUndirectedGraph<>(start);
+        elite2 = new LabeledUndirectedGraph<>(end);
+      }
+
+      while (!elite1.getLabels().equals(elite2.getLabels())) {
+        List<MoveLabel> neighborhood = (alt ? getSimpleLabelNeighborhood(elite1, elite2) : getLabelNeighborhood(elite1, elite2));
+        if (alt) {
+          Collections.sort(neighborhood, (m1, m2) -> {
+            int d;
+            int m1Delta = m1.afterCost - m1.beforeCost;
+            int m2Delta = m2.afterCost - m2.beforeCost;
+            if (!m1.getGraph().isConnected() && m2.getGraph().isConnected()) {
+              return Integer.MAX_VALUE;
+            } else if (m1.getGraph().isConnected() && !m2.getGraph().isConnected()) {
+              return Integer.MIN_VALUE;
+            }
+            d = (m1Delta) - (m2Delta);
+            return d;
+          });
+        } else {
+          Collections.sort(neighborhood);
+        }
+
         if (neighborhood.isEmpty()) {
           break;
         }
-        start = neighborhood.get(0).getGraph();
-        if (start.calculateCost() < minGraph.calculateCost()) {
-          minGraph = start;
+        elite1 = neighborhood.get(0).getGraph();
+        if (elite1.calculateCost() < minGraph.calculateCost() && elite1.isConnected()) {
+          minGraph = elite1;
         }
       }
 
       //PRINT PROGRESS
       prog = (tot - elitesQueue.size()) * 100 / tot;
-      print(Ansi.ansi().cursor().load().erase().eraseLine().a("\t" + prog + "%"));
+      print(Ansi.ansi().cursor().load().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
     }
 
   }
@@ -1050,5 +1097,21 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
   public void setDiversificationLearning(boolean diversificationLearning) {
     this.diversificationLearning = diversificationLearning;
+  }
+
+  public boolean isPathRelinkingAlt() {
+    return pathRelinkingAlt;
+  }
+
+  public void setPathRelinkingAlt(boolean pathRelinkingAlt) {
+    this.pathRelinkingAlt = pathRelinkingAlt;
+  }
+
+  public boolean isPathRelinkingMin() {
+    return pathRelinkingMin;
+  }
+
+  public void setPathRelinkingMin(boolean pathRelinkingMin) {
+    this.pathRelinkingMin = pathRelinkingMin;
   }
 }
