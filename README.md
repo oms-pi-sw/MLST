@@ -23,11 +23,11 @@ Solver for MLST problem.
     + Dual of BottomUp: start with empty graph and then add edges.
 <br />
 
-* BottomUpT: (Branch&Bound Bottom-Up with Threads) [![algorithm](http://minegrado.ovh/badges/algorithm-exact-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-single-orange.svg)](#)<br />
+* BottomUpT: (Branch&Bound Bottom-Up with Threads) [![algorithm](http://minegrado.ovh/badges/algorithm-exact-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-multi-orange.svg)](#)<br />
     + Version of BottomUp with multithreading optimization.
 <br />
 
-* MVCA: [![algorithm](http://minegrado.ovh/badges/algorithm-heuristic-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-multi-orange.svg)](#)<br />
+* MVCA: [![algorithm](http://minegrado.ovh/badges/algorithm-heuristic-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-single-orange.svg)](#)<br />
     + Maximum Vertex Cover Algorithm. **Heuristic** *greedy* algorithm.
 <br />
 
