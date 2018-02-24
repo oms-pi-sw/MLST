@@ -49,8 +49,8 @@ public class MLST {
 
   //Version
   private static final int MAJOR = 0;
-  private static final int MINOR = 1;
-  private static final int REVISION = 0;
+  private static final int MINOR = 10;
+  private static final int REVISION = 5;
 
   private static String version() {
     return MAJOR + "." + MINOR + "." + REVISION;
@@ -199,7 +199,7 @@ public class MLST {
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp("MLST", options);
       } else if (commandLine.hasOption(VERSION)) {
-        System.out.println("MLST: v" + version() + " ALPHA");
+        System.out.println("MLST: v" + version() + " BETA");
         Algorithms.getValues().forEach(alg -> {
           System.out.println("\t" + alg + ": " + alg.getDesc());
         });
