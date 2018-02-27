@@ -572,7 +572,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
                 .filter(_m -> (_m.getOut().equals(m.getIn()) || (moveDiversification && _m.getIn().equals(m.getOut()))))
                 .count();
 
-        if ((c <= 0 || m.getGraph().calculateCost() < localMinGraph.calculateCost() || abolishQueue) && m.getGraph().isConnected()) {
+        if (((c <= 0 && (moveDiversification || m.afterCost != m.beforeCost)) || m.getGraph().calculateCost() < localMinGraph.calculateCost() || abolishQueue) && m.getGraph().isConnected()) {
           move = m;
 
           if (m.afterCost - m.beforeCost == 0) {
