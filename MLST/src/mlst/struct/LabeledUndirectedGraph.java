@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.graphstream.graph.Graph;
@@ -222,7 +223,7 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
     List<E> sedges = new ArrayList<>();
     List<E> ledges = new ArrayList<>(getEdges());
 
-    Collections.shuffle(ns);
+    Collections.shuffle(ns, new Random(System.currentTimeMillis()));
 
     N start = ns.remove(0);
     queue.add(start);

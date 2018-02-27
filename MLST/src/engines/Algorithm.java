@@ -11,6 +11,7 @@ import engines.impl.BottomUpT;
 import engines.impl.ERA;
 import engines.impl.MVCA;
 import engines.impl.MVCAO1;
+import engines.impl.MVCAO1ERA;
 import engines.impl.TabuSearch;
 import engines.impl.TopDown;
 import java.lang.reflect.Constructor;
@@ -43,10 +44,11 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     E_TOPDOWN(TopDown.class, "[EXACT]", "td"),
     E_BOTTOMUP(BottomUp.class, "[EXACT]", "bu"),
     E_MULTITHREADS_BOTTOMUP(BottomUpT.class, "[EXACT, MULTITHREADED]", "threaded_bu"),
-    H_GREDDY_MVCA(MVCA.class, "[HEURISTIC, GREEDY]", "greedy"),
+    H_GREEDY_MVCA(MVCA.class, "[HEURISTIC, GREEDY]", "greedy"),
     H_GREEDY_MVCAO1_GREEDY(MVCAO1.class, "[HEURISTIC, GREEDY]", "greedy_opt1"),
-    H_ERA(ERA.class, "[HEURISTIC]"),
-    H_TABU(TabuSearch.class, "[HEURISTIC]");
+    H_LOCALSEARCH_ERA(ERA.class, "[HEURISTIC]"),
+    H_LOCALSEARCH_MVCAO1ERA(MVCAO1ERA.class, "[HEURISTIC]", "ls"),
+    H_TABU(TabuSearch.class, "[HEURISTIC]", "tabu", "t");
 
     private final Class<? extends Algorithm> aclass;
     private final List<String> aliases = new ArrayList<>();

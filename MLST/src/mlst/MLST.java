@@ -138,7 +138,7 @@ public class MLST {
     List<String> labels = new ArrayList<>();
     List<SimpleEdge> edges = new ArrayList<>();
 
-    Random rand = new Random();
+    Random rand = new Random(System.currentTimeMillis());
 
     for (int i = 0; i < nLabels; i++) {
       labels.add("Label" + i);

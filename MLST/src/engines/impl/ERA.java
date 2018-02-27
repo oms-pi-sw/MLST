@@ -74,7 +74,7 @@ public class ERA<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
         long minimum_count = cycle.stream().filter(_edge -> _edge.getLabel().equals(minimum_label)).count();
 
         //6
-        Random rand = new Random();
+        Random rand = new Random(System.currentTimeMillis());
         if (current_label_count > minimum_count && !label.equals(minimum_label)) {
           List<E> min_edges = cycle.stream()
                   .filter(_edge -> _edge.getLabel().equals(minimum_label))
