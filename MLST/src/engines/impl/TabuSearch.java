@@ -791,7 +791,8 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
           compute(startsQueue.poll());
 
           //PRINT PROGRESS
-          prog = (tot - startsQueue.size()) * 100 / tot;
+//          prog = (tot - startsQueue.size()) * 100 / tot;
+          prog = 100;
           print(Ansi.ansi().cursor().load().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
         }
       } else {
@@ -816,8 +817,10 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
                   empty = startsQueue.isEmpty();
 
                   //PRINT PROGRESS
-                  prog = (tot - startsQueue.size()) * 100 / tot;
-                  print(Ansi.ansi().cursor().load().erase().eraseLine().a(String.format("\t%.2f%%", prog)));
+//                  prog = (tot - startsQueue.size()) * 100 / tot;
+                  prog++;
+                  double _prog = this.prog * 100 / tot;
+                  print(Ansi.ansi().cursor().load().erase().eraseLine().a(String.format("\t%.2f%%", _prog)));
                 }
               }
             } catch (Exception ex) {
