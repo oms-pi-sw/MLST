@@ -132,6 +132,22 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
     });
   }
 
+  public void addLabel(String label) {
+    List<E> _edges = new ArrayList<>(removedEdges);
+    _edges.forEach(edge -> {
+      if (edge.getLabel().equals(label)) {
+        addEdge(edge);
+      }
+    });
+  }
+
+  public void resoreRemovedEdges() {
+    edges.addAll(removedEdges);
+    removedEdges.clear();
+    labels.addAll(removedLabels);
+    removedLabels.clear();
+  }
+
   public boolean isConnected() {
     return getSubGraphsNodes().size() == 1;
   }
@@ -190,6 +206,12 @@ public final class LabeledUndirectedGraph<N extends Node, E extends Edge<N>> imp
 
   public Set<E> getEdges() {
     return new HashSet<>(edges);
+  }
+
+  public Set<E> getAllEdges() {
+    Set<E> allEdges = getEdges();
+    allEdges.addAll(getRemovedEdges());
+    return allEdges;
   }
 
   public Set<String> getLabels() {

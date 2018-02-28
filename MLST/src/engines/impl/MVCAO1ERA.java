@@ -28,6 +28,7 @@ public class MVCAO1ERA<N extends Node, E extends Edge<N>> extends Algorithm<N, E
     MVCAO1<N, E> mvcao1 = new MVCAO1<>(minGraph);
     mvcao1.run();
     ERA<N, E> era = new ERA<>(mvcao1.getMinGraph());
+    era.run();
     minGraph = era.getMinGraph();
   }
 

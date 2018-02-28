@@ -476,8 +476,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
   protected LabeledUndirectedGraph<N, E> applyERA(LabeledUndirectedGraph<N, E> sk) throws NotConnectedGraphException, Exception {
     ERA era = new ERA(sk);
     era.run();
-    sk = era.getSpanningTree();
-    return sk;
+    return era.getSpanningTree();
   }
 
   /**
@@ -577,6 +576,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
           if (m.afterCost - m.beforeCost == 0) {
             equivalentMovesCount++;
+            abolishQueue = false;
           } else {
             equivalentMovesCount = 0;
           }

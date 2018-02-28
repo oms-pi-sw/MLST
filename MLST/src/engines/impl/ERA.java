@@ -50,7 +50,9 @@ public class ERA<N extends Node, E extends Edge<N>> extends Algorithm<N, E> {
     final LabeledUndirectedGraph<N, E> spanning = getSpanningTree();
 
     //2
-    g.getEdges().stream().filter(edge -> !spanning.getEdges().contains(edge)).forEachOrdered(edge -> {
+    Set<E> allEdges = g.getEdges();
+    allEdges.addAll(g.getRemovedEdges());
+    allEdges.stream().filter(edge -> !spanning.getEdges().contains(edge)).forEachOrdered(edge -> {
       String label = edge.getLabel();
       //3
       if (spanning.getLabels().contains(label)) {

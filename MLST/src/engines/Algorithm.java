@@ -170,7 +170,9 @@ public abstract class Algorithm<N extends Node, E extends Edge<N>> {
     }
 
     LabeledUndirectedGraph<N, E> spanningTree = new LabeledUndirectedGraph<>(graph);
-    graph.getEdges().forEach(edge -> {
+    spanningTree.resoreRemovedEdges();
+
+    graph.getAllEdges().forEach(edge -> {
       if (!sedges.contains(edge)) {
         spanningTree.removeEdge(edge);
       }
