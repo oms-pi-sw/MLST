@@ -39,8 +39,14 @@ Solver for MLST problem.
     + Edge Replacement Algorithm. **Heuristic** *local search* algorithm.
 <br />
 
+* MVCAO1ERA: [![algorithm](http://minegrado.ovh/badges/algorithm-heuristic-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-single-orange.svg)](#)<br />
+    + *Local Search* Algorithm based on MVCAO1 and ERA. **Heuristic** *local search* algorithm.
+<br />
+
 * TABU SEARCH: [![algorithm](http://minegrado.ovh/badges/algorithm-heuristic-red.svg)](#) [![threads](http://minegrado.ovh/badges/threads-multi-orange.svg)](#)<br />
-    + Tabu Search Algorithm. **Heuristic**. Use **MVCAO1** *greedy* to generate an initial solution then try to improve it with *Tabu Search*.<br />**TODO**: use *Path Relinking* as intensification method and *Multi Start* as difersification method.
+    + Tabu Search Algorithm. **Heuristic**.<br />
+    Use **MVCAO1** *greedy* to generate an initial solution then try to improve it with *Tabu Search*.<br />
+    Implemented *Path Relinking* meta-heuristic as intensification method and *Multi Start* as difersification method.
 
 ## Tabu Search:
 It's an *heuristic* algorithm that start from a feasible solution and, in a loop, search for another solution in the defined neighborhood.<br />
