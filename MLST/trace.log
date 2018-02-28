@@ -5377,3 +5377,330 @@ org.apache.commons.cli.MissingOptionException: Missing required option: [-i The 
 2018-02-28 20:09:34,709 INFO       main:1:MLST:main:MLST:627 - Done.
 2018-02-28 20:09:34,711 INFO       main:1:MLST:main:MLST:640 - Plotting...
 2018-02-28 20:09:34,729 INFO       main:1:MLST:main:MLST:659 - All done.
+2018-02-28 21:51:32,588 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 21:51:33,028 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 21:51:33,031 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 21:51:33,046 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 21:51:33,048 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 21:51:33,052 NOTICE     main:1:MLST:main:MLST:452 - You selected intenstification with Path Relinking.
+2018-02-28 21:51:33,054 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 21:51:33,056 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 21:51:33,453 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 21:51:35,721 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 21:51:35,738 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 21:51:35,751 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 21:51:35,791 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 21:51:35,795 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 21:51:35,798 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 21:51:35,815 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 21:51:35,829 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 21:51:35,841 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 21:51:35,846 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 21:51:35,867 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 21:51:35,886 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 21:51:39,870 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 21:51:58,802 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 21:51:58,803 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 9
+2018-02-28 21:51:58,804 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 21:51:58,806 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1033 - PATH RELINKING WITH 143 ELITES GRAPHS...
+2018-02-28 21:53:14,241 ALGORITHM  main:1:TabuSearch:start:TabuSearch:858 - BEST AT THIS POINT: 8
+2018-02-28 21:53:14,244 ALGORITHM  main:1:TabuSearch:start:TabuSearch:864 - END.
+2018-02-28 21:53:14,262 INFO       main:1:MLST:main:MLST:620 - Done.
+2018-02-28 21:53:14,271 INFO       main:1:MLST:main:MLST:622 - Calculating spanning tree...
+2018-02-28 21:53:14,292 INFO       main:1:MLST:main:MLST:627 - Done.
+2018-02-28 21:53:14,353 INFO       main:1:MLST:main:MLST:640 - Plotting...
+2018-02-28 21:53:14,420 INFO       main:1:MLST:main:MLST:659 - All done.
+2018-02-28 21:56:02,457 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 21:56:02,826 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 21:56:02,837 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 21:56:02,885 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 21:56:02,888 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 21:56:02,893 NOTICE     main:1:MLST:main:MLST:452 - You selected intenstification with Path Relinking.
+2018-02-28 21:56:02,899 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 21:56:02,935 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 21:56:03,202 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 21:56:04,885 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 21:56:04,892 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 21:56:04,917 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 21:56:04,924 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 21:56:04,927 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 21:56:04,930 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 21:56:04,933 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 21:56:04,933 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 21:56:04,934 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 21:56:04,935 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 21:56:04,935 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 21:56:04,936 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 21:56:07,661 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 21:56:20,207 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 21:56:20,208 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 9
+2018-02-28 21:56:20,209 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 21:56:20,211 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1033 - PATH RELINKING WITH 145 ELITES GRAPHS...
+2018-02-28 21:57:14,412 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 21:57:14,875 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 21:57:14,879 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 21:57:14,921 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 21:57:14,935 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 21:57:14,939 NOTICE     main:1:MLST:main:MLST:452 - You selected intenstification with Path Relinking.
+2018-02-28 21:57:14,943 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 21:57:14,953 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 21:57:15,243 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 21:57:16,988 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 21:57:17,010 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 21:57:17,015 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 21:57:17,023 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 21:57:17,026 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 21:57:17,029 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 21:57:17,032 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 21:57:17,035 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 21:57:17,049 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 21:57:17,054 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 21:57:17,057 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 21:57:17,060 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 21:57:20,339 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 21:57:34,064 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 21:57:34,065 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 11
+2018-02-28 21:57:34,066 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 21:57:34,067 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1033 - PATH RELINKING WITH 129 ELITES GRAPHS...
+2018-02-28 21:59:23,601 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 21:59:23,934 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 21:59:23,951 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 21:59:23,982 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 21:59:23,998 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 21:59:24,016 NOTICE     main:1:MLST:main:MLST:452 - You selected intenstification with Path Relinking.
+2018-02-28 21:59:24,022 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 21:59:24,035 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 21:59:24,248 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 21:59:25,922 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 21:59:25,941 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 21:59:25,968 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 21:59:25,984 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 21:59:25,988 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 21:59:25,990 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 21:59:25,993 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 21:59:25,995 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 21:59:25,997 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 21:59:25,999 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 21:59:26,001 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 21:59:26,003 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 21:59:29,867 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 21:59:43,271 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 21:59:43,272 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 10
+2018-02-28 21:59:43,273 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 21:59:43,274 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 143 ELITES GRAPHS...
+2018-02-28 22:00:29,839 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:00:30,595 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:00:30,605 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:00:30,631 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:00:30,634 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:00:30,646 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:00:30,679 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:00:30,683 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:00:31,012 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:00:34,283 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:00:34,285 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:00:34,289 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:00:34,294 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:00:34,295 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:00:34,296 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:00:34,298 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:00:34,300 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:00:34,301 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:00:34,302 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:00:34,303 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:00:34,304 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:00:39,820 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:00:58,694 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:00:58,695 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 10
+2018-02-28 22:00:58,696 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:00:58,721 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 163 ELITES GRAPHS...
+2018-02-28 22:00:58,726 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:30:42,125 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:30:42,547 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:30:42,555 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:30:42,587 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:30:42,588 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:30:42,590 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:30:42,592 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:30:42,593 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:30:42,736 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:30:44,262 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:30:44,265 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:30:44,289 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:30:44,295 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:30:44,297 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:30:44,302 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:30:44,305 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:30:44,322 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:30:44,324 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:30:44,329 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:30:44,332 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:30:44,334 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:30:46,740 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:30:58,222 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:30:58,223 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 9
+2018-02-28 22:30:58,224 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:30:58,225 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 142 ELITES GRAPHS...
+2018-02-28 22:30:58,226 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:32:05,861 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:32:06,306 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:32:06,329 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:32:06,337 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:32:06,359 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:32:06,387 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:32:06,426 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:32:06,429 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:32:06,692 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:32:09,038 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:32:09,044 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:32:09,079 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:32:09,088 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:32:09,091 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:32:09,094 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:32:09,097 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:32:09,100 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:32:09,102 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:32:09,107 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:32:09,110 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:32:09,113 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:32:13,487 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:32:28,583 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:32:28,584 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 10
+2018-02-28 22:32:28,585 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:32:28,586 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 124 ELITES GRAPHS...
+2018-02-28 22:32:28,587 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:32:55,078 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:32:55,640 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:32:55,664 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:32:55,672 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:32:55,675 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:32:55,683 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:32:55,689 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:32:55,692 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:32:56,024 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:32:58,393 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:32:58,437 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:32:58,448 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:32:58,456 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:32:58,461 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:32:58,463 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:32:58,466 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:32:58,469 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:32:58,471 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:32:58,473 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:32:58,476 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:32:58,478 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:33:02,642 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:33:18,168 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:33:18,194 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 11
+2018-02-28 22:33:18,196 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:33:18,208 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 138 ELITES GRAPHS...
+2018-02-28 22:33:18,211 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:34:44,602 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:34:45,438 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:34:45,462 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:34:45,470 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:34:45,472 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:34:45,475 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:34:45,476 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:34:45,479 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:34:45,685 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:34:48,329 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:34:48,336 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:34:48,347 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:34:48,352 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:34:48,353 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:34:48,355 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:34:48,356 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:34:48,357 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:34:48,358 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:34:48,359 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:34:48,361 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:34:48,362 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:34:52,641 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:35:07,808 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:35:07,818 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 11
+2018-02-28 22:35:07,820 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:35:07,826 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 138 ELITES GRAPHS...
+2018-02-28 22:35:07,831 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:38:29,663 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:38:30,202 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:38:30,218 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:38:30,232 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:38:30,237 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:38:30,245 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:38:30,249 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:38:30,254 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:38:30,468 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:38:32,359 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:38:32,366 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:38:32,369 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:38:32,378 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:38:32,389 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:38:32,393 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:38:32,399 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:38:32,402 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:38:32,405 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:38:32,409 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:38:32,413 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:38:32,416 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:38:36,341 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:38:48,282 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:38:48,283 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 9
+2018-02-28 22:38:48,284 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:38:48,292 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 143 ELITES GRAPHS...
+2018-02-28 22:38:48,297 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:39:28,727 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:39:29,429 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:39:29,435 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:39:29,451 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:39:29,454 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:39:29,457 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:39:29,458 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:39:29,460 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:39:29,636 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:39:31,768 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:39:31,778 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:39:31,791 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:39:31,814 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:39:31,819 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:39:31,821 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:39:31,824 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:39:31,827 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:39:31,829 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:39:31,831 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:39:31,833 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:39:31,836 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:39:36,022 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:39:54,766 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:39:54,768 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 10
+2018-02-28 22:39:54,769 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:39:54,773 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1032 - PATH RELINKING WITH 162 ELITES GRAPHS...
+2018-02-28 22:39:54,776 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1034 - YOU CHOOSE ALTERNATIVE ALGORITHM
+2018-02-28 22:42:28,324 INFO       main:1:MLST:main:MLST:207 - Reading graph from file...
+2018-02-28 22:42:28,730 NOTICE     main:1:MLST:main:MLST:287 - Selected algorithms:
+2018-02-28 22:42:28,746 NOTICE     main:1:MLST:lambda$main$5:MLST:288 - tabusearch
+2018-02-28 22:42:28,760 NOTICE     main:1:MLST:main:MLST:308 - You selected to NOT view graphs.
+2018-02-28 22:42:28,763 NOTICE     main:1:MLST:main:MLST:372 - You selected diversification Multi-Start technique. # of greedy starts: 4. # of random starts: 0
+2018-02-28 22:42:28,768 NOTICE     main:1:MLST:main:MLST:459 - You selected intenstification with Path Relinking Alternative Algorithm.
+2018-02-28 22:42:28,772 NOTICE     main:1:MLST:main:MLST:479 - You selected maximum iterstions: 100
+2018-02-28 22:42:28,774 NOTICE     main:1:MLST:main:MLST:490 - You selected maximum iterations without any improvements: 50
+2018-02-28 22:42:29,063 INFO       main:1:MLST:main:MLST:597 - Plotting...
+2018-02-28 22:42:30,532 INFO       main:1:MLST:main:MLST:604 - All done.
+2018-02-28 22:42:30,538 INFO       main:1:MLST:main:MLST:611 - Algorithm: tabusearch
+2018-02-28 22:42:30,552 INFO       main:1:MLST:main:MLST:615 - Starting calculating MLST with tabusearch...
+2018-02-28 22:42:30,564 ALGORITHM  main:1:TabuSearch:start:TabuSearch:686 - STARTING TABU SEARCH...
+2018-02-28 22:42:30,573 ALGORITHM  main:1:TabuSearch:start:TabuSearch:687 - MAX ITERATIONS: 100
+2018-02-28 22:42:30,576 ALGORITHM  main:1:TabuSearch:start:TabuSearch:688 - MAX ITERATIONS WITHOUT IMPROVEMENTS: 50
+2018-02-28 22:42:30,581 ALGORITHM  main:1:TabuSearch:start:TabuSearch:689 - MIN QUEUE: 10
+2018-02-28 22:42:30,583 ALGORITHM  main:1:TabuSearch:start:TabuSearch:690 - RISING TREND: 1
+2018-02-28 22:42:30,586 ALGORITHM  main:1:TabuSearch:start:TabuSearch:691 - MAX THREADS: DEFAULT
+2018-02-28 22:42:30,589 ALGORITHM  main:1:TabuSearch:start:TabuSearch:692 - MULTI-STARTS -> # OF GREEDY: 4, # OF RANDOM: 0
+2018-02-28 22:42:30,596 ALGORITHM  main:1:TabuSearch:start:TabuSearch:725 - INTENSIFICATION SETTINGS: PATH RELINKING
+2018-02-28 22:42:30,599 ALGORITHM  main:1:TabuSearch:start:TabuSearch:758 - DIVERSIFICATION SETTINGS: MULTI-STARTS
+2018-02-28 22:42:33,022 ALGORITHM  main:1:TabuSearch:start:TabuSearch:782 - THREADS: 4
+2018-02-28 22:42:42,197 ALGORITHM  main:1:TabuSearch:start:TabuSearch:849 - END TABU SEARCH.
+2018-02-28 22:42:42,198 ALGORITHM  main:1:TabuSearch:start:TabuSearch:850 - BEST AT THIS POINT: 11
+2018-02-28 22:42:42,199 ALGORITHM  main:1:TabuSearch:start:TabuSearch:853 - STARTING PATH RELINKING...
+2018-02-28 22:42:42,200 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1033 - PATH RELINKING WITH 134 ELITES GRAPHS...
+2018-02-28 22:42:42,202 ALGORITHM  main:1:TabuSearch:pathRelinking:TabuSearch:1035 - YOU CHOOSE ALTERNATIVE ALGORITHM
