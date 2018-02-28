@@ -498,7 +498,7 @@ public class MLST {
         Integer rising_trend = null;
         if (commandLine.hasOption(RISING_TREND)) {
           rising_trend = Integer.parseInt(commandLine.getOptionValue(RISING_TREND).trim());
-          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected minimum of \"good moves\" that define a \"rising trend\": " + no_improvement);
+          LogManager.getLogger().log(Level.getLevel("NOTICE"), "You selected minimum of \"good moves\" that define a \"rising trend\": " + rising_trend);
           if (rising_trend < 1) {
             rising_trend = 1;
             LogManager.getLogger().warn("Minimum value accepted is 1");
