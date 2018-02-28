@@ -355,6 +355,11 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     public boolean hasMove(MoveEdge move) {
       return this.move.isSame(move);
     }
+
+    @Override
+    public String toString() {
+      return "MoveStat{" + "move=" + move + ", occurences=" + occurences + ", improvements=" + improvements + '}';
+    }
   }
 
   /**
@@ -424,9 +429,9 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
   }
 
-  protected double occurrencesRate(List<MoveStat> moveStatsList, MoveEdge move) {
-    double total = 0;
-    double x = 0;
+  protected int occurrencesRate(List<MoveStat> moveStatsList, MoveEdge move) {
+    int total = 0;
+    int x = 0;
     for (MoveStat s : moveStatsList) {
       total += s.getOccurences();
       if (s.hasMove(move)) {
@@ -436,7 +441,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     if (total == 0) {
       return 0;
     }
-    return x / total;
+    return x * 1000 / total;
   }
 
   /**
@@ -453,19 +458,19 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     }
   }
 
-  protected double improvementsRate(List<MoveStat> moveStatsList, MoveEdge move) {
-    double total = 0;
-    double x = 0;
+  protected int improvementsRate(List<MoveStat> moveStatsList, MoveEdge move) {
+    int total = 0;
+    int x = 0;
     for (MoveStat s : moveStatsList) {
+      total += s.getOccurences();
       if (s.hasMove(move)) {
-        total = s.getOccurences();
-        x = s.getOccurences();
+        x = s.getImprovements();
       }
     }
     if (total == 0) {
       return 0;
     }
-    return x / total;
+    return x * 1000 / total;
   }
 
   protected LabeledUndirectedGraph<N, E> applyMVCA() throws NotConnectedGraphException, Exception {
@@ -543,7 +548,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       if (!diversification || (randomItersCount <= 0 || notRandomItersCount > 0)) {
         //If intensification learning or diversification learning is setted then weight cost with occurrences
         Collections.sort(ordered_neighborhood, (m1, m2) -> {
-          double improvM1 = 0, improvM2 = 0, occurrM1 = 0, occurrM2 = 0;
+          int improvM1 = 0, improvM2 = 0, occurrM1 = 0, occurrM2 = 0;
           if (intensificationLearning) {
             improvM1 = improvementsRate(moveStatsList, m1);
             improvM2 = improvementsRate(moveStatsList, m2);
@@ -552,8 +557,10 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
             occurrM1 = occurrencesRate(moveStatsList, m1);
             occurrM2 = occurrencesRate(moveStatsList, m2);
           }
-          int r = (int) ((((m1.afterCost - m1.beforeCost) - improvM1 + occurrM1) * 1000)
-                  - (((m2.afterCost - m2.beforeCost) - improvM2 + occurrM2) * 1000));
+          int costM1 = (((m1.afterCost - m1.beforeCost) * 1000 - improvM1 + occurrM1));
+          int costM2 = (((m2.afterCost - m2.beforeCost) * 1000 - improvM2 + occurrM2));
+
+          int r = (costM1 - costM2);
           return r;
         });
 
