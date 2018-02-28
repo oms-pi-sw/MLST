@@ -93,6 +93,8 @@ usage: MLST
                                                     * mvcao1 [HEURISTIC,
                                                     GREEDY]
                                                     * era [HEURISTIC]
+                                                    * mvcao1era
+                                                    [HEURISTIC]
                                                     * tabusearch
                                                     [HEURISTIC]
  -A,--intensification-learning                      [REQUIRE TABU SEARCH].
