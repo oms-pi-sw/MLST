@@ -39,7 +39,8 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
   private volatile int minCost = 1,
           maxIterations = 100,
           maxIterationsWithoutImprovement = 50,
-          minQueue = 10;
+          minQueue = 10,
+          risingTrend = 1;
 
   private final List<LabeledUndirectedGraph<N, E>> minGraphs = new ArrayList<>();
   private final Object lock = new Object();
@@ -517,6 +518,8 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
     boolean abolishQueue = false;
 
+    int risingCount = 0;
+
     //Start computation
     List<MoveEdge> ordered_neighborhood;
     LabeledUndirectedGraph<N, E> sk = new LabeledUndirectedGraph<>(s0);
@@ -583,7 +586,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
           //INTENSIFICATION
           if (intensification) {
-            abolishQueue = (m.afterCost - m.beforeCost) < 0;
+            abolishQueue = (((m.afterCost - m.beforeCost) < 0) && (risingCount + (((m.afterCost - m.beforeCost) < 0) ? 1 : 0) >= risingTrend));
           }
 
           break;
@@ -604,7 +607,13 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
         cCost = sk.calculateCost();
 
         //If local search intensification is specified apply ERA local search to a solution that improve the previous one.
-        if (cCost < km1Cost && localSearchIntensification) {
+        if (cCost < km1Cost) {
+          risingCount++;
+        } else {
+          risingCount = 0;
+        }
+
+        if (risingCount >= risingTrend && localSearchIntensification) {
           sk = applyERA(sk);
         }
 
@@ -671,8 +680,9 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
     LogManager.getLogger().log(ALGORITHM, "MAX ITERATIONS: " + maxIterations);
     LogManager.getLogger().log(ALGORITHM, "MAX ITERATIONS WITHOUT IMPROVEMENTS: " + maxIterationsWithoutImprovement);
     LogManager.getLogger().log(ALGORITHM, "MIN QUEUE: " + minQueue);
-    LogManager.getLogger().log(ALGORITHM, "MULTI-STARTS -> # OF GREEDY: " + greedyMultiStart + ", # OF RANDOM: " + randomMultiStart);
+    LogManager.getLogger().log(ALGORITHM, "RISING TREND: " + risingTrend);
     LogManager.getLogger().log(ALGORITHM, "MAX THREADS: " + (maxThreads != null ? maxThreads : "DEFAULT"));
+    LogManager.getLogger().log(ALGORITHM, "MULTI-STARTS -> # OF GREEDY: " + greedyMultiStart + ", # OF RANDOM: " + randomMultiStart);
 
     String iSettings = null;
     if (intensificationLearning) {
@@ -725,7 +735,7 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
       } else {
         dSettings = "";
       }
-      dSettings += "PATH RELINKING";
+      dSettings += "MOVE DIVERSIFY";
     }
     if (diversification) {
       if (dSettings != null) {
@@ -1226,5 +1236,13 @@ public class TabuSearch<N extends Node, E extends Edge<N>> extends Algorithm<N, 
 
   public void setPathRelinkingDesc(boolean pathRelinkingDesc) {
     this.pathRelinkingDesc = pathRelinkingDesc;
+  }
+
+  public int getRisingTrend() {
+    return risingTrend;
+  }
+
+  public void setRisingTrend(int risingTrend) {
+    this.risingTrend = risingTrend;
   }
 }
